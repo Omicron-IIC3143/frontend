@@ -1,0 +1,13 @@
+services:
+  web:
+    build: .
+    container_name: my_app_node
+    restart: always
+    volumes:
+      - .:/usr/app/
+    ports:
+      - "8080:8080"
+    command:
+      "npm run dev"
+    env_file:
+      - ./.env
