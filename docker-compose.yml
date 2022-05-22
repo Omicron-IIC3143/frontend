@@ -8,6 +8,7 @@ services:
     ports:
       - "8081:8081"
     command:
-      "npm run dev"
+      "npm run start"
     env_file:
       - ./.env
+# el npm run start era antes (backend) un npm run dev

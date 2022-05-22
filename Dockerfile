@@ -1,8 +1,8 @@
 FROM node:16
 
-ADD . /usr/src/app
+ADD . /app
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
@@ -15,4 +15,5 @@ RUN npm install
 # Bundle app source
 COPY . .
 EXPOSE 8081
-CMD [ "npm", "run", "dev" ]
+CMD [ "npm", "run", "start" ]
+# el [npm run start] era antes (backend) un [npm run dev]
