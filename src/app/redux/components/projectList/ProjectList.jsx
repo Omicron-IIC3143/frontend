@@ -3,18 +3,19 @@ import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
 
-export function ProjectList() {
+export function ProjectList({type, title, description, daysAgo}) {
     return (
         <Card className="text-center">
-        <Card.Header>Featured</Card.Header>
+        <Card.Header> Proyecto de {type} </Card.Header>
         <Card.Body>
-            <Card.Title>Special title treatment</Card.Title>
+            <Card.Title>{title}</Card.Title>
             <Card.Text>
-            With supporting text below as a natural lead-in to additional content.
+                {description}
             </Card.Text>
-            <Button variant="primary">Go somewhere</Button>
+            <Button variant="primary">Ver en más detalle</Button>
         </Card.Body>
-        <Card.Footer className="text-muted">2 days ago</Card.Footer>
+        <Card.Footer className="text-muted">Hace {daysAgo} días</Card.Footer>
         </Card>
     )
 }
+

@@ -22,13 +22,13 @@ const Navbar = () => {
           <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="list-alt">Tus proyectos</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="list-alt">Mis proyectos</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="hand-holding-usd">Tus proyectos financiados</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="hand-holding-usd">Proyectos financiados</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/profile" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">Información financiera</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="chart-line">Mi información financiera</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="arrows-alt">Tipos de proyectos</CDBSidebarMenuItem>
