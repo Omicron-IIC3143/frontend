@@ -1,7 +1,7 @@
 import React from 'react';
-import Navbar from '../redux/components/navbar/Navbar';
-import { ProjectList } from '../redux/components/projectList/ProjectList';
-import { Searcher } from '../redux/components/searcher/Searcher';
+import Navbar from '../components/navbar/Navbar';
+import { ProjectList } from '../components/projectList/ProjectList';
+import { Searcher } from '../components/searcher/Searcher';
 import './LandingPage.css'
 
 function LandingPage() {
