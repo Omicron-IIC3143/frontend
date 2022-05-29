@@ -8,13 +8,14 @@ import {
   CDBSidebarMenuItem,
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
+import image from './user_image.jpeg';
 
 const Navbar = () => {
     return (
       <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
         <CDBSidebar textColor="#fff" backgroundColor="#333">
           <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-            <img src="user_image.jpeg" alt="user profile" width="20" height="20"></img>
+            <img src={image} alt="user profile" width="20" height="20"></img>
             
 
           </CDBSidebarHeader>
