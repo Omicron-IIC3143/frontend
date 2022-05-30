@@ -1,6 +1,6 @@
 import React from 'react';
 import RegisterUserForm from '../components/registerUserForm/RegisterUserForm';
-import './RegisterUserPage.css'
+// /* import './RegisterUserPage.css' */
 
 function RegisterUserPage() {
   return (
