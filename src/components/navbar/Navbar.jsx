@@ -46,7 +46,7 @@ const Navbar = () => {
                 padding: '20px 5px',
               }}
             >
-                <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
+                <NavLink exact to="/user/update" target="_blank" activeClassName="activeClicked">
                 <CDBSidebarMenuItem>Configuración</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">

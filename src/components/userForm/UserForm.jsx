@@ -5,22 +5,9 @@ import * as Yup from 'yup';
 const UserForm = function () {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  
 
-  //let user = null;
-  let user = {
-    "isAdmin": false,
-    "money": 0,
-    "id": 6,
-    "name": "Felipe García",
-    "email": "chinoinator4@uc.cl",
-    "rut": "19794152-9",
-    "description": "Probando 4 cuanta. Veremos si el PUT del Update puede cambiar las contraseñas",
-    "password": "$2a$10$dusKYGZpjS9pijjq.UiVXeRtF2E1lWDckG36gBFjOIqw5TwSl2ATa",
-    "updatedAt": "2022-05-30T07:29:13.541Z",
-    "createdAt": "2022-05-30T07:29:13.541Z",
-    "picture": null, 
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiRmVsaXBlIEdhcmPDrWEiLCJlbWFpbCI6ImNoaW5vaW5hdG9yNEB1Yy5jbCIsInJ1dCI6IjE5Nzk0MTUyLTkiLCJkZXNjcmlwdGlvbiI6IlByb2JhbmRvIDQgY3VhbnRhLiBWZXJlbW9zIHNpIGVsIFBVVCBkZWwgVXBkYXRlIHB1ZWRlIGNhbWJpYXIgbGFzIGNvbnRyYXNlw7FhcyIsInBhc3N3b3JkIjoiJDJhJDEwJGR1c0tZR1pwalM5cGlqanEuVWlWWGVSdEYyRTFsV0Rja0czNmdCRmpPSXF3NVR3U2wyQVRhIiwicGFzc3dvcmRDb25maXJtIjoiY2hpbm9pbmF0b3I0IiwiYWNjZXB0VGVybXMiOnRydWUsImlhdCI6MTY1Mzg5NTc1Mywic3ViIjoiNiJ9.5onTnEyky9H5a_3w-bQD7fkIVnXq9cdlUpWsjTXLURA"
-  }
+  let user = null;
 
   // Source https://cesarg.cl/validador-de-rut-chileno-con-javascript/
   let rutValidator = {
@@ -141,9 +128,12 @@ const UserForm = function () {
           values = valueStriper(values);
           const requestOptions = {
             method: user ? 'PUT' : 'POST',
-            headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + user.token },
+            headers: { 
+              'Content-Type': 'application/json', 
+              'Authorization': user ? 'Bearer ' + user.token : null },
             body: JSON.stringify(values),
           };
+
           try {
             let path = user ? user.id : 'register';
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${path}`, requestOptions);

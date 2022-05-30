@@ -49,7 +49,7 @@ const RegisterForm = function () {
                   body: JSON.stringify(values),
               };
               try {
-                  const response = await fetch(`localhost:8080/projects/new`, requestOptions); // OJO AQUI FALTA SETEAR ESTO
+                  const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/new`, requestOptions); // OJO AQUI FALTA SETEAR ESTO
                   if (!response.ok) {
                       const error = await response.text();
                       throw new Error(error);
