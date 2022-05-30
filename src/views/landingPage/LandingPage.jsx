@@ -1,6 +1,6 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar';
-import { ProjectList } from '../../components/projectList/ProjectList';
+import { ProjectList } from '../../components/project/projectList/ProjectList';
 import { Searcher } from '../../components/searcher/Searcher';
 import './LandingPage.css'
 
