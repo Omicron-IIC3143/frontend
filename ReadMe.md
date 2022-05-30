@@ -1,3 +1,9 @@
+# Frontend Social Starter
+* No olvidar crear el `.env` con la variable `REACT_APP_API_URL = http://social-starter-dev.herokuapp.com` para establecer la dirección de la API
+
+
+
+
 # Getting Started with Create React App and Redux
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.

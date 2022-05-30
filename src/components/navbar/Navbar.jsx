@@ -52,6 +52,9 @@ const Navbar = () => {
                 <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
                 <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
+                <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
+                <CDBSidebarMenuItem>Sign Up</CDBSidebarMenuItem>
+                </NavLink>
             </div>
           </CDBSidebarFooter>
         </CDBSidebar>
