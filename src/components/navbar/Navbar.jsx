@@ -36,7 +36,6 @@ function Navbar() {
             <NavLink exact to="/analytics" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="arrows-alt">Tipos de proyectos</CDBSidebarMenuItem>
             </NavLink>
-
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
