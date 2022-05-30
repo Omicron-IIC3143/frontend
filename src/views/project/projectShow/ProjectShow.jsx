@@ -40,6 +40,38 @@ var projects = {
 
 function ShowProject() {
     const { id } = useParams();
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
+    const [project, setProject] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(false);
+
+    useEffect(() => {
+        setLoading(true);
+        const requestOptions = {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${currentUser?.token}`,
+          },
+        };
+        fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`, requestOptions)
+          .then((response) => {
+            if (!response.ok) {
+              setError(true);
+              return null;
+            }
+            return response.json();
+          })
+          .then((data) => new Deserializer({ keyForAttribute: 'camelCase' }).deserialize(
+            data,
+            (_error, publicationData) => setPubli(publicationData),
+          ))
+          .catch(() => setError(true))
+          .finally(() => setLoading(false));
+      }, []);
+
+
     return (
         <div>
             <div className='grid-container'> 

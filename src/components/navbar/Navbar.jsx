@@ -9,8 +9,11 @@ import {
 } from 'cdbreact';
 import { NavLink } from 'react-router-dom';
 import image from './user_image.jpeg';
+import useAuth from '../../hooks/useAuth';
 
 function Navbar() {
+  const { currentUser } = useAuth();
+
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
@@ -45,12 +48,20 @@ function Navbar() {
             <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
               <CDBSidebarMenuItem>Configuración</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem>Sign Up</CDBSidebarMenuItem>
-            </NavLink>
+            {currentUser? (
+              <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
+                <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
+              </NavLink>
+            ) : (
+              <>
+                <NavLink exact to="/login" target="_blank" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem>Iniciar sesión</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem>Registrarse</CDBSidebarMenuItem>
+                </NavLink>
+              </>
+            )}
           </div>
         </CDBSidebarFooter>
       </CDBSidebar>
