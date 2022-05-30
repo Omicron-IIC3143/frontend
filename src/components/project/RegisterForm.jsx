@@ -66,7 +66,7 @@ const RegisterForm = function () {
           {({ errors, touched }) => (
               <form>
                   <div>
-                      <label htmlFor="projectName">Project Name: </label>
+                      <label htmlFor="projectName">Nombre del proyecto: </label>
                       <Field name="projectName" type="text" placeholder="Nombre proyecto" />
                       {errors.projectName && touched.projectName && (
                         <div className="error">{errors.projectName}</div>
