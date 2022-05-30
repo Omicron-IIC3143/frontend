@@ -1,7 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import LandingPage from './views/LandingPage';
-
+import LandingPage from './views/landingPage/LandingPage';
+import ProjectShow from './views/projectShow/ProjectShow';
 
 
 const AppRouter = function AppRouter() {
@@ -9,6 +9,7 @@ const AppRouter = function AppRouter() {
         <>
         <Routes>
             <Route path="/" element={<LandingPage />} />
+            <Route path="/projects/:id" element={<ProjectShow />} />
         </Routes>
         </>
     );
