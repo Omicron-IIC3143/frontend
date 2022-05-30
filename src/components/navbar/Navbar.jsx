@@ -11,6 +11,9 @@ import { NavLink } from 'react-router-dom';
 import image from './user_image.jpeg';
 
 const Navbar = () => {
+    const { currentUser } = useAuth();
+    const navigate = useNavigate();
+
     return (
       <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
         <CDBSidebar textColor="#fff" backgroundColor="#333">
@@ -49,12 +52,15 @@ const Navbar = () => {
                 <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
                 <CDBSidebarMenuItem>Configuración</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
+                {!currentUser? (
+                  <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem>Registrate</CDBSidebarMenuItem>
+                  </NavLink>
+                ) : (
+                  <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
                 <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
-                <CDBSidebarMenuItem>Sign Up</CDBSidebarMenuItem>
-                </NavLink>
+                )}
             </div>
           </CDBSidebarFooter>
         </CDBSidebar>
