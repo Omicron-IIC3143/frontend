@@ -4,12 +4,13 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import useAuth from '../../hooks/useAuth';
 
 const UserForm = function () {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  let user = null;
-  user = null;
+  const { currentUser, handleUserLogin } = useAuth();
+  let user = currentUser;
 
   // Source https://cesarg.cl/validador-de-rut-chileno-con-javascript/
   const rutValidator = {
@@ -148,6 +149,11 @@ const UserForm = function () {
               const error = await response.text();
               throw new Error(error);
             }
+            const respuesta = await response.json();
+            const { token } = user;
+            user = respuesta.user;
+            user.token = token;
+            handleUserLogin(user);
             const successMessage = user ? 'Usuario modificado satisfactoriamente' : 'Usuario creado satisfactoriamente';
             setMessage(successMessage);
           } catch (error) {

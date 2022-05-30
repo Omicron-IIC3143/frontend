@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import useAuth from '../../hooks/useAuth';
 
 const UserForm = function () {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-
-  const user = null;
+  const { currentUser, handleUserLogin } = useAuth();
+  let user = currentUser;
 
   return (
     <div className="form">
-
       <Formik
         initialValues={{ acceptTerms: false }}
         validationSchema={Yup.object({
@@ -32,6 +32,8 @@ const UserForm = function () {
               throw new Error(error);
             }
             const successMessage = 'Usuario eliminado satisfactoriamente';
+            handleUserLogin(null);
+            user = null;
             setMessage(successMessage);
           } catch (error) {
             setMessage(error.message);
