@@ -1,0 +1,26 @@
+.flex {
+    flex-direction: column;
+    margin-top: 7.5vw;
+    margin-left: 10vw;
+    margin-right: 10vw;
+}
+
+.flex-form-fields {
+    margin-bottom: 2vw;
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    gap: 3vw;
+    align-items: center
+}
+
+.error {
+    color:red;
+    margin-left: 2vw;
+    font-size: 1vw;
+}
+
+input {
+    flex-grow: 1;
+    margin: 0
+}
