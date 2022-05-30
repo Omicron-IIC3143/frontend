@@ -1,19 +1,19 @@
 import React from 'react';
-import Navbar from '../../components/navbar/Navbar';
+import Navbar from '../../../components/navbar/Navbar';
 import { useParams } from 'react-router-dom';
 import './ProjectShow.css'
 import imageIngSinFront from './ingSinFronteras.jpeg'
 import imageRecInc from './reciclajeInclusivo.jpeg'
 
-import { ButtonFinancing } from '../../components/projectShow/buttons/buttonFinancing/ButtonFinancing';
-import { ButtonSharing } from '../../components/projectShow/buttons/buttonSharing/ButtonSharing';
-import { ButtonContacting } from '../../components/projectShow/buttons/buttonContacting/ButtonContacting';
-import { ProjectImage } from '../../components/projectShow/projectImage/ProjectImage';
-import { PostulantDescription } from '../../components/projectShow/postulantDescription/PostulantDescription';
-import { ProjectDescription } from '../../components/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
-import { FinancingInformation } from '../../components/projectShow/financingInfo/FinancingInfo';
+import { ButtonFinancing } from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
+import { ButtonSharing } from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
+import { ButtonContacting } from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
+import { ProjectImage } from '../../../components/project/projectShow/projectImage/ProjectImage';
+import { PostulantDescription } from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
+import { ProjectDescription } from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
+import { FinancingInformation } from '../../../components/project/projectShow/financingInfo/FinancingInfo';
 
-var educatioProject = {
+var educationProject = {
     'title': 'Ingeniería Sin Fronteras',
     'description': 'Ingeniería Sin Fronteras Chile es una fundación sin fines de lucro, que busca co-crear soluciones sostenibles desde la Ingeniería Humanitaria.',
     'descriptionOfPostulant': 'Martín Sánchez es un Ingeniero UC encargado de fomentar distintas vías de financiamiento para los proyectos de vivienda de Ingeniería Sin Fronteras. ',
@@ -34,7 +34,7 @@ var reciclying = {
 }
 
 var projects = {
-    "1": educatioProject,
+    "1": educationProject,
     "2": reciclying,
   };
 
