@@ -1,6 +1,6 @@
 import React from 'react';
 import UserForm from '../../components/userForm/UserForm';
-import './RegisterUserPage.css'
+import './RegisterUserPage.css';
 
 function RegisterUserPage() {
   return (

@@ -1,7 +1,8 @@
+/* eslint-disable max-len */
 import React from 'react';
 import UserForm from '../../components/userForm/UserForm';
-import DeleteUser from '../../components/deleteUser/DeleteUser'
-import './RegisterUserPage.css'
+import DeleteUser from '../../components/deleteUser/DeleteUser';
+import './RegisterUserPage.css';
 
 function UpdaterUserPage() {
   return (

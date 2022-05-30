@@ -1,3 +1,6 @@
+/* eslint-disable no-mixed-operators */
+/* eslint-disable no-param-reassign */
+/* eslint-disable eqeqeq */
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -5,42 +8,46 @@ import * as Yup from 'yup';
 const UserForm = function () {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  
-
   let user = null;
+  user = null;
 
   // Source https://cesarg.cl/validador-de-rut-chileno-con-javascript/
-  let rutValidator = {
+  const rutValidator = {
     // Valida el rut con su cadena completa "XXXXXXXX-X"
-    validaRut : function (rutCompleto) {
-      if (!rutCompleto && !user) { return false };
-      if ((rutCompleto == '' || !rutCompleto) && user) {return true }; 
+    validaRut: (rutCompleto) => {
+      if (!rutCompleto && !user) { return false; }
+      if ((rutCompleto == '' || !rutCompleto) && user) { return true; }
 
-      rutCompleto = rutCompleto.replace(/\./g,'');
-      if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test( rutCompleto ))
+      rutCompleto = rutCompleto.replace(/\./g, '');
+      if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) {
         return false;
-      let tmp 	= rutCompleto.split('-');
-      let digv	= tmp[1]; 
-      let rut 	= tmp[0];
-      if ( digv === 'K' ) digv = 'k' ;
-      return (rutValidator.dv(rut) == digv );
+      }
+      const tmp = rutCompleto.split('-');
+      let digv = tmp[1];
+      const rut = tmp[0];
+      if (digv === 'K') digv = 'k';
+      return (rutValidator.dv(rut) == digv);
     },
-    dv : function(T){
-      let M=0,S=1;
-      for(;T;T=Math.floor(T/10))
-        S=(S+T%10*(9-M++%6))%11;
-      return S?S-1:'k';
-    }
+    dv: (T) => {
+      let M = 0;
+      let S = 1;
+      for (;T; T = Math.floor(T / 10)) {
+        // eslint-disable-next-line no-plusplus
+        S = (S + T % 10 * (9 - M++ % 6)) % 11;
+      }
+      return S ? S - 1 : 'k';
+    },
   };
 
-  Yup.addMethod(Yup.string, 'validateRUT', function (errorMessage){
-      return this.test('test-valid-RUT', errorMessage, function (value) {
-          const { path, createError } = this;
-
-          return ( rutValidator.validaRut(value) ||
-                 createError({path, message: errorMessage})
-                 ); 
-      });
+  // eslint-disable-next-line func-names
+  Yup.addMethod(Yup.string, 'validateRUT', function (errorMessage) {
+    // eslint-disable-next-line react/no-this-in-sfc
+    this.test('test-valid-RUT', errorMessage, (value) => {
+      const { path, createError } = this;
+      return (rutValidator.validaRut(value)
+                    || createError({ path, message: errorMessage })
+      );
+    });
   });
 
   const validationSchemaRegister = Yup.object({
@@ -88,7 +95,7 @@ const UserForm = function () {
       .required('Debes aceptar los términos y condiciones'),
   });
 
-  let initialValues = {
+  const initialValues = {
     name: '',
     email: '',
     rut: '',
@@ -98,50 +105,50 @@ const UserForm = function () {
     acceptTerms: false,
   };
 
-  let placeholders = {
+  const placeholders = {
     name: user ? user.name : 'Nombre Completo',
     email: user ? user.email : 'email.de.ejemplo@mailer.cl',
     rut: user ? user.rut : '30686957-4',
     description: user ? user.description : 'Descripción de ti (max. 300 carácteres)',
     password: 'Contraseña',
     passwordConfirm: 'Contraseña Reingresada',
-  }
-  console.log('Fuera return con user ', user, user ? 'siuuu': 'ñao ñao')
-  let validationSchema = user ? validationSchemaUpdater : validationSchemaRegister;
+  };
 
-  const valueStriper = function (values) {
-    let finalValues = {};
-    Object.keys(values).forEach( key => {
-      if (values[key] != '') { finalValues[key] = values[key] };
+  const validationSchema = user ? validationSchemaUpdater : validationSchemaRegister;
+
+  const valueStriper = (values) => {
+    const finalValues = {};
+    Object.keys(values).forEach((key) => {
+      if (values[key] != '') { finalValues[key] = values[key]; }
     });
     return finalValues;
   };
-  
   return (
     <div className="form">
       <Formik
-        initialValues={ initialValues }
-        validationSchema={ validationSchema }
+        initialValues={initialValues}
+        validationSchema={validationSchema}
         onSubmit={async (values) => {
           setLoading(true);
-          values.rut = values.rut.replace(/\./g,'');
+          values.rut = values.rut.replace(/\./g, '');
           values = valueStriper(values);
           const requestOptions = {
             method: user ? 'PUT' : 'POST',
-            headers: { 
-              'Content-Type': 'application/json', 
-              'Authorization': user ? 'Bearer ' + user.token : null },
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: user ? `Bearer ${user.token}` : null,
+            },
             body: JSON.stringify(values),
           };
 
           try {
-            let path = user ? user.id : 'register';
+            const path = user ? user.id : 'register';
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${path}`, requestOptions);
             if (!response.ok) {
               const error = await response.text();
               throw new Error(error);
             }
-            let successMessage = user ? 'Usuario modificado satisfactoriamente': 'Usuario creado satisfactoriamente';
+            const successMessage = user ? 'Usuario modificado satisfactoriamente' : 'Usuario creado satisfactoriamente';
             setMessage(successMessage);
           } catch (error) {
             setMessage(error.message);
@@ -151,8 +158,8 @@ const UserForm = function () {
         }}
       >
         {({ errors, touched }) => (
-          <Form className='flex'>
-            <div className='flex-form-fields'>
+          <Form className="flex">
+            <div className="flex-form-fields">
               <label htmlFor="name">Nombre</label>
               <Field name="name" type="text" placeholder={placeholders.name} />
               {errors.name && touched.name && (
@@ -160,7 +167,7 @@ const UserForm = function () {
               )}
             </div>
 
-            <div className='flex-form-fields'>
+            <div className="flex-form-fields">
               <label htmlFor="email">Email</label>
               <Field name="email" type="email" placeholder={placeholders.email} />
               {errors.email && touched.email && (
@@ -168,7 +175,7 @@ const UserForm = function () {
               )}
             </div>
 
-            <div className='flex-form-fields'>
+            <div className="flex-form-fields">
               <label htmlFor="rut">RUT</label>
               <Field name="rut" type="text" placeholder={placeholders.rut} />
               {errors.rut && touched.rut && (
@@ -176,7 +183,7 @@ const UserForm = function () {
               )}
             </div>
 
-            <div className='flex-form-fields'>
+            <div className="flex-form-fields">
               <label htmlFor="description">Descripción</label>
               <Field name="description" type="description" placeholder={placeholders.description} />
               {errors.description && touched.description && (
@@ -184,7 +191,7 @@ const UserForm = function () {
               )}
             </div>
 
-            <div className='flex-form-fields'>
+            <div className="flex-form-fields">
               <label htmlFor="password">Contraseña</label>
               <Field name="password" type="password" placeholder={placeholders.password} />
               {errors.password && touched.password && (
@@ -192,7 +199,7 @@ const UserForm = function () {
               )}
             </div>
 
-            <div className='flex-form-fields'>
+            <div className="flex-form-fields">
               <label htmlFor="passwordConfirm">Confirmar Contraseña</label>
               <Field name="passwordConfirm" type="password" placeholder={placeholders.passwordConfirm} />
               {errors.passwordConfirm && touched.passwordConfirm && (
@@ -200,7 +207,7 @@ const UserForm = function () {
               )}
             </div>
 
-            <div className='flex-form-fields'>
+            <div className="flex-form-fields">
               <label htmlFor="acceptTerms">
                 <Field name="acceptTerms" type="checkbox" />
                 Acepto los términos y condiciones de Social Starter
@@ -211,11 +218,11 @@ const UserForm = function () {
             </div>
 
             {!loading ? (
-              <div className='flex-form-fields'>
+              <div className="flex-form-fields">
                 <button type="submit">Confirmar Cambios</button>
               </div>
             ) : (
-              <div className='flex-form-fields'>
+              <div className="flex-form-fields">
                 <p>Cargando ...</p>
               </div>
             )}
