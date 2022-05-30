@@ -1,12 +1,13 @@
 import React from 'react';
-import RegisterUserForm from '../components/registerUserForm/RegisterUserForm';
+import UserForm from '../../components/userForm/UserForm';
 import './RegisterUserPage.css'
 
 function RegisterUserPage() {
   return (
     <div>
       <h2>Registrar Nuevo Usuario</h2>
-      <RegisterUserForm />
+      <UserForm />
+      <p>Una vez registrado satisfactoriamente, cierra esta pestaña</p>
     </div>
   );
 }
