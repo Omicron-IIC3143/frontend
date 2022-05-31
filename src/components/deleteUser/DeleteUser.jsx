@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+// import { Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 const UserForm = function () {
@@ -35,6 +36,7 @@ const UserForm = function () {
             handleUserLogin(null);
             user = null;
             setMessage(successMessage);
+            // if (currentUser) return <Navigate to="/" />;
           } catch (error) {
             setMessage(error.message);
           } finally {

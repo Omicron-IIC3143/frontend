@@ -50,10 +50,14 @@ function Navbar() {
               <CDBSidebarMenuItem>Configuración</CDBSidebarMenuItem>
             </NavLink>
             { currentUser ? (
-              <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
+              <NavLink exact to="/" target="_blank" activeClassName="activeClicked">
                 <CDBSidebarMenuItem>Cerrar Sesión</CDBSidebarMenuItem>
               </NavLink>
-            ) : (null) }
+            ) : (
+              <NavLink exact to="/login" target="_blank" activeClassName="activeClicked">
+                <CDBSidebarMenuItem>Iniciar Sesión</CDBSidebarMenuItem>
+              </NavLink>
+            ) }
             { currentUser ? (null) : (
               <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
                 <CDBSidebarMenuItem>Registrarse</CDBSidebarMenuItem>

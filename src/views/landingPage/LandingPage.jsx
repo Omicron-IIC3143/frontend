@@ -21,7 +21,7 @@ function LandingPage() {
                     <ProjectList id="2" type="Medioambiente" title="Fundación Reciclaje Inclusivo" description="Fundación Reciclaje Inclusivo es un colectivo de profesionales con amplia trayectoria en el ámbito de la gestión integral de residuos y el reciclaje inclusivo en Chile y Latinoamérica." daysAgo="12" />
                 </div>
             </div>
-            
+        <p>AAAAAHHHHH</p>
         </div>
     )
 }
