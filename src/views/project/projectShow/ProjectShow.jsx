@@ -10,7 +10,7 @@ import { ButtonFinancing } from '../../../components/project/projectShow/buttons
 import { ButtonSharing } from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import { ButtonContacting } from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
 import { ProjectImage } from '../../../components/project/projectShow/projectImage/ProjectImage';
-// import { PostulantDescription } from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
+import { PostulantDescription } from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
 import { ProjectDescription } from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import { FinancingInformation } from '../../../components/project/projectShow/financingInfo/FinancingInfo';
 
@@ -42,11 +42,9 @@ const projects = {
 function ShowProject() {
   const { id } = useParams();
   const { currentUser } = useAuth();
-  const [project, setProject] = useState(null);
+  const [project, setProject] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log('AAAAAAAA');
-  console.log('AAAAAAAA');
 
   useEffect(() => {
     setLoading(true);
@@ -96,7 +94,8 @@ function ShowProject() {
           ) : (
             <>
               <div className="rowImageAndDescription">
-                <ProjectImage title={project.name} image={project.picture} />
+                <ProjectImage title={project.name} image={project.pictureUrl} />
+                <PostulantDescription description={'debería ir la descripción del postulante'} />
               </div>
               <ProjectDescription description={project.description} />
               <FinancingInformation

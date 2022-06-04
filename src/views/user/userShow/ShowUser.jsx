@@ -19,8 +19,8 @@ function ShowUser() {
         <div className="flex">
           <h2>Información de usuario</h2>
           <UserShow
-            name="Martín Sánchez"
-            description="Ingeniero UC encargado de fomentar distintas vías de financiamiento para los proyectos de vivienda de Ingeniería Sin Fronteras."
+            name={currentUser?.name}
+            description={currentUser?.description}
             rut={currentUser?.rut}
             money={currentUser?.money}
             email={currentUser?.email}

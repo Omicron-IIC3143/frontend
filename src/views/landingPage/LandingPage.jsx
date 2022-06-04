@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
+import ButtonPostulateProject from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject'; 
 import { ProjectList } from '../../components/project/projectList/ProjectList';
-import { Searcher } from '../../components/searcher/Searcher';
+import { Searcher } from '../../components/project/projectList/searcher/Searcher';
 import './LandingPage.css';
+
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -42,9 +44,7 @@ function LandingPage() {
         <h2>Loading...</h2>
       </section>
     );
-  }
-
-  return (
+  } return (
     <div className="grid-container">
       <div>
         <Navbar />
@@ -53,6 +53,14 @@ function LandingPage() {
         <div className="flex-inside-searcher">
           <Searcher />
         </div>
+        {currentUser? (
+        <div className="flex-inside-searcher">
+          <ButtonPostulateProject />
+        </div>
+        ): (
+          <>
+          </>
+        )} 
         {error ? (
           <div className="flex-inside">
             <h2>
@@ -66,9 +74,11 @@ function LandingPage() {
               <div className="flex-inside">
                 <ProjectList
                   id={project.id}
-                  type={project.topic}
+                  topic={project.topic}
                   title={project.name}
                   description={project.description}
+                  date={project.createdAt}
+                  company={project.company}
                 />
               </div>
             ))}
@@ -85,7 +95,6 @@ function LandingPage() {
         </div>
       </div>
     </div>
-  );
-}
+  )};
 
 export default LandingPage;
