@@ -20,7 +20,6 @@ function Navbar() {
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />}>
           <img src={image} alt="user profile" width="20" height="20" />
         </CDBSidebarHeader>
-
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink exact to="/" activeClassName="activeClicked">
@@ -65,4 +64,5 @@ function Navbar() {
     </div>
   );
 }
+
 export default Navbar;

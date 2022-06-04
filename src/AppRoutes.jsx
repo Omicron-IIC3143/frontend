@@ -1,7 +1,8 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 
-import RegisterUserPage from './views/RegisterUserPage';
+import RegisterUserPage from './views/user/RegisterUserPage';
+import UpdaterUserPage from './views/user/UpdaterUserPage';
 import LandingPage from './views/landingPage/LandingPage';
 import ShowProject from './views/project/projectShow/ProjectShow';
 import RegisterProject from './views/project/registerProject/RegisterProject';
@@ -19,6 +20,7 @@ const AppRouter = function AppRouter() {
         <Route path="projectregister" element={<RegisterProject />} />
         <Route path="/profile" element={<ShowUser />} />
         <Route path="/register" element={<RegisterUserPage />} />
+        <Route path="/user/update" element={<UpdaterUserPage />} />
       </Routes>
     </AuthContextProvider>
   );
