@@ -19,9 +19,7 @@ function Navbar() {
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />}>
           <img src={image} alt="user profile" width="20" height="20" />
-
         </CDBSidebarHeader>
-
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink exact to="/" activeClassName="activeClicked">
@@ -40,28 +38,25 @@ function Navbar() {
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
-          <div
-            className="sidebar-btn-wrapper"
-            style={{
-              padding: '20px 5px',
-            }}
-          >
-            <NavLink exact to="/user/update" target="_blank" activeClassName="activeClicked">
-              <CDBSidebarMenuItem>Configuración</CDBSidebarMenuItem>
-            </NavLink>
-            { currentUser ? (
-              <NavLink exact to="/" target="_blank" activeClassName="activeClicked">
-                <CDBSidebarMenuItem>Cerrar Sesión</CDBSidebarMenuItem>
+          <div className="sidebar-btn-wrapper" style={{padding: '20px 5px',}}> 
+            {currentUser? (
+              <>
+              <NavLink exact to="/profile" target="_blank" activeClassName="activeClicked">
+                <CDBSidebarMenuItem>Mi perfil</CDBSidebarMenuItem>
               </NavLink>
+              <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
+                <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
+              </NavLink>
+              </>
             ) : (
-              <NavLink exact to="/login" target="_blank" activeClassName="activeClicked">
-                <CDBSidebarMenuItem>Iniciar Sesión</CDBSidebarMenuItem>
-              </NavLink>
-            ) }
-            { currentUser ? (null) : (
-              <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
-                <CDBSidebarMenuItem>Registrarse</CDBSidebarMenuItem>
-              </NavLink>
+              <>
+                <NavLink exact to="/login" target="_blank" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem>Iniciar sesión</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem>Registrarse</CDBSidebarMenuItem>
+                </NavLink>
+              </>
             )}
           </div>
         </CDBSidebarFooter>

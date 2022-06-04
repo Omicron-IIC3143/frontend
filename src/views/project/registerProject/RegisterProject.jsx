@@ -1,5 +1,5 @@
 import React from 'react';
-import RegisterForm from '../../../components/project/RegisterForm';
+import RegisterProjectForm from '../../../components/project/registerProject/RegisterProjectForm';
 import Navbar from '../../../components/navbar/Navbar';
 import './RegisterProject.css'
 
@@ -12,7 +12,7 @@ function RegisterProject() {
                 </div>
                 <div className='flex'>
                     <h2>Postulación de proyecto</h2>
-                    <RegisterForm />
+                    <RegisterProjectForm />
                 </div>
             </div>
         </div>
