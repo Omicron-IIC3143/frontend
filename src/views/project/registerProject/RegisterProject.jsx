@@ -10,8 +10,8 @@ function RegisterProject() {
                 <div>
                     <Navbar />
                 </div>
-                <div className='flex'>
-                    <h2>Postulación de proyecto</h2>
+                <div className='flex-register-project'>
+                    <h2 className="title-register-new-project">Formulario de postulación de nuevo proyecto</h2>
                     <RegisterProjectForm />
                 </div>
             </div>

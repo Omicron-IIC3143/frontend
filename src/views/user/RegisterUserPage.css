@@ -1,26 +1,25 @@
-.flex2 {
-    flex-direction: column;
-    margin-top: 7.5vw;
-    margin-left: 10vw;
-    margin-right: 10vw;
-}
 
-.flex-form-fields {
-    margin-bottom: 2vw;
-    width: 75%;
-    display: flex;
-    justify-content: space-between;
-    gap: 3vw;
-    align-items: center
-}
+.grid-container-register-user {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+    }
 
-.error {
-    color:red;
-    margin-left: 2vw;
-    font-size: 1vw;
-}
 
-input {
-    flex-grow: 1;
-    margin: 0
+.flex-register-user {
+        flex-direction: column;
+        margin-top: 5vh;
+        margin-left: -10vw;
+        margin-right: 15vw;
+    }
+
+.title-register-new-user {
+    padding-bottom: 2vh;
+    padding-top: 5vh;
+    text-align: left;
+    color: darkblue;
+    margin-left: 5vh;
+    margin-bottom: 1vh;
+    font-size: 3vw;
 }

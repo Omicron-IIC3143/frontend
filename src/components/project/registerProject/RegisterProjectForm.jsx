@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Button from 'react-bootstrap/Button';
 import './RegisterProjectForm.css'
 
 const RegisterProjectForm = function () {
@@ -65,73 +66,75 @@ const RegisterProjectForm = function () {
 
         >
           {({ errors, touched }) => (
-              <div className="card-profile-form">
-                <form>
-                    <div>
-                        <label htmlFor="projectName">Nombre del proyecto: </label>
-                        <Field name="projectName" type="text" placeholder="Nombre proyecto" />
+              <div className="card-profile-register-project-form">
+                <Form>
+                    <div className="label-form-register-project">
+                        <label className="label-content-register-project" htmlFor="projectName">Nombre del proyecto: </label>
+                        <Field className="center-info-register-project" name="projectName" type="text" placeholder="Nombre proyecto" />
                         {errors.projectName && touched.projectName && (
                           <div className="error">{errors.projectName}</div>
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="description">Descripción: </label>
-                        <Field name="description" type="text" placeholder="Descripción" />
+                    <div className="label-form-register-project">
+                        <label className="label-content-register-project" htmlFor="description">Descripción: </label>
+                        <Field className="center-info-register-project" name="description" type="text" placeholder="Descripción" />
                         {errors.description && touched.description && (
                           <div className="error">{errors.description}</div>
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="picture">Imagen: </label>
-                        <Field name="picture" type="text" placeholder="URL de la imagen" />
+                    <div className="label-form-register-project">
+                        <label className="label-content-register-project" htmlFor="picture">Imagen: </label>
+                        <Field className="center-info-register-project" name="picture" type="text" placeholder="URL de la imagen" />
                         {errors.picture && touched.picture && (
                           <div className="error">{errors.picture}</div>
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="company">Empresa: </label>
-                        <Field name="company" type="text" placeholder="Empresa u organización" />
+                    <div className="label-form-register-project">
+                        <label className="label-content-register-project" htmlFor="company">Empresa: </label>
+                        <Field className="center-info-register-project" name="company" type="text" placeholder="Empresa u organización" />
                         {errors.company && touched.company && (
                           <div className="error">{errors.company}</div>
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="topic">Rubro: </label>
-                        <Field name="topic" type="text" placeholder="Rubro" />
+                    <div className="label-form-register-project">
+                        <label className="label-content-register-project" htmlFor="topic">Rubro: </label>
+                        <Field className="center-info-register-project" name="topic" type="text" placeholder="Rubro" />
                         {errors.topic && touched.topic && (
                           <div className="error">{errors.topic}</div>
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="goalAmount">Meta monetaria: </label>
-                        <Field name="goalAmount" type="number" placeholder="Millones de pesos" />
+                    <div className="label-form-register-project">
+                        <label className="label-content-register-project" htmlFor="goalAmount">Meta monetaria: </label>
+                        <Field className="center-info-register-project" name="goalAmount" type="number" placeholder="Millones de pesos" />
                         {errors.goalAmount && touched.goalAmount && (
                           <div className="error">{errors.goalAmount}</div>
                         )}
                     </div>
 
-                    <div>
-                        <label htmlFor="deadlineTime">Tiempo límite: </label>
-                        <Field name="deadlineTime" type="number" placeholder="Cantidad de días desde hoy" />
+                    <div className="label-form-register-project">
+                        <label className="label-content-register-project" htmlFor="deadlineTime">Tiempo límite: </label>
+                        <Field className="center-info-register-project" name="deadlineTime" type="number" placeholder="Cantidad de días desde hoy" />
                         {errors.deadlineTime && touched.deadlineTime && (
                           <div className="error">{errors.deadlineTime}</div>
                         )}
                     </div>
                     {!loading ? (
-                      <div>
-                        <button type="submit">Enviar postulación</button>
+                      <div className="label-form-register-project">
+                        <div className="button-submit-register-project">
+                          <Button variant="primary" type="submit">Enviar postulación</Button>
+                        </div>
                       </div>
                     ) : (
                       <div>
                         <p>Loading...</p>
                       </div>
                     )}
-                </form>                
+                </Form>                
               </div>
           )}
         </Formik>

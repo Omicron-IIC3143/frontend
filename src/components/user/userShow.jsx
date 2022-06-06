@@ -1,29 +1,27 @@
 import React from 'react';
-import './userShow.css';
+import './UserShow.css';
 
 export function UserShow({
-  name, rut, money, description, email,
+  name, rut, description, email,
 }) {
   return (
     <div className="card-profile">
-      <h3>
-        <b>Nombre:</b>
+      <h3 className="title-show-user">
         {name}
       </h3>
-      <h3>
-        <b>Rut:</b>
+      <h3 className="sub-title-show-user">
+        [Mi perfil]
+      </h3>
+      <h3 className="center-info">
+        <b>Rut: </b>
         {rut}
       </h3>
-      <h3>
-        <b>Saldo actual:</b>
-        {money}
-      </h3>
-      <h3>
-        <b>Descripción:</b>
+      <h3 className="center-info">
+        <b>Descripción: </b>
         {description}
       </h3>
-      <h3>
-        <b>Correo electrónico:</b>
+      <h3 className="center-info">
+        <b>Correo electrónico: </b>
         {email}
       </h3>
     </div>

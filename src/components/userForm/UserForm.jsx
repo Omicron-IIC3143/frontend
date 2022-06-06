@@ -1,10 +1,12 @@
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-param-reassign */
 /* eslint-disable eqeqeq */
+import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../hooks/useAuth';
+import './UserForm.css';
 
 const UserForm = function () {
   const [loading, setLoading] = useState(false);
@@ -107,12 +109,12 @@ const UserForm = function () {
   };
 
   const placeholders = {
-    name: user ? user.name : 'Nombre Completo',
+    name: user ? user.name : 'Nombre completo',
     email: user ? user.email : 'email.de.ejemplo@mailer.cl',
     rut: user ? user.rut : '30686957-4',
-    description: user ? user.description : 'Descripción de ti (max. 300 carácteres)',
+    description: user ? user.description : 'Descripción de ti (max. 300 caracteres)',
     password: 'Contraseña',
-    passwordConfirm: 'Contraseña Reingresada',
+    passwordConfirm: 'Contraseña reingresada',
   };
 
   const validationSchema = user ? validationSchemaUpdater : validationSchemaRegister;
@@ -125,7 +127,7 @@ const UserForm = function () {
     return finalValues;
   };
   return (
-    <div className="form">
+    <div className="card-profile-register-form">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -164,59 +166,59 @@ const UserForm = function () {
         }}
       >
         {({ errors, touched }) => (
-          <Form className="flex">
-            <div className="flex-form-fields">
-              <label htmlFor="name">Nombre</label>
-              <Field name="name" type="text" placeholder={placeholders.name} />
+          <Form>
+            <div className="label-form">
+              <label className="label-content" htmlFor="name">Nombre: </label>
+              <Field className="center-info-register-user" name="name" type="text" placeholder={placeholders.name} />
               {errors.name && touched.name && (
                 <div className="error">{errors.name}</div>
               )}
             </div>
 
-            <div className="flex-form-fields">
-              <label htmlFor="email">Email</label>
-              <Field name="email" type="email" placeholder={placeholders.email} />
+            <div className="label-form">
+              <label className="label-content" htmlFor="email">Email: </label>
+              <Field className="center-info-register-user" name="email" type="email" placeholder={placeholders.email} />
               {errors.email && touched.email && (
                 <div className="error">{errors.email}</div>
               )}
             </div>
 
-            <div className="flex-form-fields">
-              <label htmlFor="rut">RUT</label>
-              <Field name="rut" type="text" placeholder={placeholders.rut} />
+            <div className="label-form">
+              <label className="label-content" htmlFor="rut">RUT: </label>
+              <Field className="center-info-register-user" name="rut" type="text" placeholder={placeholders.rut} />
               {errors.rut && touched.rut && (
                 <div className="error">{errors.rut}</div>
               )}
             </div>
 
-            <div className="flex-form-fields">
-              <label htmlFor="description">Descripción</label>
-              <Field name="description" type="description" placeholder={placeholders.description} />
+            <div className="label-form">
+              <label className="label-content" htmlFor="description">Descripción: </label>
+              <Field className="center-info-register-user" name="description" type="description" placeholder={placeholders.description} />
               {errors.description && touched.description && (
                 <div className="error">{errors.description}</div>
               )}
             </div>
 
-            <div className="flex-form-fields">
-              <label htmlFor="password">Contraseña</label>
-              <Field name="password" type="password" placeholder={placeholders.password} />
+            <div className="label-form">
+              <label className="label-content" htmlFor="password">Contraseña: </label>
+              <Field className="center-info-register-user" name="password" type="password" placeholder={placeholders.password} />
               {errors.password && touched.password && (
                 <div className="error">{errors.password}</div>
               )}
             </div>
 
-            <div className="flex-form-fields">
-              <label htmlFor="passwordConfirm">Confirmar Contraseña</label>
-              <Field name="passwordConfirm" type="password" placeholder={placeholders.passwordConfirm} />
+            <div className="label-form">
+              <label className="label-content" htmlFor="passwordConfirm">Confirmar contraseña: </label>
+              <Field className="center-info-register-user" name="passwordConfirm" type="password" placeholder={placeholders.passwordConfirm} />
               {errors.passwordConfirm && touched.passwordConfirm && (
                 <div className="error">{errors.passwordConfirm}</div>
               )}
             </div>
 
-            <div className="flex-form-fields">
-              <label htmlFor="acceptTerms">
-                <Field name="acceptTerms" type="checkbox" />
-                Acepto los términos y condiciones de Social Starter
+            <div className="label-form">
+              <label className="label-content-terms-and-conditions" htmlFor="acceptTerms">
+                <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
+                Acepto los términos y condiciones de Social Starter.
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
                 <div className="error">{errors.acceptTerms}</div>
@@ -224,11 +226,13 @@ const UserForm = function () {
             </div>
 
             {!loading ? (
-              <div className="flex-form-fields">
-                <button type="submit">Confirmar Cambios</button>
+              <div className="label-form">
+                <div className="button-submit-register-user">
+                  <Button variant="primary" type="submit">Registrarse</Button>
+                </div>
               </div>
             ) : (
-              <div className="flex-form-fields">
+              <div>
                 <p>Cargando ...</p>
               </div>
             )}
