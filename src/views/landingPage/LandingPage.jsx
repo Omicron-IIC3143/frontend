@@ -69,8 +69,9 @@ function LandingPage() {
             </h2>
           </div>
         ) : (
-          <>
-            {projects.map((project) => (
+          projects.map((project) => (
+            // acá hay que poner (project?.currentState == 'approved') ? (
+            (project?.currentState == 0) ? (
               <div className="flex-inside">
                 <ProjectList
                   id={project?.id}
@@ -81,10 +82,12 @@ function LandingPage() {
                   company={project?.company}
                 />
               </div>
-            ))}
-          </>
+            ) : (
+              <>
+              </>
+            )
+          ))
         )}
-
         <div>
           <Button className="button-back-landing" variant="primary" onClick={() => navigate(-1)} type="button" id="backButton">Atrás</Button>
         </div>
