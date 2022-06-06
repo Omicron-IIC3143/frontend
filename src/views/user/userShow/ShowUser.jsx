@@ -6,6 +6,7 @@ import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
 import { UserShow } from '../../../components/user/userShow';
 import { ButtonUpdatingUser } from '../../../components/user/updateButton';
+import { ButtonBack } from '../../../components/buttons/buttonBack/ButtonBack';
 
 function ShowUser() {
   const { currentUser } = useAuth();
@@ -25,6 +26,8 @@ function ShowUser() {
             email={currentUser?.email}
           />
           <ButtonUpdatingUser />
+          {' '}
+          <ButtonBack />
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './Login.css';
+import { ButtonBack } from '../../../components/buttons/buttonBack/ButtonBack';
 
 const initialValues = {
   mail: '',
@@ -15,7 +16,6 @@ const Login = function Login() {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
   const { currentUser, handleUserLogin } = useAuth();
-  const navigate = useNavigate();
 
   const handleSubmit = async function handleSubmit(event) {
     setLoading(true);
@@ -88,14 +88,13 @@ const Login = function Login() {
               <Button className="button-submit-login-user" id="loginButton" type="submit" disabled={!(values.email && values.password)}>
                 Login
               </Button>
+              {' '}
+              <ButtonBack />
             </div>
           </form>
         </div>
       </div>
       <p>{errorMessage}</p>
-      <div>
-        <Button onClick={() => navigate(-1)} type="button" className="button" id="backButton">Back</Button>
-      </div>
     </div>
   );
 };

@@ -3,6 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import './RegisterProjectForm.css';
+import { ButtonBack } from '../../buttons/buttonBack/ButtonBack';
 
 const RegisterProjectForm = function () {
   const [loading, setLoading] = useState(false);
@@ -127,6 +128,8 @@ const RegisterProjectForm = function () {
                 <div className="label-form-register-project">
                   <div className="button-submit-register-project">
                     <Button variant="primary" type="submit">Enviar postulación</Button>
+                    {' '}
+                    <ButtonBack />
                   </div>
                 </div>
               ) : (

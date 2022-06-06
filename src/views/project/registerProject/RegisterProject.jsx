@@ -1,7 +1,7 @@
 import React from 'react';
 import RegisterProjectForm from '../../../components/project/registerProject/RegisterProjectForm';
 import Navbar from '../../../components/navbar/Navbar';
-import './RegisterProject.css'
+import './RegisterProject.css';
 
 function RegisterProject() {
     return (

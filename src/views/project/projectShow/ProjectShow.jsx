@@ -9,6 +9,7 @@ import useAuth from '../../../hooks/useAuth';
 import { ButtonFinancing } from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
 import { ButtonSharing } from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import { ButtonContacting } from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
+import { ButtonBack } from '../../../components/buttons/buttonBack/ButtonBack';
 import { ProjectImage } from '../../../components/project/projectShow/projectImage/ProjectImage';
 import { PostulantDescription } from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
 import { ProjectDescription } from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
@@ -83,6 +84,8 @@ function ShowProject() {
                 <ButtonSharing />
                 {' '}
                 <ButtonContacting />
+                {' '}
+                <ButtonBack />
               </div>
             </>
           )}
