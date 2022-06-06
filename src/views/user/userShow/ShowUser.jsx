@@ -4,20 +4,19 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
-import { UserShow } from '../../../components/user/userShow';
-import { ButtonUpdatingUser } from '../../../components/user/updateButton';
+import { UserShow } from '../../../components/user/UserShow';
+import { ButtonUpdatingUser } from '../../../components/user/UpdateButton';
 
 function ShowUser() {
   const { currentUser } = useAuth();
   //   const navigate = useNavigate();
   return (
     <div>
-      <div className="grid-container">
+      <div className="grid-container-show-user">
         <div>
           <Navbar />
         </div>
-        <div className="flex">
-          <h2>Información de usuario</h2>
+        <div className="flex-show-user">
           <UserShow
             name={currentUser?.name}
             description={currentUser?.description}

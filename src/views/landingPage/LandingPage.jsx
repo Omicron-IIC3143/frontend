@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
-import ButtonPostulateProject from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject'; 
-import { ProjectList } from '../../components/project/projectList/ProjectList';
+import ButtonPostulate from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
+import ProjectList from '../../components/project/projectList/ProjectList';
 import { Searcher } from '../../components/project/projectList/searcher/Searcher';
 import './LandingPage.css';
-
 
 function LandingPage() {
   const navigate = useNavigate();
@@ -49,23 +49,23 @@ function LandingPage() {
       <div>
         <Navbar />
       </div>
-      <div className="flex">
+      <div className="flex-landing-page">
         <div className="flex-inside-searcher">
           <Searcher />
         </div>
-        {currentUser? (
-        <div className="flex-inside-searcher">
-          <ButtonPostulateProject />
-        </div>
-        ): (
+        {currentUser ? (
+          <div className="flex-inside-button-postulate">
+            <ButtonPostulate />
+          </div>
+        ) : (
           <>
           </>
-        )} 
+        ) }
         {error ? (
           <div className="flex-inside">
             <h2>
               Error
-              {error}
+              {error.errors}
             </h2>
           </div>
         ) : (
@@ -73,28 +73,24 @@ function LandingPage() {
             {projects.map((project) => (
               <div className="flex-inside">
                 <ProjectList
-                  id={project.id}
-                  topic={project.topic}
-                  title={project.name}
-                  description={project.description}
-                  date={project.createdAt}
-                  company={project.company}
+                  id={project?.id}
+                  topic={project?.topic}
+                  title={project?.name}
+                  description={project?.description}
+                  date={project?.createdAt}
+                  company={project?.company}
                 />
               </div>
             ))}
           </>
         )}
-        <div className="flex-inside">
-          <ProjectList id="1" type="Educación" title="Ingeniería Sin Fronteras" description="Ingeniería Sin Fronteras Chile es una fundación sin fines de lucro, que busca co-crear soluciones sostenibles desde la Ingeniería Humanitaria." daysAgo="5" />
-        </div>
-        <div className="flex-inside">
-          <ProjectList id="2" type="Medioambiente" title="Fundación Reciclaje Inclusivo" description="Fundación Reciclaje Inclusivo es un colectivo de profesionales con amplia trayectoria en el ámbito de la gestión integral de residuos y el reciclaje inclusivo en Chile y Latinoamérica." daysAgo="12" />
-        </div>
+
         <div>
-          <button onClick={() => navigate(-1)} type="button" className="button" id="backButton">Atrás</button>
+          <Button className="button-back-landing" variant="primary" onClick={() => navigate(-1)} type="button" id="backButton">Atrás</Button>
         </div>
       </div>
     </div>
-  )};
+  );
+}
 
 export default LandingPage;

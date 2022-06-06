@@ -1,8 +1,8 @@
-.flex {
+.flex-register-project {
     flex-direction: column;
-    margin-top: 100px;
-    margin-left: 50px;
-    margin-right: 40px;
+    margin-top: 5vh;
+    margin-left: -10vw;
+    margin-right: 15vw;
 }
 
 .grid-container {
@@ -17,3 +17,12 @@
     flex-direction:row;
 }
 
+.title-register-new-project {
+    padding-bottom: 2vh;
+    padding-top: 5vh;
+    text-align: left;
+    color: darkblue;
+    margin-left: 5vh;
+    margin-bottom: 1vh;
+    font-size: 3vw;
+}

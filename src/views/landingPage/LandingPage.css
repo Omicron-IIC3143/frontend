@@ -15,11 +15,11 @@ font-size: 30px;
 text-align: center;
 } */
 
-.flex {
+.flex-landing-page {
     flex-direction: column;
-    margin-top: 100px;
-    margin-left: 50px;
-    margin-right: 40px;
+    margin-top: 5vh;
+    margin-left: -20vw;
+    margin-right: 10vw;
 }
 
 .flex-inside {
@@ -29,4 +29,27 @@ text-align: center;
 .flex-inside-searcher {
     margin-bottom: 70px;
 }
+
+.flex-inside-button-postulate {
+    margin-bottom: 5vh;
+}
+
+.button-back-landing {
+    margin-bottom: 5vh;
+    background-color: darkblue;
+}
+
+.button-back-landing:hover {
+    background-color: white;
+    color: #0353a4;
+    border: 1px solid 0353a4;
+}
+
+.button-back-landing:active{
+    color: black;
+    background-color:  lightblue;
+}
+
+
+
 

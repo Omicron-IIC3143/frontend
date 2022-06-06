@@ -1,5 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import './UserShow.css';
 
 export function ButtonUpdatingUser() {
   const printHelloWorld = () => {
@@ -7,7 +8,7 @@ export function ButtonUpdatingUser() {
     console.log('HOLA MUNDO');
   };
   return (
-    <Button variant="primary" onClick={printHelloWorld}>
+    <Button variant="primary" onClick={printHelloWorld} className="update-button">
       {/* startIcon={<DeleteIcon />} */}
       Actualizar información
     </Button>

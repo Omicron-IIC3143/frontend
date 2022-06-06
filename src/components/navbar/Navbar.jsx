@@ -38,22 +38,22 @@ function Navbar() {
         </CDBSidebarContent>
 
         <CDBSidebarFooter style={{ textAlign: 'center' }}>
-          <div className="sidebar-btn-wrapper" style={{padding: '20px 5px',}}> 
-            {currentUser? (
+          <div className="sidebar-btn-wrapper" style={{ padding: '20px 5px' }}>
+            {currentUser ? (
               <>
-              <NavLink exact to="/profile" target="_blank" activeClassName="activeClicked">
-                <CDBSidebarMenuItem>Mi perfil</CDBSidebarMenuItem>
-              </NavLink>
-              <NavLink exact to="/hero404" target="_blank" activeClassName="activeClicked">
-                <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
-              </NavLink>
+                <NavLink exact to="/profile" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem>Mi perfil</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/hero404" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
+                </NavLink>
               </>
             ) : (
               <>
-                <NavLink exact to="/login" target="_blank" activeClassName="activeClicked">
+                <NavLink exact to="/login" activeClassName="activeClicked">
                   <CDBSidebarMenuItem>Iniciar sesión</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/register" target="_blank" activeClassName="activeClicked">
+                <NavLink exact to="/register" activeClassName="activeClicked">
                   <CDBSidebarMenuItem>Registrarse</CDBSidebarMenuItem>
                 </NavLink>
               </>

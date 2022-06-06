@@ -1,7 +1,10 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
+import Button from 'react-bootstrap/Button';
 import React, { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import Navbar from '../../../components/navbar/Navbar';
+import './Login.css';
 
 const initialValues = {
   mail: '',
@@ -52,41 +55,48 @@ const Login = function Login() {
   if (currentUser) return <Navigate to="/" />;
 
   return (
-    <section>
-      <form onSubmit={handleSubmit}>
-        <h1 id="login">Login with your account</h1>
-        <div className="field">
-          <p className="control has-icons-left has-icons-right">
-            <input className="input" type="email" id="email" name="email" placeholder="Email" value={values.email} onChange={handleChange} />
-            <span className="icon is-small is-left">
-              <i className="fas fa-envelope" />
-            </span>
-            <span className="icon is-small is-right">
-              <i className="fas fa-check" />
-            </span>
-          </p>
+    <div>
+      <div className="grid-container-login-user">
+        <div>
+          <Navbar />
         </div>
+        <div className="card-profile-login-form">
+          <h2 className="title-login-user">Ingresa a tu cuenta</h2>
+          <form onSubmit={handleSubmit}>
+            <div className="label-form-login">
+              <p className="control has-icons-left has-icons-right">
+                <input className="label-content" type="email" id="email" name="email" placeholder="Email" value={values.email} onChange={handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-envelope" />
+                </span>
+                <span className="icon is-small is-right">
+                  <i className="fas fa-check" />
+                </span>
+              </p>
+            </div>
 
-        <div className="field">
-          <p className="control has-icons-left">
-            <input className="input" type="password" name="password" id="password" placeholder="Password" value={values.password} onChange={handleChange} />
-            <span className="icon is-small is-left">
-              <i className="fas fa-lock" />
-            </span>
-          </p>
-        </div>
+            <div className="label-form-login">
+              <p className="control has-icons-left">
+                <input className="label-content" type="password" name="password" id="password" placeholder="Contraseña" value={values.password} onChange={handleChange} />
+                <span className="icon is-small is-left">
+                  <i className="fas fa-lock" />
+                </span>
+              </p>
+            </div>
 
-        <div className="field">
-          <button id="loginButton" type="submit" disabled={!(values.email && values.password)}>
-            Login
-          </button>
+            <div className="label-form-login">
+              <Button className="button-submit-login-user" id="loginButton" type="submit" disabled={!(values.email && values.password)}>
+                Login
+              </Button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
       <p>{errorMessage}</p>
       <div>
-        <button onClick={() => navigate(-1)} type="button" className="button" id="backButton">Back</button>
+        <Button onClick={() => navigate(-1)} type="button" className="button" id="backButton">Back</Button>
       </div>
-    </section>
+    </div>
   );
 };
 

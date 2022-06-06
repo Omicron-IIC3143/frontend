@@ -1,0 +1,10 @@
+.more-details:hover {
+    color: white;
+    background-color: darkblue;
+}
+
+.more-details:active{
+    color: darkblue;
+    background-color: lightblue;
+}
+
