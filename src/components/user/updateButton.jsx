@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import './UserShow.css';
+import './userShow.css';
 
 export function ButtonUpdatingUser() {
   const printHelloWorld = () => {

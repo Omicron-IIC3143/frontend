@@ -4,8 +4,8 @@ import React from 'react';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
-import { UserShow } from '../../../components/user/UserShow';
-import { ButtonUpdatingUser } from '../../../components/user/UpdateButton';
+import { UserShow } from '../../../components/user/userShow';
+import { ButtonUpdatingUser } from '../../../components/user/updateButton';
 
 function ShowUser() {
   const { currentUser } = useAuth();
