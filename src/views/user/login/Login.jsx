@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Navigate, useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
+import Loading from '../../../components/loading/Loading'
 import './Login.css';
 
 const initialValues = {
@@ -49,7 +50,7 @@ const Login = function Login() {
   };
 
   if (loading) {
-    return <h2>Loading...</h2>;
+    return <Loading />
   }
 
   if (currentUser) return <Navigate to="/" />;

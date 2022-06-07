@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../../../components/navbar/Navbar';
 import './ProjectShow.css';
+import Loading from '../../../components/loading/Loading'
 // import imageIngSinFront from './ingSinFronteras.jpeg';
 // import imageRecInc from './reciclajeInclusivo.jpeg';
 import useAuth from '../../../hooks/useAuth';
@@ -46,9 +47,7 @@ function ShowProject() {
 
   if (loading) {
     return (
-      <section className="container">
-        <h2>Loading...</h2>
-      </section>
+      <Loading />
     );
   }
 
