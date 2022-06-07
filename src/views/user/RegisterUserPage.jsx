@@ -16,7 +16,7 @@ function RegisterUserPage() {
         </div>
       </div>
     </div>
-    
+
   );
 }
 
