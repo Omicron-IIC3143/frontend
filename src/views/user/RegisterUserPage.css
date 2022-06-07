@@ -1,0 +1,25 @@
+
+.grid-container-register-user {
+    display: grid;
+    grid-template-columns: auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+    }
+
+
+.flex-register-user {
+        flex-direction: column;
+        margin-top: 5vh;
+        margin-left: -10vw;
+        margin-right: 15vw;
+    }
+
+.title-register-new-user {
+    padding-bottom: 2vh;
+    padding-top: 5vh;
+    text-align: left;
+    color: darkblue;
+    margin-left: 5vh;
+    margin-bottom: 1vh;
+    font-size: 3vw;
+}

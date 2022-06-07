@@ -1,0 +1,49 @@
+.card-profile-register-form {
+    width: 80%;
+    height: 80%;
+    background-color: rgba(131, 191, 226, 0.87);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin-bottom: 0.5vh;
+    border-radius: 8px;
+    padding-left: 0px;
+    padding-top: 2vh;
+    text-align: left;
+    color: darkblue;
+    margin-left: 5vh;
+    margin-right: 15vh;
+    font-size: 5vw;
+    border-style: solid;
+    border-color: darkblue;
+    border-width: 3px;
+}
+
+.center-info-register-user {
+    font-size: 3vh;
+    border-style: solid;
+    padding-left: 1vh;
+    margin-right: 5vh;
+    border-width: 0.3vh;
+    border-color: darkblue;
+    border-radius: 0.5vh;
+}
+
+.button-submit-register-user {
+    margin-top: 4vh;
+    margin-left: 6vh;
+    margin-bottom: 10vh;
+}
+
+.label-form {
+    margin-left: 4vh;
+    margin-right: 2vh;
+    margin-top: 2vh;
+    font-size: 3vh; 
+}
+
+.label-content {
+    margin-right: 4vh;
+}
+
+.label-content-terms-and-conditions{ 
+    margin-top: 4vh;
+}

@@ -1,0 +1,22 @@
+.button-postulate-project {
+    padding-top: 3vh;
+    padding-bottom: 3vh;
+    padding-left: 3vh;
+    padding-right: 3vh;
+    width: 30%;
+    font-size: 2vh;
+    margin-left: 35%;
+    margin-right: 25%;
+    background-color: darkblue;
+}
+
+.button-postulate-project:hover {
+    background-color: white;
+    color: #0353a4;
+    border: 1px solid 0353a4;
+}
+
+.button-postulate-project:active{
+    color: black;
+    background-color:  lightblue;
+}
