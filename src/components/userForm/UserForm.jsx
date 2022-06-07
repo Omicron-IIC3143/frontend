@@ -7,6 +7,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../hooks/useAuth';
 import './UserForm.css';
+import { ButtonBack } from '../buttons/buttonBack/ButtonBack';
 
 const UserForm = function () {
   const [loading, setLoading] = useState(false);
@@ -229,6 +230,8 @@ const UserForm = function () {
               <div className="label-form">
                 <div className="button-submit-register-user">
                   <Button variant="primary" type="submit">Registrarse</Button>
+                  {' '}
+                  <ButtonBack />
                 </div>
               </div>
             ) : (
