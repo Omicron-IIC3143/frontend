@@ -7,7 +7,7 @@ import ButtonPostulate from '../../components/project/projectList/buttonPostulat
 import ProjectList from '../../components/project/projectList/ProjectList';
 import { Searcher } from '../../components/project/projectList/searcher/Searcher';
 import './LandingPage.css';
-import Loading from '../../components/loading/Loading'
+import Loading from '../../components/loading/Loading';
 
 function LandingPage() {
   const navigate = useNavigate();
