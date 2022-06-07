@@ -9,6 +9,7 @@ import RegisterProject from './views/project/registerProject/RegisterProject';
 import Login from './views/user/login/Login';
 import AuthContextProvider from './contexts/AuthContext';
 import ShowUser from './views/user/userShow/ShowUser';
+import MyProjects from './views/project/myProjects/MyProjects';
 
 const AppRouter = function AppRouter() {
   return (
@@ -21,6 +22,7 @@ const AppRouter = function AppRouter() {
         <Route path="/profile" element={<ShowUser />} />
         <Route path="/register" element={<RegisterUserPage />} />
         <Route path="/user/update" element={<UpdaterUserPage />} />
+        <Route path="/users/:id/projects" element={<MyProjects />} />
       </Routes>
     </AuthContextProvider>
   );

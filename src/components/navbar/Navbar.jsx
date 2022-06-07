@@ -22,7 +22,7 @@ function Navbar() {
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
+            <NavLink exact to={`/users/${currentUser.id}/projects`} activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="list-alt">Mis proyectos</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
