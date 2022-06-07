@@ -19,7 +19,7 @@ const AppRouter = function AppRouter() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/projects/:id" element={<ShowProject />} />
         <Route path="projectregister" element={<RegisterProject />} />
-        <Route path="/profile" element={<ShowUser />} />
+        <Route path="/users/:id" element={<ShowUser />} />
         <Route path="/register" element={<RegisterUserPage />} />
         <Route path="/user/update" element={<UpdaterUserPage />} />
         <Route path="/users/:id/projects" element={<MyProjects />} />

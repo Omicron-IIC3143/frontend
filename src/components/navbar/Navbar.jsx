@@ -28,7 +28,7 @@ function Navbar() {
             <NavLink exact to="/tables" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="hand-holding-usd">Proyectos financiados</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/profile" activeClassName="activeClicked">
+            <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="chart-line">Mi información financiera</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>
@@ -38,7 +38,7 @@ function Navbar() {
           <div className="sidebar-btn-wrapper" style={{ padding: '20px 5px' }}>
             {currentUser ? (
               <>
-                <NavLink exact to="/profile" activeClassName="activeClicked">
+                <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem>Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/hero404" activeClassName="activeClicked">

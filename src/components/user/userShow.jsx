@@ -1,5 +1,5 @@
 import React from 'react';
-import './userShow.css';
+import './UserShow.css';
 
 export function UserShow({
   name, rut, description, email,
