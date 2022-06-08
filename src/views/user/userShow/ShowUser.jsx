@@ -6,8 +6,9 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
 import { UserShow } from '../../../components/user/UserShow';
-import { ButtonUpdatingUser } from '../../../components/user/UpdateButton';
-import { ButtonBack } from '../../../components/buttons/buttonBack/ButtonBack';
+import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
+import { DeleteButton } from '../../../components/user/buttons/deleteButton/DeleteButton';
+import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
 
 function ShowUser() {
@@ -91,6 +92,8 @@ function ShowUser() {
                 email={currentUser?.email}
               />
               <ButtonUpdatingUser />
+              {' '}
+              <DeleteButton />
               {' '}
               <ButtonBack />
             </div>

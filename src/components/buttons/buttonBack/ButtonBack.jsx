@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 
-export function ButtonBack() {
+function ButtonBack() {
   const navigate = useNavigate();
 
   return (
@@ -12,3 +12,5 @@ export function ButtonBack() {
     </Button>
   );
 }
+
+export default ButtonBack;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProjectImage.css';
 
-export function ProjectImage({ title, image }) {
+function ProjectImage({ title, image }) {
   return (
     <div className="cardImage">
       {/* style="width:100%" */}
@@ -12,3 +12,5 @@ export function ProjectImage({ title, image }) {
     </div>
   );
 }
+
+export default ProjectImage;

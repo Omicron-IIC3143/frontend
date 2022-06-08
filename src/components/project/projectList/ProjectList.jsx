@@ -4,7 +4,7 @@ import Button from 'react-bootstrap/Button';
 import './ProjectList.css';
 // import { Link } from 'react-router-dom';
 
-const ProjectList = function ({
+function ProjectList({
   id, topic, title, description, company,
 }) {
   return (
@@ -28,6 +28,6 @@ const ProjectList = function ({
       </Card.Footer>
     </Card>
   );
-};
+}
 
 export default ProjectList;

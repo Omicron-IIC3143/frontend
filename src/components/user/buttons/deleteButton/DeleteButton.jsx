@@ -1,18 +1,18 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import './UserShow.css';
+import '../../UserShow.css';
 
-export function ButtonUpdatingUser() {
+export function DeleteButton() {
   const printHelloWorld = () => {
     // setData("Data is set");
-    console.log('HOLA MUNDO');
+    // console.log('HOLA MUNDO');
   };
   return (
     <Button variant="primary" onClick={printHelloWorld} className="update-button">
       {/* startIcon={<DeleteIcon />} */}
-      Actualizar información
+      Eliminar perfil
     </Button>
   );
 }
 
-export default ButtonUpdatingUser;
+export default DeleteButton;

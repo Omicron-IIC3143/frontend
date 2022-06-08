@@ -1,18 +1,18 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import './ButtonFinancing.css';
+import '../../UserShow.css';
 
-function ButtonFinancing() {
+export function ButtonUpdatingUser() {
   const printHelloWorld = () => {
     // setData("Data is set");
     // console.log('HOLA MUNDO');
   };
   return (
-    <Button variant="primary" onClick={printHelloWorld} className="financingButtton">
+    <Button variant="primary" onClick={printHelloWorld} className="update-button">
       {/* startIcon={<DeleteIcon />} */}
-      Financiar Proyecto
+      Actualizar información
     </Button>
   );
 }
 
-export default ButtonFinancing;
+export default ButtonUpdatingUser;

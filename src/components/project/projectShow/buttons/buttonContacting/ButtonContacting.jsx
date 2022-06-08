@@ -1,10 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-export function ButtonContacting() {
+function ButtonContacting() {
   const printHelloWorld = () => {
     // setData("Data is set");
-    console.log('HOLA MUNDO');
+    // console.log('HOLA MUNDO');
   };
   return (
     <Button variant="primary" onClick={printHelloWorld}>
@@ -13,3 +13,5 @@ export function ButtonContacting() {
     </Button>
   );
 }
+
+export default ButtonContacting;

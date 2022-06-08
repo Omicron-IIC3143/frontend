@@ -5,7 +5,7 @@ import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
 import ButtonPostulate from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
 import ProjectList from '../../components/project/projectList/ProjectList';
-import { Searcher } from '../../components/project/projectList/searcher/Searcher';
+import Searcher from '../../components/project/projectList/searcher/Searcher';
 import './LandingPage.css';
 import Loading from '../../components/loading/Loading';
 
@@ -16,10 +16,7 @@ function LandingPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  console.log('aqui probablemente llega');
-
   useEffect(() => {
-    console.log('veamos si aqui llega');
     setLoading(true);
     const requestOptions = {
       method: 'GET',

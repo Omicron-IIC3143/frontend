@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 // import { Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
-const UserForm = function () {
+function UserForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser, handleUserLogin } = useAuth();
@@ -74,5 +74,6 @@ const UserForm = function () {
       <p>{message}</p>
     </div>
   );
-};
+}
+
 export default UserForm;

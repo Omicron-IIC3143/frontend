@@ -7,9 +7,9 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../hooks/useAuth';
 import './UserForm.css';
-import { ButtonBack } from '../buttons/buttonBack/ButtonBack';
+import ButtonBack from '../buttons/buttonBack/ButtonBack';
 
-const UserForm = function () {
+function UserForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser, handleUserLogin } = useAuth();
@@ -245,5 +245,6 @@ const UserForm = function () {
       <p>{message}</p>
     </div>
   );
-};
+}
+
 export default UserForm;

@@ -3,9 +3,9 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
 import ProjectList from '../../../components/project/projectList/ProjectList';
-import { Searcher } from '../../../components/project/projectList/searcher/Searcher';
+import Searcher from '../../../components/project/projectList/searcher/Searcher';
 import '../../landingPage/LandingPage.css';
-import { ButtonBack } from '../../../components/buttons/buttonBack/ButtonBack';
+import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 
 function MyProjects() {
   const { currentUser } = useAuth();

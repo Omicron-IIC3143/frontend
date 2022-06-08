@@ -1,7 +1,7 @@
 import React from 'react';
 import './FullDescriptionOfProject.css';
 
-export function ProjectDescription({ description }) {
+function ProjectDescription({ description }) {
   return (
     <div className="descriptionOfProject">
       {/* style="width:100%" */}
@@ -9,3 +9,5 @@ export function ProjectDescription({ description }) {
     </div>
   );
 }
+
+export default ProjectDescription;

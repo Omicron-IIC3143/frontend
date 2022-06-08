@@ -1,8 +1,8 @@
 import React, {
-  createContext, useCallback, useMemo, // useEffect,
+  createContext, useMemo, // useCallback, useEffect,
 } from 'react';
-import jwtDecode from 'jwt-decode';
-import { useNavigate } from 'react-router-dom';
+// import jwtDecode from 'jwt-decode';
+// import { useNavigate } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 //   let logoutTimer;
@@ -11,8 +11,9 @@ export const AuthContext = createContext();
 
 const AuthContextProvider = function AuthContextProvider({ children }) {
   const [currentUser, storeUser, clearStoredUser] = useLocalStorage('user');
-  // const [sessionExpDate, storeSessionExpDate, clearSessionExpDate] = useLocalStorage('sessionExpiration');
-  const navigate = useNavigate();
+  // const [sessionExpDate, storeSessionExpDate, clearSessionExpDate] =
+  // useLocalStorage('sessionExpiration');
+  // const navigate = useNavigate();
 
   const handleUserLogin = (user) => {
     // const expiration = new Date(jwtDecode(token).exp * 1000);
@@ -25,10 +26,10 @@ const AuthContextProvider = function AuthContextProvider({ children }) {
     // clearSessionExpDate();
   };
 
-  const handleAutomaticLogout = useCallback(() => {
-    handleUserLogout();
-    navigate('/login');
-  }, [navigate]);
+  // const handleAutomaticLogout = useCallback(() => {
+  //   handleUserLogout();
+  //   navigate('/login');
+  // }, [navigate]);
 
   // useEffect(() => {
   //   if (currentUser) { // && sessionExpDate
