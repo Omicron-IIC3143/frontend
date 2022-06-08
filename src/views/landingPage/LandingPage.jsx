@@ -16,7 +16,10 @@ function LandingPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  console.log('aqui probablemente llega');
+
   useEffect(() => {
+    console.log('veamos si aqui llega');
     setLoading(true);
     const requestOptions = {
       method: 'GET',
@@ -26,14 +29,15 @@ function LandingPage() {
       },
     };
     fetch(`${process.env.REACT_APP_API_URL}/projects/`, requestOptions)
-      .then(async (response) => {
+      .then((response) => {
         if (!response.ok) {
           setError(true);
           return [];
         }
-        const respuesta = await response.json();
-        setProjects(respuesta);
-        return respuesta;
+        return response.json();
+      })
+      .then((data) => {
+        setProjects(data);
       })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
