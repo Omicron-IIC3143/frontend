@@ -69,7 +69,7 @@ function MyProjects() {
         ) : (
           projects.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
-            (project?.currentState === 0) ? (
+            (project?.currentState == 0) ? (
               <div className="flex-inside">
                 <ProjectList
                   id={project?.id}

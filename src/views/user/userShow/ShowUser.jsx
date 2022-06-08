@@ -41,8 +41,8 @@ function ShowUser() {
           .catch(() => { setError(true); })
           .finally(() => setLoading(false));
       }, []),
-      (loading==true) ? (
-          <Loading />
+      (loading == true) ? (
+        <Loading />
       ) : (
         <>
         </>
@@ -54,60 +54,60 @@ function ShowUser() {
             {error}
           </h2>
         </div>
-          ) : (
+      ) : (
         <div>
-        <div className="grid-container-show-user">
-          <div>
-            <Navbar />
-          </div>
-          <div className="flex-show-user">
-            <UserShow
-              name={user?.name}
-              description={user?.description}
-              rut={user?.rut}
-              money={user?.money}
-              email={user?.email}
-            />
-            <ButtonUpdatingUser />
-            {' '}
-            <ButtonBack />
+          <div className="grid-container-show-user">
+            <div>
+              <Navbar />
+            </div>
+            <div className="flex-show-user">
+              <UserShow
+                name={user?.name}
+                description={user?.description}
+                rut={user?.rut}
+                money={user?.money}
+                email={user?.email}
+              />
+              <ButtonUpdatingUser />
+              {' '}
+              <ButtonBack />
+            </div>
           </div>
         </div>
-      </div>
-    )
+      )
     ) : (
-      (currentUser?.id == id) ? ( 
+      (currentUser?.id == id) ? (
         <div>
-        <div className="grid-container-show-user">
-          <div>
-            <Navbar />
-          </div>
-          <div className="flex-show-user">
-            <UserShow
-              name={currentUser?.name}
-              description={currentUser?.description}
-              rut={currentUser?.rut}
-              money={currentUser?.money}
-              email={currentUser?.email}
-            />
-            <ButtonUpdatingUser />
-            {' '}
-            <ButtonBack />
+          <div className="grid-container-show-user">
+            <div>
+              <Navbar />
+            </div>
+            <div className="flex-show-user">
+              <UserShow
+                name={currentUser?.name}
+                description={currentUser?.description}
+                rut={currentUser?.rut}
+                money={currentUser?.money}
+                email={currentUser?.email}
+              />
+              <ButtonUpdatingUser />
+              {' '}
+              <ButtonBack />
+            </div>
           </div>
         </div>
-      </div>
-    ) : (
-      <div>
-      <div className="grid-container-show-user">
+      ) : (
         <div>
-          <Navbar />
+          <div className="grid-container-show-user">
+            <div>
+              <Navbar />
+            </div>
+            <h1>No estás autorizado para ver el perfil de otra persona. </h1>
+          </div>
         </div>
-      <h1>No estás autorizado para ver el perfil de otra persona. </h1>
-      </div>
-      </div>
+      )
     )
-   )
-  )
-};
+  );
+}
 
 export default ShowUser;
