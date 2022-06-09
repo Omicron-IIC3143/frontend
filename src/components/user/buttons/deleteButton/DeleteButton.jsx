@@ -1,18 +1,18 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import './ButtonFinancing.css';
+import '../../userShow/UserShow.css';
 
-function ButtonFinancing() {
+export function DeleteButton() {
   const printHelloWorld = () => {
     // setData("Data is set");
     // console.log('HOLA MUNDO');
   };
   return (
-    <Button variant="primary" onClick={printHelloWorld} className="financingButtton">
+    <Button variant="primary" onClick={printHelloWorld} className="delete-button">
       {/* startIcon={<DeleteIcon />} */}
-      Financiar Proyecto
+      Eliminar usuario
     </Button>
   );
 }
 
-export default ButtonFinancing;
+export default DeleteButton;

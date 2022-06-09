@@ -3,7 +3,7 @@ import { MDBCol, MDBIcon } from 'mdbreact';
 
 import './Searcher.css';
 
-export function Searcher() {
+function Searcher() {
   return (
     <MDBCol md="20">
       <div className="input-group md-form form-sm form-1 pl-0">
@@ -23,4 +23,4 @@ export function Searcher() {
   );
 }
 
-// export default SearchPage;
+export default Searcher;

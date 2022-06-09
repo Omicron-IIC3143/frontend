@@ -22,13 +22,25 @@ function Navbar() {
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to={`/users/${currentUser.id}/projects`} activeClassName="activeClicked">
+            <NavLink
+              exact
+              to={
+              currentUser ? (`/users/${currentUser.id}/projects`) : ('/')
+            }
+              activeClassName="activeClicked"
+            >
               <CDBSidebarMenuItem icon="list-alt">Mis proyectos</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/tables" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="hand-holding-usd">Proyectos financiados</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
+            <NavLink
+              exact
+              to={
+              currentUser ? (`/users/${currentUser.id}`) : ('/')
+            }
+              activeClassName="activeClicked"
+            >
               <CDBSidebarMenuItem icon="chart-line">Mi información financiera</CDBSidebarMenuItem>
             </NavLink>
           </CDBSidebarMenu>

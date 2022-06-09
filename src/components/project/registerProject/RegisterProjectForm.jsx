@@ -3,9 +3,9 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import './RegisterProjectForm.css';
-import { ButtonBack } from '../../buttons/buttonBack/ButtonBack';
+import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 
-const RegisterProjectForm = function () {
+function RegisterProjectForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
@@ -144,6 +144,6 @@ const RegisterProjectForm = function () {
       <p>{message}</p>
     </div>
   );
-};
+}
 
 export default RegisterProjectForm;

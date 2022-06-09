@@ -1,7 +1,7 @@
 import React from 'react';
 import './PostulantDescription.css';
 
-export function PostulantDescription({ description }) {
+function PostulantDescription({ description }) {
   return (
     <div className="descriptionCard">
       {/* style="width:100%" */}
@@ -9,3 +9,5 @@ export function PostulantDescription({ description }) {
     </div>
   );
 }
+
+export default PostulantDescription;

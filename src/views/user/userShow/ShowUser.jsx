@@ -5,9 +5,10 @@ import { useParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
-import { UserShow } from '../../../components/user/UserShow';
-import { ButtonUpdatingUser } from '../../../components/user/UpdateButton';
-import { ButtonBack } from '../../../components/buttons/buttonBack/ButtonBack';
+import { UserShow } from '../../../components/user/userShow/UserShow';
+import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
+import { DeleteButton } from '../../../components/user/buttons/deleteButton/DeleteButton';
+import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
 
 function ShowUser() {
@@ -17,8 +18,8 @@ function ShowUser() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   //   const navigate = useNavigate();
-  return (
-    (currentUser?.isAdmin == true) ? (
+  if (currentUser?.isAdmin == true) {
+    return (
       useEffect(() => {
         setLoading(true);
         const requestOptions = {
@@ -41,11 +42,10 @@ function ShowUser() {
           .catch(() => { setError(true); })
           .finally(() => setLoading(false));
       }, []),
-      (loading==true) ? (
-          <Loading />
-      ) : (
-        <>
-        </>
+      (loading == true) ? (
+        <Loading />) : (
+          <>
+          </>
       ),
       (error) ? (
         <div className="flex-inside">
@@ -54,30 +54,32 @@ function ShowUser() {
             {error}
           </h2>
         </div>
-          ) : (
+      ) : (
         <div>
-        <div className="grid-container-show-user">
-          <div>
-            <Navbar />
-          </div>
-          <div className="flex-show-user">
-            <UserShow
-              name={user?.name}
-              description={user?.description}
-              rut={user?.rut}
-              money={user?.money}
-              email={user?.email}
-            />
-            <ButtonUpdatingUser />
-            {' '}
-            <ButtonBack />
+          <div className="grid-container-show-user">
+            <div>
+              <Navbar />
+            </div>
+            <div className="flex-show-user">
+              <UserShow
+                name={user?.name}
+                description={user?.description}
+                rut={user?.rut}
+                money={user?.money}
+                email={user?.email}
+              />
+              <ButtonUpdatingUser />
+              <DeleteButton />
+              <ButtonBack />
+            </div>
           </div>
         </div>
-      </div>
-    )
-    ) : (
-      (currentUser?.id == id) ? ( 
-        <div>
+      ));
+  }
+  return (
+    (currentUser?.id == id) ? (
+
+      <div>
         <div className="grid-container-show-user">
           <div>
             <Navbar />
@@ -92,22 +94,22 @@ function ShowUser() {
             />
             <ButtonUpdatingUser />
             {' '}
+            <DeleteButton />
+            {' '}
             <ButtonBack />
           </div>
         </div>
       </div>
     ) : (
       <div>
-      <div className="grid-container-show-user">
-        <div>
-          <Navbar />
+        <div className="grid-container-show-user">
+          <div>
+            <Navbar />
+          </div>
+          <h1>No estás autorizado para ver el perfil de otra persona. </h1>
         </div>
-      <h1>No estás autorizado para ver el perfil de otra persona. </h1>
       </div>
-      </div>
-    )
-   )
-  )
-};
+    ));
+}
 
 export default ShowUser;

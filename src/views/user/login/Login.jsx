@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 import './Login.css';
-import { ButtonBack } from '../../../components/buttons/buttonBack/ButtonBack';
+import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 
 const initialValues = {
   mail: '',

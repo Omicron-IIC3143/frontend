@@ -2,10 +2,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import './ButtonPostulateProject.css';
 
-const ButtonPostulate = function () {
+function ButtonPostulate() {
   const postulateProject = () => {
     // setData("Data is set");
-    console.log('HOLA MUNDO');
+    // console.log('HOLA MUNDO');
   };
   return (
     <Button className="button-postulate-project" variant="primary" onClick={postulateProject} href="/projectregister">
@@ -13,6 +13,6 @@ const ButtonPostulate = function () {
       Postular Nuevo Proyecto
     </Button>
   );
-};
+}
 
 export default ButtonPostulate;
