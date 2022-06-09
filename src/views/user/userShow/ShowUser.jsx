@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
-import { UserShow } from '../../../components/user/UserShow';
+import { UserShow } from '../../../components/user/userShow/UserShow';
 import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
 import { DeleteButton } from '../../../components/user/buttons/deleteButton/DeleteButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
@@ -18,8 +18,8 @@ function ShowUser() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   //   const navigate = useNavigate();
-  return (
-    (currentUser?.isAdmin == true) ? (
+  if (currentUser?.isAdmin == true) {
+    return (
       useEffect(() => {
         setLoading(true);
         const requestOptions = {
@@ -43,10 +43,9 @@ function ShowUser() {
           .finally(() => setLoading(false));
       }, []),
       (loading == true) ? (
-        <Loading />
-      ) : (
-        <>
-        </>
+        <Loading />) : (
+          <>
+          </>
       ),
       (error) ? (
         <div className="flex-inside">
@@ -70,47 +69,47 @@ function ShowUser() {
                 email={user?.email}
               />
               <ButtonUpdatingUser />
-              {' '}
-              <ButtonBack />
-            </div>
-          </div>
-        </div>
-      )
-    ) : (
-      (currentUser?.id == id) ? (
-        <div>
-          <div className="grid-container-show-user">
-            <div>
-              <Navbar />
-            </div>
-            <div className="flex-show-user">
-              <UserShow
-                name={currentUser?.name}
-                description={currentUser?.description}
-                rut={currentUser?.rut}
-                money={currentUser?.money}
-                email={currentUser?.email}
-              />
-              <ButtonUpdatingUser />
-              {' '}
               <DeleteButton />
-              {' '}
               <ButtonBack />
             </div>
           </div>
         </div>
-      ) : (
-        <div>
-          <div className="grid-container-show-user">
-            <div>
-              <Navbar />
-            </div>
-            <h1>No estás autorizado para ver el perfil de otra persona. </h1>
+      ));
+  }
+  return (
+    (currentUser?.id == id) ? (
+
+      <div>
+        <div className="grid-container-show-user">
+          <div>
+            <Navbar />
+          </div>
+          <div className="flex-show-user">
+            <UserShow
+              name={currentUser?.name}
+              description={currentUser?.description}
+              rut={currentUser?.rut}
+              money={currentUser?.money}
+              email={currentUser?.email}
+            />
+            <ButtonUpdatingUser />
+            {' '}
+            <DeleteButton />
+            {' '}
+            <ButtonBack />
           </div>
         </div>
-      )
-    )
-  );
+      </div>
+    ) : (
+      <div>
+        <div className="grid-container-show-user">
+          <div>
+            <Navbar />
+          </div>
+          <h1>No estás autorizado para ver el perfil de otra persona. </h1>
+        </div>
+      </div>
+    ));
 }
 
 export default ShowUser;

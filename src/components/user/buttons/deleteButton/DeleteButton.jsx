@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
-import '../../UserShow.css';
+import '../../userShow/UserShow.css';
 
 export function DeleteButton() {
   const printHelloWorld = () => {
@@ -8,9 +8,9 @@ export function DeleteButton() {
     // console.log('HOLA MUNDO');
   };
   return (
-    <Button variant="primary" onClick={printHelloWorld} className="update-button">
+    <Button variant="primary" onClick={printHelloWorld} className="delete-button">
       {/* startIcon={<DeleteIcon />} */}
-      Eliminar perfil
+      Eliminar usuario
     </Button>
   );
 }
