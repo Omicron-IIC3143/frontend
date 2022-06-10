@@ -28,8 +28,24 @@ jobs:
       #- name: npm Start
       #  run: npm start
       
-      - name: Exec Linter Eslint
-        run: npm run lint
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          prettier: true
+          
+      # Source: https://dev.to/jnybgr/how-to-visualize-eslint-errors-on-github-3f8p
+      #- name: Exec Linter Eslint
+      #  run: npm run lint --output-file eslint_report.json --format json src
+        
+      #- name: Annotate Code Linting Results
+      #  uses: ataylorme/eslint-annotate-action@1.0.4
+      #  if: always()
+      #  with:
+      #    repo-token: '${{ secrets.GITHUB_TOKEN }}'
+      #    report-json: 'eslint_report.json'
+
+
         
       
         
