@@ -32,7 +32,7 @@ jobs:
         uses: wearerequired/lint-action@v2
         with:
           eslint: true
-          prettier: true
+      #    prettier: true
           
       # Source: https://dev.to/jnybgr/how-to-visualize-eslint-errors-on-github-3f8p
       #- name: Exec Linter Eslint
