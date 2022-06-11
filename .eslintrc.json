@@ -20,6 +20,7 @@
     ],
     "rules": {
         "eqeqeq": "off",
+        "quotes": ["error", "double"],
         "react/prop-types": "off",
         "jsx-a11y/label-has-associated-control": ["error", {
           "required": {
