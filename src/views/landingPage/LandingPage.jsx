@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
-import ButtonPostulate from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
+import ButtonPostulate from "../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject";
 import ProjectList from '../../components/project/projectList/ProjectList';
 import Searcher from '../../components/project/projectList/searcher/Searcher';
 import './LandingPage.css';
@@ -13,9 +13,18 @@ function LandingPage() {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);   
   const [error, setError] = useState(false);
 
+  
+  
+  
+  
+  
+  
+  
+  
+  
   useEffect(() => {
     setLoading(true);
     const requestOptions = {
