@@ -33,6 +33,7 @@ jobs:
         with:
           eslint: true
           eslint_extensions: js,jsx
+          continue_on_error: false
       #    prettier: true
           
       # Source: https://dev.to/jnybgr/how-to-visualize-eslint-errors-on-github-3f8p
