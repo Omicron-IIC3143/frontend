@@ -19,29 +19,30 @@ function ShowUser() {
   const [error, setError] = useState(false);
   //   const navigate = useNavigate();
   if (currentUser?.isAdmin == true) {
+    useEffect(() => {
+      setLoading(true);
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${currentUser?.token}`,
+        },
+      };
+      fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
+        .then(async (response) => {
+          if (!response.ok) {
+            setError(true);
+            return null;
+          }
+          const respuesta = await response.json();
+          setUser(respuesta);
+          return respuesta;
+        })
+        .catch(() => { setError(true); })
+        .finally(() => setLoading(false));
+    }, []);
+
     return (
-      useEffect(() => {
-        setLoading(true);
-        const requestOptions = {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${currentUser?.token}`,
-          },
-        };
-        fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
-          .then(async (response) => {
-            if (!response.ok) {
-              setError(true);
-              return null;
-            }
-            const respuesta = await response.json();
-            setUser(respuesta);
-            return respuesta;
-          })
-          .catch(() => { setError(true); })
-          .finally(() => setLoading(false));
-      }, []),
       (loading == true) ? (
         <Loading />) : (
           <>
