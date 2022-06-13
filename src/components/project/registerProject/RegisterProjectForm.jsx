@@ -4,13 +4,15 @@ import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import './RegisterProjectForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
+import useAuth from '../../../hooks/useAuth';
 
 function RegisterProjectForm() {
+  const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
 
   const validationSchema = Yup.object({
-    projectName: Yup.string()
+    name: Yup.string()
       .min(2, 'El nombre debe tener mas de 2 caracteres')
       .max(30, 'El nombre debe tener 30 caracteres o menos')
       .required('El nombre del proyecto es obligatorio'),
@@ -35,7 +37,7 @@ function RegisterProjectForm() {
     <div className="form">
       <Formik
         initialValues={{
-          projectName: '',
+          name: '',
           description: '',
           picture: '',
           company: '',
@@ -45,11 +47,22 @@ function RegisterProjectForm() {
         }}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
+          const newValues = {
+            ...values,
+            userId: currentUser.id,
+            date: '2022-06-08T01:10:49.865Z',
+            tags: 'tag-1',
+            currentAmount: 0,
+          };
           setLoading(true);
           const requestOptions = {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(values),
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${currentUser?.token}`,
+              'Sec-Fetch-Mode': 'cors',
+            },
+            body: JSON.stringify(newValues),
           };
           try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/new`, requestOptions); // OJO AQUI FALTA SETEAR ESTO
@@ -70,10 +83,10 @@ function RegisterProjectForm() {
           <div className="card-profile-register-project-form">
             <Form>
               <div className="label-form-register-project">
-                <label className="label-content-register-project" htmlFor="projectName">Nombre del proyecto: </label>
-                <Field className="center-info-register-project" name="projectName" type="text" placeholder="Nombre proyecto" />
-                {errors.projectName && touched.projectName && (
-                  <div className="error">{errors.projectName}</div>
+                <label className="label-content-register-project" htmlFor="name">Nombre del proyecto: </label>
+                <Field className="center-info-register-project" name="name" type="text" placeholder="Nombre proyecto" />
+                {errors.name && touched.name && (
+                  <div className="error">{errors.name}</div>
                 )}
               </div>
 
