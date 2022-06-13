@@ -31,7 +31,13 @@ function Navbar() {
             >
               <CDBSidebarMenuItem icon="list-alt">Mis proyectos</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/tables" activeClassName="activeClicked">
+            <NavLink
+              exact
+              to={
+              currentUser ? (`/users/${currentUser.id}/funded`) : ('/')
+            }
+              activeClassName="activeClicked"
+            >
               <CDBSidebarMenuItem icon="hand-holding-usd">Proyectos financiados</CDBSidebarMenuItem>
             </NavLink>
             <NavLink
