@@ -178,6 +178,14 @@ function MyProjects() {
       </div>
     );
   }
+  return (
+    <div className="grid-container">
+      <div>
+        <Navbar />
+      </div>
+      <h1 className="unauthorizedMessageMyProjects">No estás autorizado para ver los proyectos de otro usuario. </h1>
+    </div>
+  );
 }
 
 export default MyProjects;
