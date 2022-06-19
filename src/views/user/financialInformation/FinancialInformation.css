@@ -37,6 +37,18 @@
     border-width: 3px;
 }
 
+.card-deposit {
+    width: 100%;
+    height: 20%;    
+    margin-bottom: 0.5vh;
+    padding-left: 2vw;
+    padding-top: 2vh;
+    text-align: left;
+    color: darkblue;
+    margin-left: 5vh;
+    font-size: 1vw;
+}
+
 .title-financial-info {
     color: lightblue;
     background-color: darkblue; 

@@ -48,13 +48,20 @@
     color: white;
 }
 
+.deposit-button {
+    margin-left: 1vw;
+    margin-top: 2vh;
+}
+
 .update-button {
-    margin-left: 5vh;
+    margin-left: 3vw;
     margin-top: 2vh;
 }
 
 .delete-button {
-    margin-left: 5vh;
+    margin-left: 2vw;
     margin-top: 2vh;
 }
+
+
 

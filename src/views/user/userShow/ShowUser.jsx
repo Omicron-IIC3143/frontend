@@ -41,7 +41,6 @@ function ShowUser() {
         .catch(() => { setError(true); })
         .finally(() => setLoading(false));
     }, []);
-    
 
     return (
       (loading == true) ? (

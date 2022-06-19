@@ -10,38 +10,10 @@ import './FinancialInformation.css';
 function FinancialInformation() {
   const { currentUser } = useAuth();
   const { id } = useParams();
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const [money, setMoney] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  // const deposit = (moneyAmount) => {
-  //   useEffect(() => {
-  //     setLoading(true);
-  //     const requestOptions = {
-  //       method: 'PUT',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         Authorization: `Bearer ${currentUser?.token}`,
-  //       },
-  //     };
-  //     fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
-  //       .then(async (response) => {
-  //         if (!response.ok) {
-  //           setError(true);
-  //           return null;
-  //         }
-  //         const respuesta = await response.json();
-  //         setUser(respuesta);
-  //         return respuesta;
-  //       })
-  //       .catch(() => { setError(true); })
-  //       .finally(() => setLoading(false));
-  //   }, []);
-
-  //   const finalMoney = user?.money + moneyAmount;
-  //   setMoney(finalMoney);
-  // };
 
   useEffect(() => {
     setLoading(true);
@@ -59,7 +31,7 @@ function FinancialInformation() {
           return null;
         }
         const respuesta = await response.json();
-        setUser(respuesta);
+        // setUser(respuesta);
         setMoney(respuesta.money);
         return respuesta;
       })
@@ -98,13 +70,11 @@ function FinancialInformation() {
                 <h3 className="center-financial-info">
                   <b>
                     {'$ '}
-                    {user?.money}
+                    {money}
                     {' '}
 
                   </b>
                 </h3>
-              </div>
-              <div>
                 <DepositForm money={money} setMoney={setMoney} />
               </div>
             </div>
@@ -137,7 +107,7 @@ function FinancialInformation() {
                 </b>
               </h3>
             </div>
-            <div>
+            <div className="card-deposit">
               <DepositForm money={money} setMoney={setMoney} />
             </div>
           </div>

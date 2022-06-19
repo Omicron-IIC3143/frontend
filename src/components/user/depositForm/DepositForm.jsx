@@ -5,6 +5,7 @@ import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../../hooks/useAuth';
 import DepositButton from '../buttons/depositButton/DepositButton';
+import './DepositForm.css';
 
 function DepositForm({ money, setMoney }) {
   const { id } = useParams();
@@ -42,7 +43,7 @@ function DepositForm({ money, setMoney }) {
               const errorRequest = await response.text();
               throw new Error(errorRequest);
             }
-            setMessage('Depósito hecho exitosamente');
+            setMessage('Depósito hecho exitosamente!');
             setMoney(values.money);
           } catch (err) {
             setMessage(err.message);
@@ -55,10 +56,10 @@ function DepositForm({ money, setMoney }) {
         {({ errors, touched }) => (
           <Form>
             <div>
-              <label htmlFor="money">Ingrese el monto: </label>
-              <Field name="money" type="number" placeholder="Monto a depositar" />
+              <label htmlFor="money" className="label-ingrese-monto">Ingrese el monto: </label>
+              <Field name="money" type="number" className="caja-para-ingesar-monto" placeholder="Monto a depositar" />
               {errors.money && touched.money && (
-              <div>{errors.money}</div>
+              <div className="validation-error">{errors.money}</div>
               )}
             </div>
             <div>
@@ -68,8 +69,8 @@ function DepositForm({ money, setMoney }) {
           </Form>
         )}
       </Formik>
-      <p>{message}</p>
-      {error && <p>Something went wrong, please try again later :(</p>}
+      <p className="message">{message}</p>
+      {error && <p>Algo salió mal, inténtalo nuevamente :(</p>}
     </div>
   );
 }
