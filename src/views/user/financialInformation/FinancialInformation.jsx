@@ -82,47 +82,59 @@ function FinancialInformation() {
         </div>
       ));
   }
+  if (currentUser?.id == id) {
+    return (
+      (loading == true) ? (
+        <Loading />) : (
+          <div>
+            <div className="grid-container-financial-info">
+              <div>
+                <Navbar />
+              </div>
+              <div className="flex-financial-info">
+                <div className="card-financial-info">
+                  <h3 className="title-financial-info">
+                    Tu saldo actual
+                  </h3>
+                  <h3 className="sub-title-financial-info">
+                    [Mi información financiera]
+                  </h3>
+                  <h3 className="center-financial-info">
+                    {error ? (
+                      <div className="flex-inside">
+                        <h2>
+                          Error
+                          {error.errors}
+                        </h2>
+                      </div>
+                    ) : (
+                      <b>
+                        {'$ '}
+                        {money}
+                        {' '}
+
+                      </b>
+                    )}
+                  </h3>
+                </div>
+                <div className="card-deposit">
+                  <DepositForm money={money} setMoney={setMoney} />
+                </div>
+              </div>
+            </div>
+          </div>
+      ));
+  }
   return (
-    (currentUser?.id == id) ? (
-
-      <div>
-        <div className="grid-container-financial-info">
-          <div>
-            <Navbar />
-          </div>
-          <div className="flex-financial-info">
-            <div className="card-financial-info">
-              <h3 className="title-financial-info">
-                Tu saldo actual
-              </h3>
-              <h3 className="sub-title-financial-info">
-                [Mi información financiera]
-              </h3>
-              <h3 className="center-financial-info">
-                <b>
-                  {'$ '}
-                  {money}
-                  {' '}
-
-                </b>
-              </h3>
-            </div>
-            <div className="card-deposit">
-              <DepositForm money={money} setMoney={setMoney} />
-            </div>
-          </div>
+    <div>
+      <div className="grid-container-financial-info">
+        <div>
+          <Navbar />
         </div>
+        <h1 className="unauthorizedMessage">No estás autorizado para ver la información financiera de otro usuario. </h1>
       </div>
-    ) : (
-      <div>
-        <div className="grid-container-financial-info">
-          <div>
-            <Navbar />
-          </div>
-          <h1>No estás autorizado para ver la información financiera de otra persona. </h1>
-        </div>
-      </div>
-    ));
+    </div>
+  );
 }
 
 export default FinancialInformation;

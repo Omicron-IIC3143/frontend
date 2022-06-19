@@ -42,7 +42,7 @@ function Navbar() {
                   to={`/users/${currentUser.id}/financialinfo`}
                   activeClassName="activeClicked"
                 >
-                  <CDBSidebarMenuItem icon="chart-line">Mi información financiera</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="chart-line">Información financiera</CDBSidebarMenuItem>
                 </NavLink>
 
               </>
