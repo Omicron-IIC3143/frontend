@@ -7,7 +7,7 @@ function ButtonBack() {
   const navigate = useNavigate();
 
   return (
-    <Button variant="primary" className="back-button" onClick={() => navigate(-1)}>
+    <Button variant="secondary" className="back-button" onClick={() => navigate(-1)}>
       {/* startIcon={<DeleteIcon />} */}
       Volver atrás
     </Button>
