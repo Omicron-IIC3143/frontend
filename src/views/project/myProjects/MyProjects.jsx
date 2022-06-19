@@ -6,6 +6,7 @@ import ProjectList from '../../../components/project/projectList/ProjectList';
 import Searcher from '../../../components/project/projectList/searcher/Searcher';
 import '../../landingPage/LandingPage.css';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
+import './MyProjects.css';
 
 function MyProjects() {
   const { currentUser } = useAuth();
@@ -51,14 +52,9 @@ function MyProjects() {
         <div className="flex-inside-searcher">
           <Searcher />
         </div>
-        {currentUser ? (
-          <div className="flex-inside-button-postulate">
-            <ButtonPostulate />
-          </div>
-        ) : (
-          <>
-          </>
-        ) }
+        <div>
+          <h1 className="titleMyProjects">Mis proyectos postulados</h1>
+        </div>
         {error ? (
           <div className="flex-inside">
             <h2>
@@ -86,6 +82,14 @@ function MyProjects() {
             )
           ))
         )}
+        {currentUser ? (
+          <div className="flex-inside-button-postulate">
+            <ButtonPostulate />
+          </div>
+        ) : (
+          <>
+          </>
+        ) }
         <div>
           <ButtonBack />
         </div>

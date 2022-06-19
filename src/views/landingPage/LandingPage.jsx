@@ -50,14 +50,9 @@ function LandingPage() {
         <div className="flex-inside-searcher">
           <Searcher />
         </div>
-        {currentUser ? (
-          <div className="flex-inside-button-postulate">
-            <ButtonPostulate />
-          </div>
-        ) : (
-          <>
-          </>
-        ) }
+        <div>
+          <h1 className="titleLandingPage">Proyectos en la aplicación</h1>
+        </div>
         {error ? (
           <div className="flex-inside">
             <h2>
@@ -85,6 +80,14 @@ function LandingPage() {
             )
           ))
         )}
+        {currentUser ? (
+          <div className="flex-inside-button-postulate">
+            <ButtonPostulate />
+          </div>
+        ) : (
+          <>
+          </>
+        ) }
       </div>
     </div>
   );

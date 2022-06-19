@@ -23,7 +23,7 @@ function Navbar() {
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
             <NavLink exact to="/" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="home">Página Principal</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="home">Página principal</CDBSidebarMenuItem>
             </NavLink>
             {currentUser ? (
               <>
