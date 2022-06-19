@@ -8,6 +8,7 @@ import * as Yup from 'yup';
 import useAuth from '../../hooks/useAuth';
 import './UserForm.css';
 import ButtonBack from '../buttons/buttonBack/ButtonBack';
+import DeleteUser from '../deleteUser/DeleteUser';
 
 function UserForm() {
   const [loading, setLoading] = useState(false);
@@ -43,16 +44,23 @@ function UserForm() {
     },
   };
 
-  // eslint-disable-next-line func-names
-  Yup.addMethod(Yup.string, 'validateRUT', function (errorMessage) {
+  function isValidRUT(errorMessage) {
     // eslint-disable-next-line react/no-this-in-sfc
-    this.test('test-valid-RUT', errorMessage, (value) => {
-      const { path, createError } = this;
-      return (rutValidator.validaRut(value)
+    return this.test(
+      'test-valid-RUT',
+      errorMessage,
+      // eslint-disable-next-line func-names
+      function (value) {
+        const { path, createError } = this;
+        return (rutValidator.validaRut(value)
                     || createError({ path, message: errorMessage })
-      );
-    });
-  });
+        );
+      },
+    );
+  }
+
+  // eslint-disable-next-line func-names
+  Yup.addMethod(Yup.string, 'validateRUT', isValidRUT);
 
   const validationSchemaRegister = Yup.object({
     name: Yup.string()
@@ -70,7 +78,7 @@ function UserForm() {
     password: Yup.string()
       .min(6, 'Contraseña debe tener 6 o más carácteres')
       .max(15, 'Contraseña debe tener 15 o menos carácteres')
-      .required('Password is required'),
+      .required('Contraseña es requerida'),
     passwordConfirm: Yup.string()
       .oneOf([Yup.ref('password'), null], 'Contraseñas deben coincidir')
       .required('La confirmación de contraseña es requerida'),
@@ -119,6 +127,7 @@ function UserForm() {
   };
 
   const validationSchema = user ? validationSchemaUpdater : validationSchemaRegister;
+  const textActionButton = user ? 'Actualizar usuario' : 'Registrarse';
 
   const valueStriper = (values) => {
     const finalValues = {};
@@ -127,6 +136,9 @@ function UserForm() {
     });
     return finalValues;
   };
+
+  let isUpdating = Boolean(user);
+
   return (
     <div className="card-profile-register-form">
       <Formik
@@ -136,29 +148,32 @@ function UserForm() {
           setLoading(true);
           values.rut = values.rut.replace(/\./g, '');
           values = valueStriper(values);
+
           const requestOptions = {
-            method: user ? 'PUT' : 'POST',
+            method: isUpdating ? 'PUT' : 'POST',
             headers: {
               'Content-Type': 'application/json',
-              Authorization: user ? `Bearer ${user.token}` : null,
+              Authorization: isUpdating ? `Bearer ${user.token}` : null,
             },
             body: JSON.stringify(values),
           };
 
           try {
-            const path = user ? user.id : 'register';
+            const path = isUpdating ? user.id : 'register';
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${path}`, requestOptions);
+
             if (!response.ok) {
               const error = await response.text();
               throw new Error(error);
             }
+
             const respuesta = await response.json();
-            const { token } = user;
             user = respuesta.user;
-            user.token = token;
+            user.token = respuesta.token ? respuesta.token : currentUser.token;
             handleUserLogin(user);
-            const successMessage = user ? 'Usuario modificado satisfactoriamente' : 'Usuario creado satisfactoriamente';
+            const successMessage = isUpdating ? 'Usuario modificado satisfactoriamente' : 'Usuario creado satisfactoriamente';
             setMessage(successMessage);
+            isUpdating = !isUpdating;
           } catch (error) {
             setMessage(error.message);
           } finally {
@@ -168,81 +183,83 @@ function UserForm() {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="label-form">
-              <label className="label-content" htmlFor="name">Nombre: </label>
+            <div className="label-form-user">
+              <label className="label-content-form-user" htmlFor="name">Nombre: </label>
               <Field className="center-info-register-user" name="name" type="text" placeholder={placeholders.name} />
               {errors.name && touched.name && (
-                <div className="error">{errors.name}</div>
+                <div className="error-form-user">{errors.name}</div>
               )}
             </div>
 
-            <div className="label-form">
-              <label className="label-content" htmlFor="email">Email: </label>
+            <div className="label-form-user">
+              <label className="label-content-form-user" htmlFor="email">Email: </label>
               <Field className="center-info-register-user" name="email" type="email" placeholder={placeholders.email} />
               {errors.email && touched.email && (
-                <div className="error">{errors.email}</div>
+                <div className="error-form-user">{errors.email}</div>
               )}
             </div>
 
-            <div className="label-form">
-              <label className="label-content" htmlFor="rut">RUT: </label>
+            <div className="label-form-user">
+              <label className="label-content-form-user" htmlFor="rut">RUT: </label>
               <Field className="center-info-register-user" name="rut" type="text" placeholder={placeholders.rut} />
               {errors.rut && touched.rut && (
-                <div className="error">{errors.rut}</div>
+                <div className="error-form-user">{errors.rut}</div>
               )}
             </div>
 
-            <div className="label-form">
-              <label className="label-content" htmlFor="description">Descripción: </label>
-              <Field className="center-info-register-user" name="description" type="description" placeholder={placeholders.description} />
+            <div className="label-form-user">
+              <label className="label-content-form-user" htmlFor="description">Descripción: </label>
+              <Field className="center-info-register-user" name="description" type="text" as="textarea" placeholder={placeholders.description} />
               {errors.description && touched.description && (
-                <div className="error">{errors.description}</div>
+                <div className="error-form-user">{errors.description}</div>
               )}
             </div>
 
-            <div className="label-form">
-              <label className="label-content" htmlFor="password">Contraseña: </label>
+            <div className="label-form-user">
+              <label className="label-content-form-user" htmlFor="password">Contraseña: </label>
               <Field className="center-info-register-user" name="password" type="password" placeholder={placeholders.password} />
               {errors.password && touched.password && (
-                <div className="error">{errors.password}</div>
+                <div className="error-form-user">{errors.password}</div>
               )}
             </div>
 
-            <div className="label-form">
-              <label className="label-content" htmlFor="passwordConfirm">Confirmar contraseña: </label>
+            <div className="label-form-user">
+              <label className="label-content-form-user" htmlFor="passwordConfirm">Confirmar contraseña: </label>
               <Field className="center-info-register-user" name="passwordConfirm" type="password" placeholder={placeholders.passwordConfirm} />
               {errors.passwordConfirm && touched.passwordConfirm && (
-                <div className="error">{errors.passwordConfirm}</div>
+                <div className="error-form-user">{errors.passwordConfirm}</div>
               )}
             </div>
 
-            <div className="label-form">
-              <label className="label-content-terms-and-conditions" htmlFor="acceptTerms">
+            <div className="label-form-user">
+              <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
                 Acepto los términos y condiciones de Social Starter.
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
-                <div className="error">{errors.acceptTerms}</div>
+                <div className="error-form-user">{errors.acceptTerms}</div>
               )}
             </div>
 
             {!loading ? (
-              <div className="label-form">
+              <div className="label-form-user">
                 <div className="button-submit-register-user">
-                  <Button variant="primary" type="submit">Registrarse</Button>
+                  <Button variant="primary" type="submit">{textActionButton}</Button>
                   {' '}
                   <ButtonBack />
                 </div>
               </div>
             ) : (
               <div>
-                <p>Cargando ...</p>
+                <p className="final-message-form-user">Cargando ...</p>
               </div>
             )}
           </Form>
         )}
       </Formik>
-      <p>{message}</p>
+      <p className="final-message-form-user">{message}</p>
+      { user ? (<DeleteUser />) : null }
+      <p className="final-message-form-user">Para seguir en Social Starter, puedes cerrar esta pestaña o seguir modificando</p>
     </div>
   );
 }

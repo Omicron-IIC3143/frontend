@@ -50,20 +50,20 @@ function Navbar() {
           <div className="sidebar-btn-wrapper" style={{ padding: '20px 5px' }}>
             {currentUser ? (
               <>
-                <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
-                  <CDBSidebarMenuItem>Mi perfil</CDBSidebarMenuItem>
+                <NavLink exact to="/user/update" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="user-circle">Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/" onClick={handleUserLogout} activeClassName="activeClicked">
-                  <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
+                <NavLink exact to="/" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
+                  <CDBSidebarMenuItem icon="sign-out-alt">Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
               </>
             ) : (
               <>
                 <NavLink exact to="/login" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem>Iniciar sesión</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="sign-in-alt">Iniciar sesión</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/register" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem>Registrarse</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="file-signature">Registrarse</CDBSidebarMenuItem>
                 </NavLink>
               </>
             )}
