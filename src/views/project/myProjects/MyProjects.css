@@ -10,3 +10,10 @@
     margin-top: 10vh;
     text-align:center;
 }
+
+.flex-my-projects {
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: 0vw;
+    margin-right: 10vw;
+}
