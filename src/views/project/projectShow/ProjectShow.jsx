@@ -10,7 +10,7 @@ import useAuth from '../../../hooks/useAuth';
 import ButtonFinancing from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
 import ButtonSharing from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
-import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
+import ButtonBackShowProject from '../../../components/project/projectShow/buttons/buttonBack/ButtonBackShowProject';
 import ProjectImage from '../../../components/project/projectShow/projectImage/ProjectImage';
 import PostulantDescription from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
@@ -74,17 +74,14 @@ function ShowProject() {
               </div>
               <ProjectDescription description={project.description} />
               <FinancingInformation
-                current_financing={project.currentAmount}
-                goal_financing={project.goalAmount}
+                currentFinancing={project.currentAmount}
+                goalFinancing={project.goalAmount}
               />
               <div>
                 <ButtonFinancing />
-                {' '}
                 <ButtonSharing />
-                {' '}
                 <ButtonContacting />
-                {' '}
-                <ButtonBack />
+                <ButtonBackShowProject />
               </div>
             </>
           )}

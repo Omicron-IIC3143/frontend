@@ -6,10 +6,9 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 import './Login.css';
-import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 
 const initialValues = {
-  mail: '',
+  email: '',
   password: '',
 };
 const Login = function Login() {
@@ -85,12 +84,12 @@ const Login = function Login() {
               </p>
             </div>
 
+            <br />
+
             <div className="label-form-login">
               <Button className="button-submit-login-user" id="loginButton" type="submit" disabled={!(values.email && values.password)}>
                 Login
               </Button>
-              {' '}
-              <ButtonBack />
             </div>
           </form>
         </div>

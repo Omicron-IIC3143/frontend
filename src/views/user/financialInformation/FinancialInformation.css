@@ -80,3 +80,10 @@
     background-color: darkblue; 
     color: white;
 }
+
+.unauthorizedMessage {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 10vh;
+    text-align:center;
+}
