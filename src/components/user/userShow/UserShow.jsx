@@ -2,7 +2,7 @@ import React from 'react';
 import './UserShow.css';
 
 export function UserShow({
-  name, rut, description, email,
+  name, rut, description, email, money
 }) {
   return (
     <div className="card-profile">

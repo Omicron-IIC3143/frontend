@@ -41,6 +41,7 @@ function ShowUser() {
         .catch(() => { setError(true); })
         .finally(() => setLoading(false));
     }, []);
+    
 
     return (
       (loading == true) ? (
@@ -78,6 +79,7 @@ function ShowUser() {
       ));
   }
   return (
+
     (currentUser?.id == id) ? (
 
       <div>
