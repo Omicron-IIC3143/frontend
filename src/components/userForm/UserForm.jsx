@@ -184,7 +184,7 @@ function UserForm() {
         {({ errors, touched }) => (
           <Form>
             <div className="label-form-user">
-              <label className="label-content" htmlFor="name">Nombre: </label>
+              <label className="label-content-form-user" htmlFor="name">Nombre: </label>
               <Field className="center-info-register-user" name="name" type="text" placeholder={placeholders.name} />
               {errors.name && touched.name && (
                 <div className="error-form-user">{errors.name}</div>
@@ -192,7 +192,7 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content" htmlFor="email">Email: </label>
+              <label className="label-content-form-user" htmlFor="email">Email: </label>
               <Field className="center-info-register-user" name="email" type="email" placeholder={placeholders.email} />
               {errors.email && touched.email && (
                 <div className="error-form-user">{errors.email}</div>
@@ -200,7 +200,7 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content" htmlFor="rut">RUT: </label>
+              <label className="label-content-form-user" htmlFor="rut">RUT: </label>
               <Field className="center-info-register-user" name="rut" type="text" placeholder={placeholders.rut} />
               {errors.rut && touched.rut && (
                 <div className="error-form-user">{errors.rut}</div>
@@ -208,7 +208,7 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content" htmlFor="description">Descripción: </label>
+              <label className="label-content-form-user" htmlFor="description">Descripción: </label>
               <Field className="center-info-register-user" name="description" type="text" as="textarea" placeholder={placeholders.description} />
               {errors.description && touched.description && (
                 <div className="error-form-user">{errors.description}</div>
@@ -216,7 +216,7 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content" htmlFor="password">Contraseña: </label>
+              <label className="label-content-form-user" htmlFor="password">Contraseña: </label>
               <Field className="center-info-register-user" name="password" type="password" placeholder={placeholders.password} />
               {errors.password && touched.password && (
                 <div className="error-form-user">{errors.password}</div>
@@ -224,7 +224,7 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content" htmlFor="passwordConfirm">Confirmar contraseña: </label>
+              <label className="label-content-form-user" htmlFor="passwordConfirm">Confirmar contraseña: </label>
               <Field className="center-info-register-user" name="passwordConfirm" type="password" placeholder={placeholders.passwordConfirm} />
               {errors.passwordConfirm && touched.passwordConfirm && (
                 <div className="error-form-user">{errors.passwordConfirm}</div>
@@ -232,7 +232,7 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content terms-and-conditions" htmlFor="acceptTerms">
+              <label className="label-content-form-user terms-and-conditions-form-useer" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
                 Acepto los términos y condiciones de Social Starter.
               </label>

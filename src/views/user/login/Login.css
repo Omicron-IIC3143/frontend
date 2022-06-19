@@ -29,7 +29,7 @@
         margin-left: 2vh;
         margin-right: 15vh;
         margin-top: 10vh;
-        font-size: 5vw;
+        /* font-size: 5vw; */
         border-style: solid;
         border-color: darkblue;
         border-width: 3px;
@@ -47,6 +47,6 @@
     }
 
 .button-submit-login-user {
-    margin-top: 4vh;
+    /* margin-top: 4vh;*/
     margin-left: 6vh;
 }

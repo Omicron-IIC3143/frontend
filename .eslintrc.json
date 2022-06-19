@@ -28,6 +28,7 @@
     "rules": {
         "eqeqeq": "off",
         //"quotes": ["error", "double"],
+        "jsx-self-close": 0, //off
         "react/prop-types": "off",
         "jsx-a11y/label-has-associated-control": ["error", {
           "required": {

@@ -48,7 +48,7 @@ function UserForm() {
         {({ errors, touched }) => (
           <Form className="flex">
             <div className="flex-form-fields label-form-user">
-              <label className="label-content terms-and-conditions" htmlFor="acceptTerms">
+              <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
                 Acepto eliminar mi usuario de Social Starter
               </label>

@@ -43,11 +43,11 @@
     display: flex;
 }
 
-.label-content {
+.label-content-form-user {
     margin-right: 4vh;
 }
 
-.terms-and-conditions{ 
+.terms-and-conditions-form-user{ 
     margin-right: 4vh;
     flex-grow: 3;
 }
