@@ -12,7 +12,7 @@ import image from './user_image.jpeg';
 import useAuth from '../../hooks/useAuth';
 
 function Navbar() {
-  const { currentUser } = useAuth();
+  const { currentUser, handleUserLogout } = useAuth();
 
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
@@ -53,7 +53,7 @@ function Navbar() {
                 <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem>Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/hero404" activeClassName="activeClicked">
+                <NavLink exact to="/" onClick={handleUserLogout} activeClassName="activeClicked">
                   <CDBSidebarMenuItem>Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
               </>
