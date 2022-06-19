@@ -78,6 +78,7 @@ function ShowUser() {
       ));
   }
   return (
+
     (currentUser?.id == id) ? (
 
       <div>

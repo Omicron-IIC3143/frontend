@@ -37,7 +37,7 @@ function Navbar() {
             <NavLink
               exact
               to={
-              currentUser ? (`/users/${currentUser.id}`) : ('/')
+              currentUser ? (`/users/${currentUser.id}/financialinfo`) : ('/')
             }
               activeClassName="activeClicked"
             >
