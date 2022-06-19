@@ -85,7 +85,7 @@ const Login = function Login() {
               </p>
             </div>
 
-            <br></br>
+            <br />
 
             <div className="label-form-login">
               <Button className="button-submit-login-user" id="loginButton" type="submit" disabled={!(values.email && values.password)}>

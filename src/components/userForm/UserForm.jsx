@@ -232,7 +232,7 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content-form-user terms-and-conditions-form-useer" htmlFor="acceptTerms">
+              <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
                 Acepto los términos y condiciones de Social Starter.
               </label>
