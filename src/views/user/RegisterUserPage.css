@@ -8,11 +8,11 @@
 
 
 .flex-register-user {
-        flex-direction: column;
-        margin-top: 5vh;
-        margin-left: -10vw;
-        margin-right: 15vw;
-    }
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: -10vw;
+    margin-right: 15vw;
+}
 
 .title-register-new-user {
     padding-bottom: 2vh;

@@ -43,6 +43,11 @@ function Navbar() {
             >
               <CDBSidebarMenuItem icon="chart-line">Mi información financiera</CDBSidebarMenuItem>
             </NavLink>
+            { currentUser?.isAdmin ? (
+              <NavLink exact to="/users" activeClassName="activeClicked">
+                <CDBSidebarMenuItem icon="users">Lista de Usuarios</CDBSidebarMenuItem>
+              </NavLink>
+            ) : (<div> </div>)}
           </CDBSidebarMenu>
         </CDBSidebarContent>
 
