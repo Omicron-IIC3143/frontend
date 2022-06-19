@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
@@ -13,6 +14,7 @@ function LandingPage() {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -34,7 +36,9 @@ function LandingPage() {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         setProjects(data);
+        setFilterData(data);
       })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
@@ -51,7 +55,7 @@ function LandingPage() {
       </div>
       <div className="flex-landing-page">
         <div className="flex-inside-searcher">
-          <Searcher />
+          <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
         </div>
         {currentUser ? (
           <div className="flex-inside-button-postulate">
@@ -88,6 +92,8 @@ function LandingPage() {
             )
           ))
         )}
+        {console.log(projects)}
+
         <div>
           <Button className="button-back-landing" variant="primary" onClick={() => navigate(-1)} type="button" id="backButton">Atrás</Button>
         </div>

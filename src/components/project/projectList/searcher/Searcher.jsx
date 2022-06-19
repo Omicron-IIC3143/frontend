@@ -1,25 +1,37 @@
+/* eslint-disable no-console */
 import React from 'react';
-import { MDBCol, MDBIcon } from 'mdbreact';
-
+import {
+  Input,
+} from 'antd';
 import './Searcher.css';
 
-function Searcher() {
+const { Search } = Input;
+
+function Searcher(data) {
+  const { projects, filterData, setFilterData } = data;
+  console.log(filterData);
+  console.log(projects);
+  const onSearch = (value) => {
+    console.log('hola');
+    console.log(value);
+    console.log(filterData);
+    if (
+      filterData
+      // eslint-disable-next-line react/destructuring-assignment
+      !== projects.filter(({ tags }) => tags.toLowerCase().includes(value.toLowerCase()))
+    ) {
+      // eslint-disable-next-line react/destructuring-assignment
+      // eslint-disable-next-line max-len
+      const filter = projects.filter(({ tags }) => tags.toLowerCase().includes(value.toLowerCase()));
+      setFilterData(filter);
+    }
+  };
   return (
-    <MDBCol md="20">
-      <div className="input-group md-form form-sm form-1 pl-0">
-        <div className="input-group-prepend">
-          <span className="input-group-text purple lighten-3" id="basic-text1">
-            <MDBIcon className="text-white" icon="search" />
-          </span>
-        </div>
-        <input
-          className="form-control my-0 py-1"
-          type="text"
-          placeholder="Search"
-          aria-label="Search"
-        />
-      </div>
-    </MDBCol>
+    <Search
+      className="col-stock-sale"
+      placeholder="Buscar Proyecto"
+      onSearch={onSearch}
+    />
   );
 }
 
