@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
 import ButtonPostulate from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
@@ -10,7 +8,6 @@ import './LandingPage.css';
 import Loading from '../../components/loading/Loading';
 
 function LandingPage() {
-  const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -88,9 +85,6 @@ function LandingPage() {
             )
           ))
         )}
-        <div>
-          <Button className="button-back-landing" variant="primary" onClick={() => navigate(-1)} type="button" id="backButton">Atrás</Button>
-        </div>
       </div>
     </div>
   );
