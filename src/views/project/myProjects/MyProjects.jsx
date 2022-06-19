@@ -50,7 +50,7 @@ function MyProjects() {
         <div>
           <Navbar />
         </div>
-        <div className="flex-landing-page">
+        <div className="flex-my-projects">
           {/* <div className="flex-inside-searcher">
             <Searcher />
           </div> */}
@@ -70,7 +70,7 @@ function MyProjects() {
           )}
           ;
           {error ? (
-            <div className="flex-inside">
+            <div className="flex-inside-my-projects">
               {currentUser?.id == id ? (
                 <h4>
                   No has postulado proyectos aún.
@@ -87,7 +87,7 @@ function MyProjects() {
             projects.map((project) => (
               // acá hay que poner (project?.currentState == 'approved') ? (
               (project?.currentState == 'pending') ? (
-                <div className="flex-inside">
+                <div className="flex-inside-my-projects">
                   <ProjectList
                     id={project?.id}
                     topic={project?.topic}
@@ -127,7 +127,7 @@ function MyProjects() {
         <div>
           <Navbar />
         </div>
-        <div className="flex-landing-page">
+        <div className="flex-my-projects">
           {/* <div className="flex-inside-searcher">
             <Searcher />
           </div> */}

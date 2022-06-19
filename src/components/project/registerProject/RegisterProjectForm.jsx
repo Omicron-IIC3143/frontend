@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import './RegisterProjectForm.css';
@@ -7,6 +8,7 @@ import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import useAuth from '../../../hooks/useAuth';
 
 function RegisterProjectForm() {
+  const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
@@ -29,8 +31,9 @@ function RegisterProjectForm() {
       .required('Este campo es obligatorio'),
     goalAmount: Yup.number()
       .required('Este campo es obligatorio'),
-    deadlineTime: Yup.number()
-      .required('Este campo es obligatorio'),
+    date: Yup.date()
+      .required('Este campo es obligatorio')
+      .min('2021-06-19', 'Estas ingresando una fecha del pasado'),
   });
 
   return (
@@ -43,14 +46,13 @@ function RegisterProjectForm() {
           company: '',
           topic: '',
           goalAmount: '',
-          deadlineTime: '',
+          date: '',
         }}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
           const newValues = {
             ...values,
             userId: currentUser.id,
-            date: '2022-06-08T01:10:49.865Z',
             tags: 'tag-1',
             currentAmount: 0,
           };
@@ -70,7 +72,8 @@ function RegisterProjectForm() {
               const error = await response.text();
               throw new Error(error);
             }
-            setMessage('Postulacion creada correctamente');
+            setMessage('Postulación creada correctamente');
+            navigate(`/users/${currentUser.id}/projects`);
           } catch (error) {
             setMessage(error.message);
           } finally {
@@ -131,10 +134,10 @@ function RegisterProjectForm() {
               </div>
 
               <div className="label-form-register-project">
-                <label className="label-content-register-project" htmlFor="deadlineTime">Tiempo límite: </label>
-                <Field className="center-info-register-project" name="deadlineTime" type="number" placeholder="Cantidad de días desde hoy" />
-                {errors.deadlineTime && touched.deadlineTime && (
-                  <div className="error">{errors.deadlineTime}</div>
+                <label className="label-content-register-project" htmlFor="date">Tiempo límite: </label>
+                <Field className="center-info-register-project" name="date" type="date" placeholder="Cantidad de días desde hoy" />
+                {errors.date && touched.date && (
+                  <div className="error">{errors.date}</div>
                 )}
               </div>
               {!loading ? (
