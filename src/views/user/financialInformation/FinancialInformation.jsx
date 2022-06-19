@@ -11,7 +11,7 @@ function FinancialInformation() {
   const { currentUser } = useAuth();
   const { id } = useParams();
   const [user, setUser] = useState([]);
-  // const [money, setMoney] = useState([]);
+  const [money, setMoney] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -43,30 +43,31 @@ function FinancialInformation() {
   //   setMoney(finalMoney);
   // };
 
-  if (currentUser?.isAdmin == true) {
-    useEffect(() => {
-      setLoading(true);
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${currentUser?.token}`,
-        },
-      };
-      fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
-        .then(async (response) => {
-          if (!response.ok) {
-            setError(true);
-            return null;
-          }
-          const respuesta = await response.json();
-          setUser(respuesta);
-          return respuesta;
-        })
-        .catch(() => { setError(true); })
-        .finally(() => setLoading(false));
-    }, []);
+  useEffect(() => {
+    setLoading(true);
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${currentUser?.token}`,
+      },
+    };
+    fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
+      .then(async (response) => {
+        if (!response.ok) {
+          setError(true);
+          return null;
+        }
+        const respuesta = await response.json();
+        setUser(respuesta);
+        setMoney(respuesta.money);
+        return respuesta;
+      })
+      .catch(() => { setError(true); })
+      .finally(() => setLoading(false));
+  }, []);
 
+  if (currentUser?.isAdmin == true) {
     return (
       (loading == true) ? (
         <Loading />) : (
@@ -97,14 +98,14 @@ function FinancialInformation() {
                 <h3 className="center-financial-info">
                   <b>
                     {'$ '}
-                    {currentUser?.money}
+                    {user?.money}
                     {' '}
 
                   </b>
                 </h3>
               </div>
               <div>
-                <DepositForm />
+                <DepositForm money={money} setMoney={setMoney} />
               </div>
             </div>
           </div>
@@ -130,14 +131,14 @@ function FinancialInformation() {
               <h3 className="center-financial-info">
                 <b>
                   {'$ '}
-                  {currentUser?.money}
+                  {money}
                   {' '}
 
                 </b>
               </h3>
             </div>
             <div>
-              <DepositForm />
+              <DepositForm money={money} setMoney={setMoney} />
             </div>
           </div>
         </div>
