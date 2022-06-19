@@ -1,17 +1,35 @@
 /* eslint-disable max-len */
 import React from 'react';
 import UserForm from '../../components/userForm/UserForm';
-import DeleteUser from '../../components/deleteUser/DeleteUser';
 import './RegisterUserPage.css';
+import Navbar from '../../components/navbar/Navbar';
+import useAuth from '../../hooks/useAuth';
+import ButtonBack from '../../components/buttons/buttonBack/ButtonBack';
 
 function UpdaterUserPage() {
+  const { currentUser } = useAuth();
+
   return (
     <div>
-      <h2>Editar Información de Usuario</h2>
-      <p>Aquí puedes modificar toda tu información, incluyendo tus contraseñas, por lo que se responsable y modifica a conciencia lo que quieras modificar y deja en blanco aquello que quieras mantener.</p>
-      <UserForm />
-      <DeleteUser />
-      <p>Para seguir en Social Starter, puedes cerrar esta pestaña o seguir modificando</p>
+      <div className="grid-container-register-user">
+        <div>
+          <Navbar />
+        </div>
+        <div className="flex-register-user">
+          <h2 className="title-register-new-user">Ver y editar Información de Usuario</h2>
+          { currentUser ? (
+            <>
+              <p className="final-message-form-user text-register-new-user">Aquí puedes ver y modificar toda tu información, incluyendo tus contraseñas, por lo que se responsable y modifica a conciencia lo que quieras modificar y deja en blanco aquello que quieras mantener.</p>
+              <UserForm />
+            </>
+          ) : (
+            <>
+              <p className="final-message-form-user text-register-new-user">Debes iniciar sesión en una cuenta para poder actualizarla.</p>
+              <ButtonBack />
+            </>
+          )}
+        </div>
+      </div>
     </div>
   );
 }
