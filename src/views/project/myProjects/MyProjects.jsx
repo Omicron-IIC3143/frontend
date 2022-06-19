@@ -58,7 +58,6 @@ function MyProjects() {
             <div>
               <h1 className="titleMyProjects">
                 Mis proyectos postualados
-                {` ${id}`}
               </h1>
             </div>
           ) : (

@@ -61,12 +61,30 @@ function FinancialInformation() {
             </div>
             <div className="flex-financial-info">
               <div className="card-financial-info">
-                <h3 className="title-financial-info">
-                  Tu saldo actual
-                </h3>
-                <h3 className="sub-title-financial-info">
-                  [Mi información financiera]
-                </h3>
+                {currentUser?.id == id ? (
+                  <h3 className="title-financial-info">
+                    Tu saldo actual
+                  </h3>
+                ) : (
+                  <h3 className="title-financial-info">
+                    Saldo actual del usuario con id
+                    {' '}
+                    {` ${id}`}
+                  </h3>
+                )}
+                ;
+
+                {currentUser?.id == id ? (
+                  <h3 className="sub-title-financial-info">
+                    [Mi información financiera]
+                  </h3>
+                ) : (
+                  <h3 className="sub-title-financial-info">
+                    [Información financiera del usuario]
+                  </h3>
+                )}
+                ;
+
                 <h3 className="center-financial-info">
                   <b>
                     {'$ '}
