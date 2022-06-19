@@ -34,6 +34,19 @@ function MyProjects() {
       })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
+
+    fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser.id}/projects`, requestOptions)
+      .then(async (response) => {
+        if (!response.ok) {
+          setError(true);
+          return [];
+        }
+        const respuesta = await response.json();
+        setProjects(respuesta);
+        return respuesta;
+      })
+      .catch(() => { setError(true); })
+      .finally(() => setLoading(false));
   }, []);
 
   if (loading) {
