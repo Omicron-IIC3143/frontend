@@ -5,7 +5,6 @@ import Navbar from '../../../components/navbar/Navbar';
 import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
 import ProjectList from '../../../components/project/projectList/ProjectList';
 // import Searcher from '../../../components/project/projectList/searcher/Searcher';
-import '../../landingPage/LandingPage.css';
 import Loading from '../../../components/loading/Loading';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import './MyProjects.css';
@@ -13,6 +12,7 @@ import './MyProjects.css';
 function MyProjects() {
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
+  // const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { id } = useParams();
@@ -36,6 +36,10 @@ function MyProjects() {
         setProjects(respuesta);
         return respuesta;
       })
+      // .then((data) => {
+      //   setProjects(data);
+      //   setFilterData(data);
+      // })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
   }, []);
@@ -46,13 +50,13 @@ function MyProjects() {
         <Loading />
       );
     } return (
-      <div className="grid-container">
+      <div className="grid-container-my-proj">
         <div>
           <Navbar />
         </div>
         <div className="flex-my-projects">
-          {/* <div className="flex-inside-searcher">
-            <Searcher />
+          {/* <div className="flex-inside-searcher-my-proj">
+            <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
           </div> */}
           {currentUser?.id == id ? (
             <div>
@@ -104,7 +108,7 @@ function MyProjects() {
             ))
           )}
           {currentUser ? (
-            <div className="flex-inside-button-postulate">
+            <div className="flex-inside-button-postulate-my-proj">
               <ButtonPostulate />
             </div>
           ) : (
@@ -123,13 +127,13 @@ function MyProjects() {
         <Loading />
       );
     } return (
-      <div className="grid-container">
+      <div className="grid-container-my-proj">
         <div>
           <Navbar />
         </div>
         <div className="flex-my-projects">
-          {/* <div className="flex-inside-searcher">
-            <Searcher />
+          {/* <div className="flex-inside-searcher-my-proj">
+            <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
           </div> */}
           <div>
             <h1 className="titleMyProjects">
@@ -137,7 +141,7 @@ function MyProjects() {
             </h1>
           </div>
           {error ? (
-            <div className="flex-inside">
+            <div className="flex-inside-my-projects">
               <h4>
                 No has postulado proyectos aún.
                 {error.errors}
@@ -147,7 +151,7 @@ function MyProjects() {
             projects.map((project) => (
               // acá hay que poner (project?.currentState == 'approved') ? (
               (project?.currentState == 'pending') ? (
-                <div className="flex-inside">
+                <div className="flex-inside-my-projects">
                   <ProjectList
                     id={project?.id}
                     topic={project?.topic}
@@ -164,7 +168,7 @@ function MyProjects() {
             ))
           )}
           {currentUser ? (
-            <div className="flex-inside-button-postulate">
+            <div className="flex-inside-button-postulate-my-proj">
               <ButtonPostulate />
             </div>
           ) : (
