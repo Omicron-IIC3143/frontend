@@ -7,7 +7,6 @@ import Loading from '../../../components/loading/Loading';
 // import imageRecInc from './reciclajeInclusivo.jpeg';
 import useAuth from '../../../hooks/useAuth';
 
-import ButtonFinancing from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
 import ButtonSharing from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
 import ButtonBackShowProject from '../../../components/project/projectShow/buttons/buttonBack/ButtonBackShowProject';
@@ -15,11 +14,13 @@ import ProjectImage from '../../../components/project/projectShow/projectImage/P
 import PostulantDescription from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
+import FinanceForm from '../../../components/project/projectShow/financeForm/FinanceForm';
 
 function ShowProject() {
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [project, setProject] = useState([]);
+  const [currentAmount, setCurrentAmount] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -68,6 +69,10 @@ function ShowProject() {
             </div>
           ) : (
             <>
+              <div className="line" />
+              <div className="title-show-project">
+                <h1>Información del proyecto</h1>
+              </div>
               <div className="rowImageAndDescription">
                 <ProjectImage title={project.name} image={project.pictureUrl} />
                 <PostulantDescription description="debería ir la descripción del postulante" />
@@ -78,10 +83,15 @@ function ShowProject() {
                 goalFinancing={project.goalAmount}
               />
               <div>
-                <ButtonFinancing />
                 <ButtonSharing />
                 <ButtonContacting />
                 <ButtonBackShowProject />
+              </div>
+              <div className="title-finance-project">
+                <h1>Acá puedes aportar al financiamiento del proyecto</h1>
+              </div>
+              <div>
+                <FinanceForm currentAmount={currentAmount} setCurrentAmount={setCurrentAmount} />
               </div>
             </>
           )}

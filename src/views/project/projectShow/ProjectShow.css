@@ -17,5 +17,15 @@
     flex-direction:row;
 }
 
+.title-finance-project {
+    margin-top: 15vh;
+}
 
+.title-show-project {
+    margin-bottom: 5vh;
+}
+
+.line {
+    background-color: black;
+}
 
