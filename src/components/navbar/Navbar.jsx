@@ -18,7 +18,7 @@ function Navbar() {
     <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />}>
-          <img src={currentUser.pictureUrl ? (currentUser.pictureUrl) : (image)} alt="user profile" width="20" height="20" />
+          <img src={currentUser?.pictureUrl ? (currentUser.pictureUrl) : (image)} alt="user profile" width="20" height="20" />
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>

@@ -50,16 +50,27 @@ function ShowUsersPage() {
       <div className="flex-landing-page">
         <h2>Lista de Usuarios</h2>
         <div className="flex-inside">
-          { error ? (
+
+          { error && currentUser?.isAdmin ? (
             <div>
-              <h2>Error</h2>
+              <h3>Error</h3>
               <p>{error.errors}</p>
             </div>
-          ) : (
+          ) : null }
+
+          { !(currentUser?.isAdmin) ? (
+            <div>
+              <h3>Acceso Denegado</h3>
+              <p>No tiene las credenciales necesarias para poder acceder a esta página</p>
+            </div>
+          ) : null }
+
+          { !error && currentUser?.isAdmin ? (
             <div>
               <UsersList users={users} />
             </div>
-          )}
+          ) : null }
+
           <br />
           <ButtonBack />
         </div>
