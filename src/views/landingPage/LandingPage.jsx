@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
@@ -10,6 +11,7 @@ import Loading from '../../components/loading/Loading';
 function LandingPage() {
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -31,7 +33,9 @@ function LandingPage() {
         return response.json();
       })
       .then((data) => {
+        console.log(data);
         setProjects(data);
+        setFilterData(data);
       })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
@@ -48,7 +52,7 @@ function LandingPage() {
       </div>
       <div className="flex-landing-page">
         <div className="flex-inside-searcher">
-          <Searcher />
+          <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
         </div>
         <div>
           <h1 className="titleLandingPage">Proyectos en la aplicación</h1>
@@ -61,7 +65,7 @@ function LandingPage() {
             </h2>
           </div>
         ) : (
-          projects.map((project) => (
+          filterData.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
             (project?.currentState == 'pending') ? (
               <div className="flex-inside">
