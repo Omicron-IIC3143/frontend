@@ -6,10 +6,12 @@ import ProjectList from '../../../components/project/projectList/ProjectList';
 import Searcher from '../../../components/project/projectList/searcher/Searcher';
 import '../../landingPage/LandingPage.css';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
+import extractFundedProjects from '../../../hooks/finances';
 
 function MyProjects() {
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
+  const [finances, setFinances] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -35,14 +37,14 @@ function MyProjects() {
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
 
-    fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser.id}/projects`, requestOptions)
+    fetch(`${process.env.REACT_APP_API_URL}/finance/transactions/${currentUser.id}`, requestOptions)
       .then(async (response) => {
         if (!response.ok) {
           setError(true);
           return [];
         }
         const respuesta = await response.json();
-        setProjects(respuesta);
+        setFinances(extractFundedProjects(projects, respuesta));
         return respuesta;
       })
       .catch(() => { setError(true); })
@@ -80,7 +82,7 @@ function MyProjects() {
             </h2>
           </div>
         ) : (
-          projects.map((project) => (
+          finances.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
             (project?.currentState == 'pending') ? (
               <div className="flex-inside">
