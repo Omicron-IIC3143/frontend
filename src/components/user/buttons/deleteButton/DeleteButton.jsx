@@ -8,7 +8,7 @@ export function DeleteButton() {
     // console.log('HOLA MUNDO');
   };
   return (
-    <Button variant="primary" onClick={printHelloWorld} className="delete-button" color="danger">
+    <Button variant="danger" onClick={printHelloWorld} className="delete-button" color="danger">
       {/* startIcon={<DeleteIcon />} */}
       Eliminar usuario
     </Button>
