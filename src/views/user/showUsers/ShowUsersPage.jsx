@@ -45,7 +45,7 @@ function ShowUsersPage() {
   if (loading) { return <Loading />; }
 
   return (
-    <div className="grid-container">
+    <div className="grid-container flex">
       <Navbar />
       <div className="flex-landing-page">
         <h2>Lista de Usuarios</h2>
@@ -56,11 +56,14 @@ function ShowUsersPage() {
               <p>{error.errors}</p>
             </div>
           ) : (
-            <UsersList users={users} />
+            <div>
+              <UsersList users={users} />
+            </div>
           )}
+          <br />
+          <ButtonBack />
         </div>
       </div>
-      <ButtonBack />
     </div>
   );
 }
