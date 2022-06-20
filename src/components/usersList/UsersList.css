@@ -1,0 +1,15 @@
+.header-accordion-user {
+  font-weight: bold;
+}
+.body-accordion-user {
+  background-color: gainsboro;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-landing-page {
+  display: flex;
+  width: 100%;
+}
