@@ -28,12 +28,17 @@
     margin-right: 4vh;
 }
 
+.label-content-register-project-description {
+    margin-right: 4vh;
+    vertical-align: middle;
+}
+
 
 .center-info-register-project {
-    font-size: 3vh;
+    font-size: 2vh;
     border-style: solid;
     padding-left: 1vh;
-    width: 50%;
+    width: 100%;
     border-width: 0.3vh;
     border-color: darkblue;
     border-radius: 0.5vh;
@@ -44,4 +49,24 @@
     margin-left: 6vh;
     margin-bottom: 3vh;
 }
+
+.validation-error-register-project {
+    color: red;
+    margin-top: 0.5vh;
+    font-size: 2vh;
+}
+
+.center-info-register-project-description {
+    font-size: 2vh;
+    height: 20vh;
+    border-style: solid;
+    padding-left: 1vh;
+    width: 100%;
+    resize: both;
+    border-width: 0.3vh;
+    border-color: darkblue;
+    border-radius: 0.5vh;
+}
+
+
 
