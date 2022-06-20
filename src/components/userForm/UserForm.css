@@ -1,6 +1,6 @@
 .card-profile-register-form {
     width: 80%;
-    height: 80%;
+    /*height: 80%;*/
     background-color: rgba(131, 191, 226, 0.87);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     margin-bottom: 0.5vh;
@@ -18,32 +18,44 @@
 }
 
 .center-info-register-user {
-    font-size: 3vh;
+    font-size: 1.5vh;
     border-style: solid;
     padding-left: 1vh;
     margin-right: 5vh;
     border-width: 0.3vh;
     border-color: darkblue;
     border-radius: 0.5vh;
+    flex-grow: 3;
 }
 
+
 .button-submit-register-user {
-    margin-top: 4vh;
+    /* margin-top: 4vh; */
     margin-left: 6vh;
     margin-bottom: 10vh;
 }
 
-.label-form {
+.label-form-user {
     margin-left: 4vh;
     margin-right: 2vh;
     margin-top: 2vh;
-    font-size: 3vh; 
+    font-size: 2vh;
+    display: flex;
 }
 
-.label-content {
+.label-content-form-user {
     margin-right: 4vh;
 }
 
-.label-content-terms-and-conditions{ 
-    margin-top: 4vh;
+.terms-and-conditions-form-user{ 
+    margin-right: 4vh;
+    flex-grow: 3;
+}
+
+.error-form-user {
+    font-size: 1.5vh;
+    color: red;
+    display: flex;
+    align-self: center;
+    text-align: right;
 }

@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-// import { Navigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 function UserForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const { currentUser, handleUserLogin } = useAuth();
+  const { currentUser, handleUserLogout } = useAuth();
   let user = currentUser;
+
+  if (!currentUser) return <Navigate to="/" />;
 
   return (
     <div className="form">
@@ -33,10 +35,9 @@ function UserForm() {
               throw new Error(error);
             }
             const successMessage = 'Usuario eliminado satisfactoriamente';
-            handleUserLogin(null);
+            handleUserLogout(null);
             user = null;
             setMessage(successMessage);
-            // if (currentUser) return <Navigate to="/" />;
           } catch (error) {
             setMessage(error.message);
           } finally {
@@ -46,32 +47,30 @@ function UserForm() {
       >
         {({ errors, touched }) => (
           <Form className="flex">
-            <div className="flex-form-fields">
-              <label htmlFor="acceptTerms">
-                <Field name="acceptTerms" type="checkbox" />
+            <div className="flex-form-fields label-form-user">
+              <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
+                <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
                 Acepto eliminar mi usuario de Social Starter
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
-                <div className="error">{errors.acceptTerms}</div>
+                <div className="error-form-user">{errors.acceptTerms}</div>
               )}
             </div>
-            { user && !loading ? (
-              <div className="flex-form-fields">
-                <button type="submit">Eliminar Usuario</button>
+            { currentUser && !loading ? (
+              <div className="flex-form-fields label-form-user">
+                <button type="submit" className="btn btn-danger">Eliminar Usuario</button>
               </div>
             ) : null}
 
-            {user && !loading ? (
-              null
-            ) : (
+            { currentUser && loading ? (
               <div className="flex-form-fields">
-                <p>Cargando ...</p>
+                <p className="final-message-form-user">Cargando ...</p>
               </div>
-            )}
+            ) : null }
           </Form>
         )}
       </Formik>
-      <p>{message}</p>
+      <p className="final-message-form-user">{message}</p>
     </div>
   );
 }

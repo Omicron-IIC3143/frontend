@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
 import ButtonPostulate from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
@@ -11,7 +9,6 @@ import './LandingPage.css';
 import Loading from '../../components/loading/Loading';
 
 function LandingPage() {
-  const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
   const [filterData, setFilterData] = useState([]);
@@ -57,14 +54,9 @@ function LandingPage() {
         <div className="flex-inside-searcher">
           <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
         </div>
-        {currentUser ? (
-          <div className="flex-inside-button-postulate">
-            <ButtonPostulate />
-          </div>
-        ) : (
-          <>
-          </>
-        ) }
+        <div>
+          <h1 className="titleLandingPage">Proyectos en la aplicación</h1>
+        </div>
         {error ? (
           <div className="flex-inside">
             <h2>
@@ -92,11 +84,14 @@ function LandingPage() {
             )
           ))
         )}
-        {console.log(projects)}
-
-        <div>
-          <Button className="button-back-landing" variant="primary" onClick={() => navigate(-1)} type="button" id="backButton">Atrás</Button>
-        </div>
+        {currentUser ? (
+          <div className="flex-inside-button-postulate">
+            <ButtonPostulate />
+          </div>
+        ) : (
+          <>
+          </>
+        ) }
       </div>
     </div>
   );

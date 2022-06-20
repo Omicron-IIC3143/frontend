@@ -1,0 +1,19 @@
+.titleMyProjects {
+    margin-bottom: 4vh;
+    text-align: center;
+    color: darkblue;
+}
+
+.unauthorizedMessageMyProjects {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    margin-top: 10vh;
+    text-align:center;
+}
+
+.flex-my-projects {
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: 0vw;
+    margin-right: 10vw;
+}

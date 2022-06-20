@@ -11,7 +11,7 @@ function ProjectList({
     <Card className="text-center">
       <Card.Header>
         Proyecto de
-        {topic}
+        {` ${topic}`}
       </Card.Header>
       <Card.Body>
         <Card.Title>
