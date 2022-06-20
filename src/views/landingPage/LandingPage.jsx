@@ -73,7 +73,7 @@ function LandingPage() {
             </h2>
           </div>
         ) : (
-          projects.map((project) => (
+          filterData.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
             (project?.currentState == 'pending') ? (
               <div className="flex-inside">
