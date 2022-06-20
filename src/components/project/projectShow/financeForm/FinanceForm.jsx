@@ -8,7 +8,7 @@ import useAuth from '../../../../hooks/useAuth';
 import ButtonFinancing from '../buttons/buttonFinancing/ButtonFinancing';
 import './FinanceForm.css';
 
-function FinanceForm(currentAmount, setCurrentAmount) {
+function FinanceForm({ currentAmount, setCurrentAmount }) {
   const { id } = useParams();
   const [message, setMessage] = useState('');
   const [user, setUser] = useState([]);
@@ -55,6 +55,8 @@ function FinanceForm(currentAmount, setCurrentAmount) {
         onSubmit={async (values) => {
           // eslint-disable-next-line no-param-reassign
           values.financeAmount += currentAmount;
+          console.log(values.financeAmount);
+          console.log(currentAmount);
           const requestOptions = {
             method: 'PUT',
             headers: {
@@ -64,7 +66,7 @@ function FinanceForm(currentAmount, setCurrentAmount) {
             body: JSON.stringify(values),
           };
           try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`, requestOptions); // OJO AQUI FALTA SETEAR ESTO
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`, requestOptions);
             if (!response.ok) {
               const errorRequest = await response.text();
               throw new Error(errorRequest);

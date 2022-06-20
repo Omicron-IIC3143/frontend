@@ -41,6 +41,7 @@ function ShowProject() {
         }
         const respuesta = await response.json();
         setProject(respuesta);
+        setCurrentAmount(respuesta.currentAmount);
         return respuesta;
       })
       .catch(() => { setError(true); })
