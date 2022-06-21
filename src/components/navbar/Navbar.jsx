@@ -10,15 +10,16 @@ import {
 import { NavLink } from 'react-router-dom';
 import image from './user_image.jpeg';
 import useAuth from '../../hooks/useAuth';
+import './Navbar.css';
 
 function Navbar() {
   const { currentUser, handleUserLogout } = useAuth();
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
+    <div className="navbar-wrapper">
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />}>
-          <img src={currentUser?.pictureUrl ? (currentUser.pictureUrl) : (image)} alt="user profile" width="20" height="20" />
+          <img className="img-user-profile" src={currentUser?.pictureUrl ? (currentUser.pictureUrl) : (image)} alt="user profile" width="100" />
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
