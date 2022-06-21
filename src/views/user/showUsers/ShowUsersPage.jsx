@@ -9,7 +9,6 @@ import UsersList from '../../../components/usersList/UsersList';
 import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 import useAuth from '../../../hooks/useAuth';
-import './ShowUsersPage.css';
 
 function ShowUsersPage() {
   // const navigate = useNavigate();
@@ -46,33 +45,30 @@ function ShowUsersPage() {
   if (loading) { return <Loading />; }
 
   return (
-    <div className="grid-container-users">
+    <div className="grid-container  ">
       <Navbar />
-      <div className="flex-landing-page flex-users-list-page">
-        <h2>Lista de Usuarios</h2>
-        <div className="flex-inside-users">
+      <div className="page-wrapper">
+        <h2 className="title-color">Lista de Usuarios</h2>
 
-          { error && currentUser?.isAdmin ? (
-            <div>
-              <h3>Error</h3>
-              <p>{error.errors}</p>
-            </div>
-          ) : null }
+        { error && currentUser?.isAdmin ? (
+          <div className="width-80">
+            <h3>Error</h3>
+            <p>{error.errors}</p>
+          </div>
+        ) : null }
 
-          { !(currentUser?.isAdmin) ? (
-            <div>
-              <h3>Acceso denegado</h3>
-              <p>No tiene las credenciales necesarias para poder acceder a esta página.</p>
-            </div>
-          ) : null }
+        { !(currentUser?.isAdmin) ? (
+          <div className="width-80">
+            <h3>Acceso denegado</h3>
+            <p>No tiene las credenciales necesarias para poder acceder a esta página.</p>
+          </div>
+        ) : null }
 
-          { !error && currentUser?.isAdmin ? (
-            <div>
-              <UsersList users={users} />
-            </div>
-          ) : null }
+        { !error && currentUser?.isAdmin ? (
+          <UsersList users={users} className="width-80" />
+        ) : null }
 
-          <br />
+        <div className="page-buttons width-80">
           <ButtonBack />
         </div>
       </div>

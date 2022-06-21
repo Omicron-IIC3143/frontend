@@ -4,7 +4,7 @@ import './ButtonPostulateProject.css';
 
 function ButtonPostulate() {
   return (
-    <Button className="button-postulate-project" variant="primary" href="/projectregister">
+    <Button className="button-postulate-project bg-dark-color" variant="primary" href="/projectregister">
       {/* startIcon={<DeleteIcon />} */}
       Postular Nuevo Proyecto
     </Button>

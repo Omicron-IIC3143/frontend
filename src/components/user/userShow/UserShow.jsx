@@ -6,7 +6,7 @@ export function UserShow({
   name, rut, description, email, editorIsOtherUser, pictureURL,
 }) {
   return (
-    <div className="card-profile">
+    <div className="card-profile width-80">
       <h3 className="title-show-user">
         {name}
       </h3>

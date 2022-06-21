@@ -44,40 +44,35 @@ function MyProjects() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (currentUser?.isAdmin == true) {
-    if (loading) {
-      return (
-        <Loading />
-      );
-    } return (
-      <div className="grid-container-my-proj">
+  if (currentUser?.isAdmin || currentUser?.id == id) {
+    if (loading) { return (<Loading />); }
+    return (
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
-        <div className="flex-my-projects">
+        <div className="page-wrapper">
           {/* <div className="flex-inside-searcher-my-proj">
             <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
           </div> */}
           {currentUser?.id == id ? (
-            <div>
-              <h1 className="titleMyProjects">
+            <>
+              <h1 className="titleMyProjects title-color">
                 Mis proyectos
               </h1>
-              <div className="flex-inside-button-postulate-my-proj">
+              <div className="width-80 center-content-x">
                 <ButtonPostulate />
               </div>
-            </div>
+            </>
           ) : (
-            <div>
-              <h1 className="titleMyProjects">
-                Proyectos del usuario de id
-                {` ${id}`}
-              </h1>
-            </div>
+            <h1 className="titleMyProjects title-color">
+              Proyectos del usuario de id
+              {` ${id}`}
+            </h1>
           )}
-          ;
+
           {error ? (
-            <div className="flex-inside-my-projects">
+            <div className="width-80">
               {currentUser?.id == id ? (
                 <h4>
                   No has postulado proyectos aún.
@@ -94,7 +89,7 @@ function MyProjects() {
             projects.map((project) => (
               // acá hay que poner (project?.currentState == 'approved') ? (
               (project?.currentState == 'pending') ? (
-                <div className="flex-inside-my-projects">
+                <div className="width-80">
                   <ProjectList
                     id={project?.id}
                     topic={project?.topic}
@@ -110,62 +105,7 @@ function MyProjects() {
               )
             ))
           )}
-          <div>
-            <ButtonBack />
-          </div>
-        </div>
-      </div>
-    );
-  } if (currentUser?.id == id) {
-    if (loading) {
-      return (
-        <Loading />
-      );
-    } return (
-      <div className="grid-container-my-proj">
-        <div>
-          <Navbar />
-        </div>
-        <div className="flex-my-projects">
-          {/* <div className="flex-inside-searcher-my-proj">
-            <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
-          </div> */}
-          <div>
-            <h1 className="titleMyProjects">
-              Mis proyectos
-            </h1>
-          </div>
-          <div className="flex-inside-button-postulate-my-proj">
-            <ButtonPostulate />
-          </div>
-          {error ? (
-            <div className="flex-inside-my-projects">
-              <h4>
-                No has postulado proyectos aún.
-                {error.errors}
-              </h4>
-            </div>
-          ) : (
-            projects.map((project) => (
-              // acá hay que poner (project?.currentState == 'approved') ? (
-              (project?.currentState == 'pending') ? (
-                <div className="flex-inside-my-projects">
-                  <ProjectList
-                    id={project?.id}
-                    topic={project?.topic}
-                    title={project?.name}
-                    description={project?.description}
-                    date={project?.createdAt}
-                    company={project?.company}
-                  />
-                </div>
-              ) : (
-                <>
-                </>
-              )
-            ))
-          )}
-          <div>
+          <div className="page-buttons width-80">
             <ButtonBack />
           </div>
         </div>

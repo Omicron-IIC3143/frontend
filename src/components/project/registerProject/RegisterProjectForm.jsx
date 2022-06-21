@@ -49,7 +49,7 @@ function RegisterProjectForm() {
   });
 
   return (
-    <div className="form">
+    <div className="form center-content-x width-100">
       <Formik
         initialValues={{
           name: '',
@@ -95,7 +95,7 @@ function RegisterProjectForm() {
 
       >
         {({ errors, touched }) => (
-          <div className="card-profile-register-project-form">
+          <div className="card-profile-register-project-form width-80">
             <Form>
               <div className="label-form-register-project">
                 <label className="label-content-register-project" htmlFor="name">Nombre del proyecto: </label>
@@ -161,12 +161,9 @@ function RegisterProjectForm() {
                 )}
               </div>
               {!loading ? (
-                <div className="label-form-register-project">
-                  <div className="button-submit-register-project">
-                    <Button variant="primary" type="submit">Enviar postulación</Button>
-                    {' '}
-                    <ButtonBack />
-                  </div>
+                <div className="label-form-register-project button-submit-register-project page-buttons">
+                  <ButtonBack />
+                  <Button variant="primary" type="submit">Enviar postulación</Button>
                 </div>
               ) : (
                 <div>

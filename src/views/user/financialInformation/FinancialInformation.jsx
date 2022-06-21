@@ -55,7 +55,7 @@ function FinancialInformation() {
         </div>
       ) : (
         <div>
-          <div className="grid-container-financial-info">
+          <div className="grid-container  ">
             <div>
               <Navbar />
             </div>
@@ -105,7 +105,7 @@ function FinancialInformation() {
       (loading == true) ? (
         <Loading />) : (
           <div>
-            <div className="grid-container-financial-info">
+            <div className="grid-container  ">
               <div>
                 <Navbar />
               </div>
@@ -145,7 +145,7 @@ function FinancialInformation() {
   }
   return (
     <div>
-      <div className="grid-container-financial-info">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>

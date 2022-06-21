@@ -1,9 +1,9 @@
 import React from 'react';
 import './FinancingInfo.css';
 
-function FinancingInformation({ currentFinancing, goalFinancing }) {
+function FinancingInformation({ currentFinancing, goalFinancing, className }) {
   return (
-    <div className="infoOfFinancing">
+    <div className={`infoOfFinancing ${className}`}>
       <div className="row">
         {/* style="width:100%" */}
         <div className="columnCurrent">

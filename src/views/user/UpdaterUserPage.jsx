@@ -15,7 +15,7 @@ function UpdaterUserPage() {
 
   return (
     <div>
-      <div className="grid-container-register-user">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
