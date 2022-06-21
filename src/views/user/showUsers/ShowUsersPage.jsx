@@ -47,7 +47,7 @@ function ShowUsersPage() {
   return (
     <div className="grid-container flex">
       <Navbar />
-      <div className="flex-landing-page">
+      <div className="flex-landing-page flex-users-list-page">
         <h2>Lista de Usuarios</h2>
         <div className="flex-inside">
 

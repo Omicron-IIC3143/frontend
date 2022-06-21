@@ -33,7 +33,7 @@ function LandingPage() {
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         setProjects(data);
         setFilterData(data);
       })
