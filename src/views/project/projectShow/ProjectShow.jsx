@@ -12,7 +12,7 @@ import ButtonSharing from '../../../components/project/projectShow/buttons/butto
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
 import ButtonBackShowProject from '../../../components/project/projectShow/buttons/buttonBack/ButtonBackShowProject';
 import ProjectImage from '../../../components/project/projectShow/projectImage/ProjectImage';
-import PostulantDescription from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
+import Deadline from '../../../components/project/projectShow/deadline/Deadline';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
 
@@ -58,7 +58,13 @@ function ShowProject() {
         <div>
           <Navbar />
         </div>
+
         <div className="flex-project-show">
+          <div>
+            <h1 className="titleProjectShow">
+              Proyecto en particular
+            </h1>
+          </div>
           {error ? (
             <div className="flex-inside">
               <h2>
@@ -70,7 +76,7 @@ function ShowProject() {
             <>
               <div className="rowImageAndDescription">
                 <ProjectImage title={project.name} image={project.pictureUrl} />
-                <PostulantDescription description="debería ir la descripción del postulante" />
+                <Deadline date={project.date} />
               </div>
               <ProjectDescription description={project.description} />
               <FinancingInformation

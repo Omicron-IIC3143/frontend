@@ -9,6 +9,7 @@ import UsersList from '../../../components/usersList/UsersList';
 import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 import useAuth from '../../../hooks/useAuth';
+import './ShowUsersPage.css';
 
 function ShowUsersPage() {
   // const navigate = useNavigate();
@@ -45,11 +46,11 @@ function ShowUsersPage() {
   if (loading) { return <Loading />; }
 
   return (
-    <div className="grid-container flex">
+    <div className="grid-container-users">
       <Navbar />
-      <div className="flex-landing-page">
+      <div className="flex-users">
         <h2>Lista de Usuarios</h2>
-        <div className="flex-inside">
+        <div className="flex-inside-users">
 
           { error && currentUser?.isAdmin ? (
             <div>
@@ -60,8 +61,8 @@ function ShowUsersPage() {
 
           { !(currentUser?.isAdmin) ? (
             <div>
-              <h3>Acceso Denegado</h3>
-              <p>No tiene las credenciales necesarias para poder acceder a esta página</p>
+              <h3>Acceso denegado</h3>
+              <p>No tiene las credenciales necesarias para poder acceder a esta página.</p>
             </div>
           ) : null }
 

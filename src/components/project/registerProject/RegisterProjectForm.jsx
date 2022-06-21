@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 import './RegisterProjectForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import useAuth from '../../../hooks/useAuth';
+import SelectComponent from './SelectComponent';
 
 function stringDateOfToday() {
   const today = new Date();
@@ -25,7 +26,7 @@ function RegisterProjectForm() {
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(2, 'El nombre debe tener mas de 2 caracteres.')
-      .max(50, 'El nombre debe tener 50 caracteres o menos.')
+      .max(100, 'El nombre debe tener 100 caracteres o menos.')
       .required('El nombre del proyecto es obligatorio.'),
     description: Yup.string()
       .min(40, 'Tu descripción debe tener mínimo 40 caracteres.')
@@ -38,11 +39,13 @@ function RegisterProjectForm() {
       .required('El nombre de la empresa, fundación u organización es obligatorio.'),
     topic: Yup.string()
       .required('El rubro relacionado al proyecto es obligatorio.'),
+    // tags: Yup.string()
+    //   .required('Este campo es obligatorio.'),
     goalAmount: Yup.number()
       .required('La meta monetaria es obligatoria.'),
     date: Yup.date()
       .required('Este campo es obligatorio.')
-      .min(stringDateOfToday(), 'Estás ingresando una fecha del pasado'),
+      .min(stringDateOfToday(), 'Estás ingresando una fecha ya pasada.'),
   });
 
   return (
@@ -54,6 +57,7 @@ function RegisterProjectForm() {
           pictureUrl: '',
           company: '',
           topic: '',
+          tags: '',
           goalAmount: '',
           date: '',
         }}
@@ -62,7 +66,6 @@ function RegisterProjectForm() {
           const newValues = {
             ...values,
             userId: currentUser.id,
-            tags: 'tag-1',
             currentAmount: 0,
           };
           setLoading(true);
@@ -104,7 +107,7 @@ function RegisterProjectForm() {
 
               <div className="label-form-register-project">
                 <label className="label-content-register-project-description" htmlFor="description">Descripción: </label>
-                <Field className="center-info-register-project-description" as="textarea" name="description" type="text" placeholder="Descripción" />
+                <Field className="center-info-register-project-description" as="textarea" name="description" type="text" placeholder="¿En qué consiste, qué busca?" />
                 {errors.description && touched.description && (
                   <div className="validation-error-register-project">{errors.description}</div>
                 )}
@@ -112,7 +115,7 @@ function RegisterProjectForm() {
 
               <div className="label-form-register-project">
                 <label className="label-content-register-project" htmlFor="pictureUrl">Imagen: </label>
-                <Field className="center-info-register-project" name="pictureUrl" type="text" placeholder="URL de la imagen" />
+                <Field className="center-info-register-project" name="pictureUrl" type="url" placeholder="URL de la imagen" />
                 {errors.pictureUrl && touched.pictureUrl && (
                   <div className="validation-error-register-project">{errors.pictureUrl}</div>
                 )}
@@ -128,15 +131,23 @@ function RegisterProjectForm() {
 
               <div className="label-form-register-project">
                 <label className="label-content-register-project" htmlFor="topic">Rubro: </label>
-                <Field className="center-info-register-project" name="topic" type="text" placeholder="Rubro" />
+                <Field className="center-info-register-project" name="topic" type="text" placeholder="Área relacionada con la causa del proyecto" />
                 {errors.topic && touched.topic && (
                   <div className="validation-error-register-project">{errors.topic}</div>
                 )}
               </div>
 
               <div className="label-form-register-project">
+                <label className="label-content-register-project" htmlFor="tags">Tags: </label>
+                <Field as={SelectComponent} name="tags" />
+                {errors.tags && touched.tags && (
+                  <div className="validation-error-register-project">{errors.tags}</div>
+                )}
+              </div>
+
+              <div className="label-form-register-project">
                 <label className="label-content-register-project" htmlFor="goalAmount">Meta monetaria: </label>
-                <Field className="center-info-register-project" name="goalAmount" type="number" placeholder="Pesos chilenos" />
+                <Field className="center-info-register-project" name="goalAmount" type="number" placeholder="CLP" />
                 {errors.goalAmount && touched.goalAmount && (
                   <div className="validation-error-register-project">{errors.goalAmount}</div>
                 )}

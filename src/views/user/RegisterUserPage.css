@@ -3,12 +3,12 @@
     display: grid;
     grid-template-columns: auto auto;
     background-color: #2196F3;
-    padding: 10px;
     overflow-y: auto;
 }
 
 .flex-register-user {
     flex-direction: column;
+    padding-left: 5vw;
     /*margin-top: 5vh;
     margin-left: -10vw;
     margin-right: 15vw;*/

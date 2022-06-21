@@ -61,13 +61,16 @@ function MyProjects() {
           {currentUser?.id == id ? (
             <div>
               <h1 className="titleMyProjects">
-                Mis proyectos postualados
+                Mis proyectos
               </h1>
+              <div className="flex-inside-button-postulate-my-proj">
+                <ButtonPostulate />
+              </div>
             </div>
           ) : (
             <div>
               <h1 className="titleMyProjects">
-                Proyectos postulados por el usuario de id
+                Proyectos del usuario de id
                 {` ${id}`}
               </h1>
             </div>
@@ -107,14 +110,6 @@ function MyProjects() {
               )
             ))
           )}
-          {currentUser ? (
-            <div className="flex-inside-button-postulate-my-proj">
-              <ButtonPostulate />
-            </div>
-          ) : (
-            <>
-            </>
-          ) }
           <div>
             <ButtonBack />
           </div>
@@ -137,9 +132,12 @@ function MyProjects() {
           </div> */}
           <div>
             <h1 className="titleMyProjects">
-              Mis proyectos postulados
+              Mis proyectos
             </h1>
           </div>
+          <div className="flex-inside-button-postulate-my-proj">
+              <ButtonPostulate />
+            </div>
           {error ? (
             <div className="flex-inside-my-projects">
               <h4>
@@ -167,14 +165,6 @@ function MyProjects() {
               )
             ))
           )}
-          {currentUser ? (
-            <div className="flex-inside-button-postulate-my-proj">
-              <ButtonPostulate />
-            </div>
-          ) : (
-            <>
-            </>
-          ) }
           <div>
             <ButtonBack />
           </div>

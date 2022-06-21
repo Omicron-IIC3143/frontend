@@ -260,7 +260,6 @@ function UserForm() {
       </Formik>
       <p className="final-message-form-user">{message}</p>
       { user ? (<DeleteUser />) : null }
-      <p className="final-message-form-user">Para seguir en Social Starter, puedes cerrar esta pestaña o seguir modificando</p>
     </div>
   );
 }
