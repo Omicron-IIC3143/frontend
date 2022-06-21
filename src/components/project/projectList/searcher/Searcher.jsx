@@ -1,8 +1,6 @@
 /* eslint-disable no-console */
 import React from 'react';
-import {
-  Input,
-} from 'antd';
+import { Input } from 'antd';
 import './Searcher.css';
 
 const { Search } = Input;

@@ -24,10 +24,13 @@ code {
 }
 
 .page-wrapper {
-  overflow-y: scroll;
   height: 100vh;
-  padding: 2.5vh 2.5vw;
+  padding: 10vh 2.5vw;
+  display: flex;
+  overflow-y: scroll;
   flex-direction: column;
+  gap: 3vw;
+  align-items: center;
 }
 
 .img-user-profile {
