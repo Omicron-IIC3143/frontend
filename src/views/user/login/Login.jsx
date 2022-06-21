@@ -60,41 +60,43 @@ const Login = function Login() {
         <div>
           <Navbar />
         </div>
-        <div className="card-profile-login-form">
-          <h2 className="title-login-user">Ingresa a tu cuenta</h2>
-          <form onSubmit={handleSubmit}>
-            <div className="label-form-login">
-              <p className="control has-icons-left has-icons-right">
-                <input className="label-content" type="email" id="email" name="email" placeholder="Email" value={values.email} onChange={handleChange} />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-envelope" />
-                </span>
-                <span className="icon is-small is-right">
-                  <i className="fas fa-check" />
-                </span>
-              </p>
-            </div>
+        <div className="page-wrapper">
+          <div className="card-profile-login-form">
+            <h2 className="title-login-user">Ingresa a tu cuenta</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="label-form-login">
+                <p className="control has-icons-left has-icons-right">
+                  <input className="label-content" type="email" id="email" name="email" placeholder="Email" value={values.email} onChange={handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope" />
+                  </span>
+                  <span className="icon is-small is-right">
+                    <i className="fas fa-check" />
+                  </span>
+                </p>
+              </div>
 
-            <div className="label-form-login">
-              <p className="control has-icons-left">
-                <input className="label-content" type="password" name="password" id="password" placeholder="Contraseña" value={values.password} onChange={handleChange} />
-                <span className="icon is-small is-left">
-                  <i className="fas fa-lock" />
-                </span>
-              </p>
-            </div>
+              <div className="label-form-login">
+                <p className="control has-icons-left">
+                  <input className="label-content" type="password" name="password" id="password" placeholder="Contraseña" value={values.password} onChange={handleChange} />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock" />
+                  </span>
+                </p>
+              </div>
 
-            <br />
+              <br />
 
-            <div className="label-form-login">
-              <Button className="button-submit-login-user" id="loginButton" type="submit" disabled={!(values.email && values.password)}>
-                Login
-              </Button>
-            </div>
-          </form>
+              <div className="label-form-login">
+                <Button className="button-submit-login-user" id="loginButton" type="submit" disabled={!(values.email && values.password)}>
+                  Login
+                </Button>
+              </div>
+            </form>
+          </div>
+          <p>{errorMessage}</p>
         </div>
       </div>
-      <p>{errorMessage}</p>
     </div>
   );
 };

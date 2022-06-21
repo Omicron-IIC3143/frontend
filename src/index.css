@@ -26,7 +26,7 @@ code {
 
 .page-wrapper {
   height: 100vh;
-  padding: 10vh 2.5vw;
+  padding: 10vh 0 0;
   display: flex;
   overflow-y: scroll;
   flex-direction: column;
