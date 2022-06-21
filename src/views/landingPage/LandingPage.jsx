@@ -43,11 +43,11 @@ function LandingPage() {
       <Loading />
     );
   } return (
-    <div className="grid-container-landing">
+    <div className="grid-container bg-app-color">
       <div>
         <Navbar />
       </div>
-      <div className="flex-landing-page">
+      <div className="page-wrapper">
         <div className="flex-inside-searcher">
           <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
         </div>

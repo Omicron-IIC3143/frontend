@@ -46,7 +46,7 @@ function ShowUsersPage() {
   if (loading) { return <Loading />; }
 
   return (
-    <div className="grid-container-users">
+    <div className="grid-container bg-app-color">
       <Navbar />
       <div className="flex-landing-page flex-users-list-page">
         <h2>Lista de Usuarios</h2>

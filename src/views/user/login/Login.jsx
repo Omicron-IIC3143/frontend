@@ -56,7 +56,7 @@ const Login = function Login() {
 
   return (
     <div>
-      <div className="grid-container-login-user">
+      <div className="grid-container bg-app-color">
         <div>
           <Navbar />
         </div>

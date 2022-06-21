@@ -50,7 +50,7 @@ function MyProjects() {
         <Loading />
       );
     } return (
-      <div className="grid-container-my-proj">
+      <div className="grid-container bg-app-color">
         <div>
           <Navbar />
         </div>
@@ -122,7 +122,7 @@ function MyProjects() {
         <Loading />
       );
     } return (
-      <div className="grid-container-my-proj">
+      <div className="grid-container bg-app-color">
         <div>
           <Navbar />
         </div>

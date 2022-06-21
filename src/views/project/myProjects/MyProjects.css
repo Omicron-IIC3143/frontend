@@ -25,12 +25,6 @@
     margin-top: 2vh;
 }
 
-.grid-container-my-proj {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #2196F3;
-}
-
 .flex-inside-my-projects {
     margin-bottom: 30px;
     width: 70%;

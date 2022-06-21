@@ -45,7 +45,7 @@ function ShowUser() {
     if (loading) { return (<Loading />); }
     return (
       <div>
-        <div className="grid-container-show-user">
+        <div className="grid-container bg-app-color">
           <div>
             <Navbar />
           </div>
@@ -77,7 +77,7 @@ function ShowUser() {
   }
   return (
     <div>
-      <div className="grid-container-show-user">
+      <div className="grid-container bg-app-color">
         <div>
           <Navbar />
         </div>

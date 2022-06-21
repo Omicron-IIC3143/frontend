@@ -4,12 +4,6 @@
   margin-top: 5vw;
 }
 
-.grid-container-show-user {
-  display: grid;
-  grid-template-columns: auto auto;
-  background-color: #2196F3;
-  }
-
 .rowImageAndDescription {
     display: flex;
     flex-direction:row;

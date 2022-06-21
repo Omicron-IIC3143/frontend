@@ -10,7 +10,7 @@ function RegisterUserPage() {
 
   return (
     <div>
-      <div className="grid-container-register-user">
+      <div className="grid-container bg-app-color">
         <div>
           <Navbar />
         </div>
