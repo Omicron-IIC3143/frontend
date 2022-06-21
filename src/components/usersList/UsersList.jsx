@@ -17,26 +17,26 @@ function UsersList({ users }) {
         <AccordionItem eventKey={index}>
           <AccordionHeader className="header-accordion-user">{`${user.name} (${user.email})`}</AccordionHeader>
           <AccordionBody className="accordion-body body-accordion-user">
-            <ul>
+            <ul className="accordion-body-list">
               <NavLink exact to={`/users/${user.id}`} activeClassName="activeClicked">
                 Ver perfil del usuario
               </NavLink>
-              <li>
+              <li className="accordion-body-list-rows">
                 User ID:
                 {' '}
                 {user.id}
               </li>
-              <li>
+              <li className="accordion-body-list-rows">
                 RUT:
                 {' '}
                 {user.rut}
               </li>
-              <li>
+              <li className="accordion-body-list-rows">
                 Descripción:
                 {' '}
                 {user.description}
               </li>
-              <li>
+              <li className="accordion-body-list-rows">
                 Admin:
                 {' '}
                 {String(user.isAdmin)}
