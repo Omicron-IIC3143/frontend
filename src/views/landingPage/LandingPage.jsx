@@ -41,7 +41,7 @@ function LandingPage() {
   if (loading) { return (<Loading />); }
 
   return (
-    <div className="grid-container bg-app-color">
+    <div className="grid-container  ">
       <div>
         <Navbar />
       </div>

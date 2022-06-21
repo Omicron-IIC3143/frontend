@@ -6,7 +6,7 @@ import './RegisterProject.css';
 function RegisterProject() {
   return (
     <div>
-      <div className="grid-container bg-app-color">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
