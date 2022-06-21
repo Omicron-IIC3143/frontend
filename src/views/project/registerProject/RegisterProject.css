@@ -5,17 +5,8 @@
     margin-right: 15vw;
 }
 
-.rowImageAndDescription {
-    display: flex;
-    flex-direction:row;
-}
-
 .title-register-new-project {
-    padding-bottom: 2vh;
-    padding-top: 5vh;
     text-align: left;
     color: darkblue;
-    margin-left: 5vh;
-    margin-bottom: 1vh;
     font-size: 3vw;
 }
