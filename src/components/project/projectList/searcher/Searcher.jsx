@@ -12,9 +12,9 @@ function Searcher(data) {
   console.log(filterData);
   console.log(projects);
   const onSearch = (value) => {
-    console.log('hola');
-    console.log(value);
-    console.log(filterData);
+    // console.log('hola');
+    // console.log(value);
+    // console.log(filterData);
     if (
       filterData
       // eslint-disable-next-line react/destructuring-assignment

@@ -7,7 +7,6 @@ import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
 import { UserShow } from '../../../components/user/userShow/UserShow';
 import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
-import { DeleteButton } from '../../../components/user/buttons/deleteButton/DeleteButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
 
@@ -42,111 +41,36 @@ function ShowUser() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (currentUser?.isAdmin == true) {
-    if (currentUser?.id == id) {
-      return (
-        (loading == true) ? (
-          <Loading />) : (
-            <>
-            </>
-        ),
-        (error) ? (
-          <div className="flex-inside">
-            <h2>
-              Error
-              {error}
-            </h2>
-          </div>
-        ) : (
-          <div>
-            <div className="grid-container-show-user">
-              <div>
-                <Navbar />
-              </div>
-              <div className="flex-show-user">
-                <UserShow
-                  name={user?.name}
-                  description={user?.description}
-                  rut={user?.rut}
-                  money={user?.money}
-                  email={user?.email}
-                  boolean={false}
-                />
-                <ButtonUpdatingUser />
-                <DeleteButton />
-                <ButtonBack />
-              </div>
-            </div>
-          </div>
-        ));
-    }
-    return (
-      (loading == true) ? (
-        <Loading />) : (
-          <>
-          </>
-      ),
-      (error) ? (
-        <div className="flex-inside">
-          <h2>
-            Error
-            {error}
-          </h2>
-        </div>
-      ) : (
-        <div>
-          <div className="grid-container-show-user">
-            <div>
-              <Navbar />
-            </div>
-            <div className="flex-show-user">
-              <UserShow
-                name={user?.name}
-                description={user?.description}
-                rut={user?.rut}
-                money={user?.money}
-                email={user?.email}
-              />
-              <ButtonUpdatingUser />
-              <DeleteButton />
-              <ButtonBack />
-            </div>
-          </div>
-        </div>
-      ));
-  }
-  if (currentUser?.id == id) {
-    if (loading) {
-      return (
-        <Loading />
-      );
-    }
+  if (currentUser?.id == id || currentUser?.isAdmin) {
+    if (loading) { return (<Loading />); }
     return (
       <div>
         <div className="grid-container-show-user">
           <div>
             <Navbar />
           </div>
-          {error ? (
-            <div className="flex-inside">
-              <h4>
+          <div className="flex-show-user">
+            {error ? (
+              <h3>
+                ERROR:
+                {' '}
                 {error.errors}
-              </h4>
-            </div>
-          ) : (
-            <div className="flex-show-user">
+              </h3>
+            ) : (
               <UserShow
                 name={user?.name}
                 description={user?.description}
                 rut={user?.rut}
                 money={user?.money}
                 email={user?.email}
+                pictureURL={user?.pictureUrl}
+                editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
-              <ButtonUpdatingUser />
-              <DeleteButton />
-              <ButtonBack />
-            </div>
-          )}
+            )}
+            <br />
+            <ButtonUpdatingUser id={id} />
+            <ButtonBack />
+          </div>
         </div>
       </div>
     );
@@ -157,7 +81,14 @@ function ShowUser() {
         <div>
           <Navbar />
         </div>
-        <h1 className="unauthorizedMessageFinancialInfo">No estás autorizado para ver el perfil de otro usuario. </h1>
+        <div>
+          { currentUser ? (
+            <h1 className="unauthorizedMessageFinancialInfo">No estás autorizado para ver el perfil de otro usuario. </h1>
+          ) : (
+            <h1 className="unauthorizedMessageFinancialInfo">Inicia sesión para ver el perfil de tu usuario. </h1>
+          )}
+          <ButtonBack />
+        </div>
       </div>
     </div>
   );
