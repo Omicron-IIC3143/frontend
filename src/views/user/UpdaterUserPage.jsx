@@ -20,10 +20,11 @@ function UpdaterUserPage() {
           <Navbar />
         </div>
         <div className="flex-register-user">
-          <h2 className="title-register-new-user">Ver y editar Información de Usuario</h2>
+          <h2 className="title-register-new-user">Ver y editar información de usuario</h2>
           { id == currentUser?.id && currentUser ? (
+
             <>
-              <p className="final-message-form-user text-register-new-user">Aquí puedes ver y modificar toda tu información, incluyendo tus contraseñas, por lo que se responsable y modifica a conciencia lo que quieras modificar y deja en blanco aquello que quieras mantener.</p>
+              <p className="final-message-form-user text-register-new-user">Aquí puedes ver y modificar toda tu información, incluyendo tus contraseñas, por lo que sé responsable y modifica a conciencia lo que quieras actualizar y deja en blanco aquello que quieras mantener.</p>
               <UserForm />
             </>
           ) : (<> </>)}

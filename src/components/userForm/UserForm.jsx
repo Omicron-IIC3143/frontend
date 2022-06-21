@@ -315,7 +315,6 @@ function UserForm() {
       <p className="final-message-form-user">{error}</p>
       <p className="final-message-form-user">{message}</p>
       { isUpdating ? (<DeleteUser userId={id} />) : null }
-      <p className="final-message-form-user">Para seguir en Social Starter, puedes cerrar esta pestaña o seguir modificando</p>
     </div>
   );
 }

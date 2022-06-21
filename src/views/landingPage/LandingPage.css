@@ -6,9 +6,6 @@
 
 .flex-landing-page {
     flex-direction: column;
-    margin-top: 5vh;
-    margin-left: 10vw;
-    margin-right: 10vw;
 }
 
 .flex-inside-button-postulate {
@@ -16,19 +13,21 @@
 }
 
 .flex-inside-searcher {
-    margin-bottom: 70px;
+    margin-bottom: 2vh;
+    margin-left: 10vw;
+    margin-top: 2vh;
 }
 
-.grid-container {
+.grid-container-landing {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: auto auto;
     background-color: #2196F3;
-    padding: 10px;
 }
-
 
 .flex-inside-landing {
     margin-bottom: 30px;
+    width: 70%;
+    margin-left: 10vw;
 }
 
 .flex-inside {
