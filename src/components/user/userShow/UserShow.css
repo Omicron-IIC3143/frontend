@@ -35,6 +35,17 @@
     border-radius: 0.5vh;
 }
 
+.center-info-picture{
+    margin-left: 5vw;
+    margin-top: 1.5vw;
+    font-size: 3vh;
+    border-style: solid;
+    margin-right: 5vh;
+    border-width: 0.5vh;
+    border-color: darkblue;
+    border-radius: 0.5vh;
+}
+
 .sub-title-show-user {
     padding-left: 4vw;
     padding-bottom: 1vw;
