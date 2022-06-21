@@ -50,7 +50,7 @@ function UserForm() {
             <div className="flex-form-fields label-form-user">
               <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
-                Acepto eliminar mi usuario de Social Starter
+                Acepto eliminar mi usuario de Social Starter.
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
                 <div className="error-form-user">{errors.acceptTerms}</div>

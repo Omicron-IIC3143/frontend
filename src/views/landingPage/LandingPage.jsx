@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
-import ButtonPostulate from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
 import ProjectList from '../../components/project/projectList/ProjectList';
 import Searcher from '../../components/project/projectList/searcher/Searcher';
 import './LandingPage.css';
@@ -44,7 +43,7 @@ function LandingPage() {
       <Loading />
     );
   } return (
-    <div className="grid-container">
+    <div className="grid-container-landing">
       <div>
         <Navbar />
       </div>
@@ -84,14 +83,6 @@ function LandingPage() {
             )
           ))
         )}
-        {currentUser ? (
-          <div className="flex-inside-button-postulate">
-            <ButtonPostulate />
-          </div>
-        ) : (
-          <>
-          </>
-        ) }
       </div>
     </div>
   );
