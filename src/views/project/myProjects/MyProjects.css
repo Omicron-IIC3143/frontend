@@ -14,6 +14,26 @@
 .flex-my-projects {
     flex-direction: column;
     margin-top: 5vh;
-    margin-left: 0vw;
+    margin-left: 10vw;
     margin-right: 10vw;
 }
+
+.flex-inside-button-postulate-my-proj {
+    margin-bottom: 5vh;
+}
+
+.flex-inside-searcher-my-proj {
+    margin-bottom: 70px;
+}
+
+.grid-container-my-proj {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    background-color: #2196F3;
+    padding: 10px;
+}
+
+.flex-inside-my-projects {
+    margin-bottom: 30px;
+}
+

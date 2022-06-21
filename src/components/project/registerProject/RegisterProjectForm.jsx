@@ -25,16 +25,16 @@ function RegisterProjectForm() {
   const validationSchema = Yup.object({
     name: Yup.string()
       .min(2, 'El nombre debe tener mas de 2 caracteres.')
-      .max(30, 'El nombre debe tener 30 caracteres o menos.')
+      .max(50, 'El nombre debe tener 50 caracteres o menos.')
       .required('El nombre del proyecto es obligatorio.'),
     description: Yup.string()
       .min(40, 'Tu descripción debe tener mínimo 40 caracteres.')
       .max(430, 'Tu descripción debe tener máximo 430 caracteres.')
       .required('La descripción es obligatoria.'),
-    picture: Yup.string()
+    pictureUrl: Yup.string()
       .required('EL campo de imagen asociada al proyecto es obligatorio.'),
     company: Yup.string()
-      .max(20, 'Nombre de empresa es muy largo.')
+      .max(50, 'Nombre de empresa es muy largo. Máximo 50 caracteres.')
       .required('El nombre de la empresa, fundación u organización es obligatorio.'),
     topic: Yup.string()
       .required('El rubro relacionado al proyecto es obligatorio.'),
@@ -51,7 +51,7 @@ function RegisterProjectForm() {
         initialValues={{
           name: '',
           description: '',
-          picture: '',
+          pictureUrl: '',
           company: '',
           topic: '',
           goalAmount: '',
@@ -111,10 +111,10 @@ function RegisterProjectForm() {
               </div>
 
               <div className="label-form-register-project">
-                <label className="label-content-register-project" htmlFor="picture">Imagen: </label>
-                <Field className="center-info-register-project" name="picture" type="text" placeholder="URL de la imagen" />
-                {errors.picture && touched.picture && (
-                  <div className="validation-error-register-project">{errors.picture}</div>
+                <label className="label-content-register-project" htmlFor="pictureUrl">Imagen: </label>
+                <Field className="center-info-register-project" name="pictureUrl" type="text" placeholder="URL de la imagen" />
+                {errors.pictureUrl && touched.pictureUrl && (
+                  <div className="validation-error-register-project">{errors.pictureUrl}</div>
                 )}
               </div>
 
