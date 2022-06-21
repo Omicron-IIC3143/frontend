@@ -1,14 +1,15 @@
+/* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
 function DeleteUser({ userId }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser, handleUserLogout } = useAuth();
-
+  const navigate = useNavigate();
   if (!currentUser) return <Navigate to="/" />;
 
   return (
@@ -34,8 +35,13 @@ function DeleteUser({ userId }) {
               throw new Error(error);
             }
             const successMessage = 'Usuario eliminado satisfactoriamente';
-            handleUserLogout();
             setMessage(successMessage);
+            alert(successMessage);
+            if (userId == currentUser?.id) {
+              handleUserLogout();
+            } else {
+              navigate('/users');
+            }
           } catch (error) {
             setMessage(error.message);
           } finally {
