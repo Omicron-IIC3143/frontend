@@ -136,8 +136,8 @@ function MyProjects() {
             </h1>
           </div>
           <div className="flex-inside-button-postulate-my-proj">
-              <ButtonPostulate />
-            </div>
+            <ButtonPostulate />
+          </div>
           {error ? (
             <div className="flex-inside-my-projects">
               <h4>
