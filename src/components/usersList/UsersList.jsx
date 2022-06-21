@@ -10,9 +10,9 @@ import './UsersList.css';
 import { NavLink } from 'react-router-dom';
 import { ButtonUpdatingUser } from '../user/buttons/updateButton/UpdateButton';
 
-function UsersList({ users }) {
+function UsersList({ users, className }) {
   return (
-    <Accordion alwaysOpen>
+    <Accordion alwaysOpen className={className}>
       { users.map((user, index) => (
         <AccordionItem eventKey={index}>
           <AccordionHeader className="header-accordion-user">{`${user.name} (${user.email})`}</AccordionHeader>

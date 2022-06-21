@@ -1,19 +1,5 @@
-.flex-project-show {
-    flex-direction: column;
-    margin-top: 5vh;
-    margin-left: 10vw;
-    margin-right: 10vw;
-}
-
-.rowImageAndDescription {
-    display: flex;
-    flex-direction:row;
-}
-
 .titleProjectShow {
-    margin-bottom: 4vh;
     text-align: left;
-    color: darkblue;
 }
 
 

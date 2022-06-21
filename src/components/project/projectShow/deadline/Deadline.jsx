@@ -9,13 +9,13 @@ function stringOfDate(date) {
   return stringToday;
 }
 
-function Deadline({ date }) {
+function Deadline({ date, className }) {
   const today = new Date();
   const deadlineDate = new Date(date);
   const numberOfDays = Math.floor(((deadlineDate.getTime() - today.getTime()) / 1000) / 86400);
   if (numberOfDays > 0) {
     return (
-      <div className="descriptionCard">
+      <div className={`descriptionCard ${className}`}>
         {/* style="width:100%" */}
         <h5>
           Al proyecto le quedan
@@ -28,7 +28,7 @@ function Deadline({ date }) {
       </div>
     );
   } return (
-    <div className="descriptionCard">
+    <div className={`descriptionCard ${className}`}>
       {/* style="width:100%" */}
       <h5>El proyecto ya ha llegado a su tiempo límite de financiamiento.</h5>
     </div>
