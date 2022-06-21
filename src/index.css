@@ -1,3 +1,5 @@
+@import './global.css';
+
 body {
   margin: 0;
   font-family: 'Trebuchet MS', sans-serif;
@@ -8,4 +10,26 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: min-content auto;
+}
+
+.navbar-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: scroll initial;
+}
+
+.page-wrapper {
+  overflow-y: scroll;
+  height: 100vh;
+  padding: 2.5vh 2.5vw;
+  flex-direction: column;
+}
+
+.img-user-profile {
+  border-radius: 50%;
 }

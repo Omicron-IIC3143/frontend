@@ -1,0 +1,7 @@
+/* Sets of unitary class rules */
+
+.flex { display: flex; }
+
+.bg-app-color {
+  background-color: #2196F3;
+}
