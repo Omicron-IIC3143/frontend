@@ -33,24 +33,15 @@ function Navbar() {
 
             {currentUser ? (
               <>
-                <NavLink
-                  exact
-                  to={`/users/${currentUser.id}/projects`}
-                  activeClassName="activeClicked"
-                >
+                <NavLink exact to={`/users/${currentUser.id}/projects`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="list-alt">Mis proyectos</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/tables" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="hand-holding-usd">Proyectos financiados</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink
-                  exact
-                  to={`/users/${currentUser.id}/financialinfo`}
-                  activeClassName="activeClicked"
-                >
+                <NavLink exact to={`/users/${currentUser.id}/financialinfo`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="chart-line">Información financiera</CDBSidebarMenuItem>
                 </NavLink>
-
               </>
             // eslint-disable-next-line react/jsx-no-useless-fragment
             ) : (<></>)}
@@ -61,7 +52,7 @@ function Navbar() {
           <div className="sidebar-btn-wrapper" style={{ padding: '20px 5px' }}>
             {currentUser ? (
               <>
-                <NavLink exact to="/user/update" activeClassName="activeClicked">
+                <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="user-circle">Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
