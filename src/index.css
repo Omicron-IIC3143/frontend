@@ -39,6 +39,17 @@ code {
   flex-direction: row-reverse;
   justify-content: space-between;
 }
+.page-interaction-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vh 1vw;
+}
+
+.display-flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
 
 .img-user-profile {
   border-radius: 50%;
