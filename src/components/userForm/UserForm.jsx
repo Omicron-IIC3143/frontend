@@ -109,7 +109,7 @@ function UserForm() {
     rut: Yup.string()
       .required('Tu RUT es requerido')
       .validateRUT('Debes colocar tu RUT correctamente'),
-    pictureURL: Yup.string()
+    pictureUrl: Yup.string()
       .url('Coloca un URL válido, con el https incluido'),
     description: Yup.string()
       .max(300, 'Tu descripción no debe superar los 300 carácteres'),
@@ -132,7 +132,7 @@ function UserForm() {
       .email('Correo electrónico inválido'),
     rut: Yup.string()
       .validateRUT('Debes colocar tu RUT correctamente'),
-    pictureURL: Yup.string()
+    pictureUrl: Yup.string()
       .url('Coloca un URL válido, con el "https://" inicial incluido'),
     description: Yup.string()
       .max(300, 'Tu descripción no debe superar los 300 carácteres'),
@@ -151,7 +151,7 @@ function UserForm() {
     name: '',
     email: '',
     rut: '',
-    pictureURL: '',
+    pictureUrl: '',
     description: '',
     password: '',
     passwordConfirm: '',
@@ -162,7 +162,7 @@ function UserForm() {
     name: isUpdating ? user.name : 'Nombre completo',
     email: isUpdating ? user.email : 'email.de.ejemplo@mailer.cl',
     rut: isUpdating ? user.rut : '30686957-4',
-    pictureURL: isUpdating ? user.pictureURL : 'https://www.link-a-tu-imagen.com',
+    pictureUrl: isUpdating ? user.pictureUrl : 'https://www.link-a-tu-imagen.com',
     description: isUpdating ? user.description : 'Descripción de ti (max. 300 caracteres)',
     password: 'Contraseña',
     passwordConfirm: 'Contraseña reingresada',
@@ -255,10 +255,10 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content-form-user" htmlFor="pictureURL">URL imagen de perfil: </label>
-              <Field className="center-info-register-user" name="pictureURL" type="text" placeholder={placeholders.pictureURL} />
-              {errors.pictureURL && touched.pictureURL && (
-                <div className="error-form-user">{errors.pictureURL}</div>
+              <label className="label-content-form-user" htmlFor="pictureUrl">URL imagen de perfil: </label>
+              <Field className="center-info-register-user" name="pictureUrl" type="text" placeholder={placeholders.pictureUrl} />
+              {errors.pictureUrl && touched.pictureUrl && (
+                <div className="error-form-user">{errors.pictureUrl}</div>
               )}
             </div>
 

@@ -63,6 +63,7 @@ function ShowUser() {
                 rut={user?.rut}
                 money={user?.money}
                 email={user?.email}
+                pictureURL={user?.pictureUrl}
                 editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
             )}

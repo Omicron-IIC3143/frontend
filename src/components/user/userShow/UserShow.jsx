@@ -1,8 +1,9 @@
 import React from 'react';
 import './UserShow.css';
+import image from '../../navbar/user_image.jpeg';
 
 export function UserShow({
-  name, rut, description, email, editorIsOtherUser,
+  name, rut, description, email, editorIsOtherUser, pictureURL,
 }) {
   return (
     <div className="card-profile">
@@ -16,6 +17,9 @@ export function UserShow({
           '[Mi perfil]'
         )}
       </h3>
+
+      <img className="center-info" src={pictureURL || (image)} alt="user profile" width="150" />
+
       <h3 className="center-info">
         <b>Rut: </b>
         {rut}
