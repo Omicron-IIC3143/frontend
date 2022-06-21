@@ -52,7 +52,7 @@ function Navbar() {
           <div className="sidebar-btn-wrapper" style={{ padding: '20px 5px' }}>
             {currentUser ? (
               <>
-                <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
+                <NavLink exact to={`/users/${currentUser?.id}`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="user-circle">Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>

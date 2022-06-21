@@ -62,7 +62,8 @@ function ShowProject() {
         <div className="flex-project-show">
           <div>
             <h1 className="titleProjectShow">
-              Proyecto en particular
+              Proyecto
+              {` ${project.name}`}
             </h1>
           </div>
           {error ? (
@@ -75,7 +76,7 @@ function ShowProject() {
           ) : (
             <>
               <div className="rowImageAndDescription">
-                <ProjectImage title={project.name} image={project.pictureUrl} />
+                <ProjectImage image={project.pictureUrl} company={project.company} />
                 <Deadline date={project.date} />
               </div>
               <ProjectDescription description={project.description} />

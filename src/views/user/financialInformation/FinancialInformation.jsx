@@ -6,12 +6,14 @@ import Loading from '../../../components/loading/Loading';
 // import DepositButton from '../../../components/user/buttons/depositButton/DepositButton';
 import DepositForm from '../../../components/user/depositForm/DepositForm';
 import './FinancialInformation.css';
+import NavigationToUserShow from '../../../components/user/buttons/navigationToUserShow/navigationToUserShow';
 
 function FinancialInformation() {
   const { currentUser } = useAuth();
   const { id } = useParams();
   // const [user, setUser] = useState([]);
   const [money, setMoney] = useState([]);
+  const [user, setUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -31,6 +33,7 @@ function FinancialInformation() {
           return null;
         }
         const respuesta = await response.json();
+        setUser(respuesta);
         // setUser(respuesta);
         setMoney(respuesta.money);
         return respuesta;
@@ -43,61 +46,58 @@ function FinancialInformation() {
     return (
       (loading == true) ? (
         <Loading />) : (
-          <>
-          </>
-      ),
-      (error) ? (
-        <div className="flex-inside">
-          <h2>
-            Error
-            {error}
-          </h2>
-        </div>
-      ) : (
-        <div>
-          <div className="grid-container-financial-info">
-            <div>
-              <Navbar />
-            </div>
-            <div className="flex-financial-info">
-              <div className="card-financial-info">
+          <div>
+            <div className="grid-container-financial-info">
+              <div>
+                <Navbar />
+              </div>
+              <div className="flex-financial-info">
+                <div className="card-financial-info">
+                  {currentUser?.id == id ? (
+                    <h3 className="title-financial-info">
+                      Tu saldo actual
+                    </h3>
+                  ) : (
+                    <h3 className="title-financial-info">
+                      Saldo actual del usuario
+                      {' '}
+                      {` ${user?.name}`}
+                      {' '}
+                      (id
+                      {' '}
+                      {` ${id})`}
+                    </h3>
+                  )}
+                  {currentUser?.id == id ? (
+                    <h3 className="sub-title-financial-info">
+                      [Mi información financiera]
+                    </h3>
+                  ) : (
+                    <h3 className="sub-title-financial-info">
+                      [Información financiera del usuario]
+                    </h3>
+                  )}
+                  <h3 className="center-financial-info">
+                    <b>
+                      {'$ '}
+                      {money}
+                      {' '}
+                    </b>
+                  </h3>
+                </div>
                 {currentUser?.id == id ? (
-                  <h3 className="title-financial-info">
-                    Tu saldo actual
-                  </h3>
+                  <div className="card-deposit">
+                    <DepositForm money={money} setMoney={setMoney} />
+                  </div>
                 ) : (
-                  <h3 className="title-financial-info">
-                    Saldo actual del usuario con id
-                    {' '}
-                    {` ${id}`}
-                  </h3>
+                  <> </>
                 )}
-                ;
-
-                {currentUser?.id == id ? (
-                  <h3 className="sub-title-financial-info">
-                    [Mi información financiera]
-                  </h3>
-                ) : (
-                  <h3 className="sub-title-financial-info">
-                    [Información financiera del usuario]
-                  </h3>
-                )}
-                ;
-
-                <h3 className="center-financial-info">
-                  <b>
-                    {'$ '}
-                    {money}
-                    {' '}
-
-                  </b>
-                </h3>
-                <DepositForm money={money} setMoney={setMoney} />
+                <div>
+                  <NavigationToUserShow />
+                </div>
               </div>
             </div>
           </div>
-        </div>
       ));
   }
   if (currentUser?.id == id) {
@@ -137,6 +137,9 @@ function FinancialInformation() {
                 </div>
                 <div className="card-deposit">
                   <DepositForm money={money} setMoney={setMoney} />
+                </div>
+                <div>
+                  <NavigationToUserShow />
                 </div>
               </div>
             </div>

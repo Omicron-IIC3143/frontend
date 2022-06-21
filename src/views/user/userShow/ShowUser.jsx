@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
 import { UserShow } from '../../../components/user/userShow/UserShow';
-import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
+import { ButtonUpdatingUserShowUser } from '../../../components/user/buttons/updateButton/UpdateButtonShowUser';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
 
@@ -64,11 +64,12 @@ function ShowUser() {
                 money={user?.money}
                 email={user?.email}
                 pictureURL={user?.pictureUrl}
+                isAdmin={user?.isAdmin}
                 editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
             )}
             <br />
-            <ButtonUpdatingUser id={id} />
+            <ButtonUpdatingUserShowUser id={id} />
             <ButtonBack />
           </div>
         </div>

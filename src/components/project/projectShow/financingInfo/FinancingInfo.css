@@ -29,17 +29,21 @@
   }
 
 .columnGoal {
+    display: grid;
+    grid-template-rows: auto auto;
     float: left;
     width: 50%;
     text-align: center;
     color: yellow;
-    font-size: 20px;
+    font-size: 1.5vw;
   }
 
   .columnCurrent {
+    display: grid;
+    grid-template-rows: auto auto;
     float: left;
     width: 50%;
     text-align: center;
     color: white;
-    font-size: 20px;
+    font-size: 1.5vw;
   }

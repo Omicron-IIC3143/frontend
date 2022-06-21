@@ -7,12 +7,18 @@ function FinancingInformation({ currentFinancing, goalFinancing }) {
       <div className="row">
         {/* style="width:100%" */}
         <div className="columnCurrent">
-          Financiamiento actual: $
-          {currentFinancing}
+          <div>Financiamiento actual:</div>
+          <div>
+            $
+            {currentFinancing}
+          </div>
         </div>
         <div className="columnGoal">
-          Financiamiento meta: $
-          {goalFinancing}
+          <div>Financiamiento meta:</div>
+          <div>
+            $
+            {goalFinancing}
+          </div>
         </div>
       </div>
     </div>

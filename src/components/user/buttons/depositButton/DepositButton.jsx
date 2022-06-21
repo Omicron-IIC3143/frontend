@@ -4,7 +4,7 @@ import '../../userShow/UserShow.css';
 
 function DepositButton() {
   return (
-    <Button variant="primary" type="submit" className="deposit-button">
+    <Button variant="secondary" type="submit" className="deposit-button">
       {/* startIcon={<DeleteIcon />} */}
       Depositar
     </Button>

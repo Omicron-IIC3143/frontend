@@ -75,7 +75,6 @@ function MyProjects() {
               </h1>
             </div>
           )}
-          ;
           {error ? (
             <div className="flex-inside-my-projects">
               {currentUser?.id == id ? (
@@ -91,9 +90,9 @@ function MyProjects() {
               )}
             </div>
           ) : (
-            projects.map((project) => (
+            projects?.map((project) => (
               // acá hay que poner (project?.currentState == 'approved') ? (
-              (project?.currentState == 'pending') ? (
+              (project?.currentState == 'accepted') ? (
                 <div className="flex-inside-my-projects">
                   <ProjectList
                     id={project?.id}

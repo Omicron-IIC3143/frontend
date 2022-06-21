@@ -9,7 +9,7 @@
     padding-top: 0px;
     text-align: left;
     color: darkblue;
-    margin-left: 5vh;
+    margin-left: 10vw;
     font-size: 5vw;
     border-style: solid;
     border-color: darkblue;
@@ -40,9 +40,31 @@
     border-radius: 0.5vh;
 }
 
-.sub-title-show-user {
+.center-info-picture {
+    margin-left: 5vw;
+    margin-top: 1.5vw;
+    font-size: 3vh;
+    border-style: solid;
+    padding-left: 0vh;
+    margin-right: 5vh;
+    border-width: 0.3vh;
+    border-color: darkblue;
+    border-radius: 0.5vh;
+}
+
+.first-sub-title-show-user {
     padding-left: 4vw;
-    padding-bottom: 1vw;
+    margin-bottom: 0vh;
+    font-size: 1vw;
+    background-color: darkblue; 
+    color: white;
+}
+
+.second-sub-title-show-user {
+    padding-left: 4vw;
+    padding-bottom: 2vh;
+    margin-bottom: 0vh;
+    margin-top: 0vh;
     font-size: 1vw;
     background-color: darkblue; 
     color: white;
@@ -57,9 +79,18 @@
     margin-left: 3vw;
 }
 
+.update-button-show-user {
+    margin-left: 10vw;
+}
+
 .delete-button {
     margin-left: 2vw;
     margin-top: 2vh;
+}
+
+.navigation-to-user-show {
+    margin-top: 2vh;
+    margin-left: 6vw;
 }
 
 

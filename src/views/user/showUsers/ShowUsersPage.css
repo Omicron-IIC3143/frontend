@@ -12,4 +12,20 @@
     margin-bottom: 30px;
     width: 70%;
     margin-left: 10vw;
+    margin-right: 45vw;
+}
+
+.flex-users-list-page {
+    width: 100%;
+    flex-direction: column;
+    margin-right: 25vw;
+    margin-left: 0vw;
+    margin-top: 5vw;
+    padding-left: 0vw;
+  }
+
+.title-list-users {
+    margin-bottom: 2vh;
+    margin-left: 10vw;
+    color: darkblue;
 }

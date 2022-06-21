@@ -48,8 +48,8 @@ function ShowUsersPage() {
   return (
     <div className="grid-container-users">
       <Navbar />
-      <div className="flex-landing-page flex-users-list-page">
-        <h2>Lista de Usuarios</h2>
+      <div className="flex-users-list-page">
+        <h2 className="title-list-users">Lista de Usuarios</h2>
         <div className="flex-inside-users">
 
           { error && currentUser?.isAdmin ? (
