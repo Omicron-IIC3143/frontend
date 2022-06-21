@@ -4,11 +4,10 @@ import * as Yup from 'yup';
 import { Navigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 
-function UserForm() {
+function DeleteUser({ userId }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser, handleUserLogout } = useAuth();
-  let user = currentUser;
 
   if (!currentUser) return <Navigate to="/" />;
 
@@ -25,18 +24,17 @@ function UserForm() {
           setLoading(true);
           const requestOptions = {
             method: 'DELETE',
-            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${user.token}` },
+            headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${currentUser?.token}` },
             body: JSON.stringify(values),
           };
           try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/delete/${user.id}`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/delete/${userId}`, requestOptions);
             if (!response.ok) {
               const error = await response.text();
               throw new Error(error);
             }
             const successMessage = 'Usuario eliminado satisfactoriamente';
-            handleUserLogout(null);
-            user = null;
+            handleUserLogout();
             setMessage(successMessage);
           } catch (error) {
             setMessage(error.message);
@@ -50,7 +48,11 @@ function UserForm() {
             <div className="flex-form-fields label-form-user">
               <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
-                Acepto eliminar mi usuario de Social Starter
+                { currentUser.id != userId ? (
+                  'Acepto eliminar este usuario de Social Starter'
+                ) : (
+                  'Acepto eliminar mi usuario de Social Starter'
+                )}
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
                 <div className="error-form-user">{errors.acceptTerms}</div>
@@ -75,4 +77,4 @@ function UserForm() {
   );
 }
 
-export default UserForm;
+export default DeleteUser;
