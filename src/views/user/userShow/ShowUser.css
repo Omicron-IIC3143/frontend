@@ -4,11 +4,6 @@
   margin-top: 5vw;
 }
 
-.rowImageAndDescription {
-    display: flex;
-    flex-direction:row;
-}
-
 #picture {
     width:100%;
 }

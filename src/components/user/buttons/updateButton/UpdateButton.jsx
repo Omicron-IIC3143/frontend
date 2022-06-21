@@ -1,7 +1,6 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import '../../userShow/UserShow.css';
 
 export function ButtonUpdatingUser({ id }) {
   const navigate = useNavigate();

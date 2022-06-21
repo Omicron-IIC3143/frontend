@@ -49,7 +49,7 @@ function ShowUser() {
           <div>
             <Navbar />
           </div>
-          <div className="flex-show-user">
+          <div className="page-wrapper">
             {error ? (
               <h3>
                 ERROR:
@@ -67,9 +67,10 @@ function ShowUser() {
                 editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
             )}
-            <br />
-            <ButtonUpdatingUser id={id} />
-            <ButtonBack />
+            <div className="page-buttons width-80">
+              <ButtonBack />
+              <ButtonUpdatingUser id={id} />
+            </div>
           </div>
         </div>
       </div>
@@ -87,7 +88,9 @@ function ShowUser() {
           ) : (
             <h1 className="unauthorizedMessageFinancialInfo">Inicia sesión para ver el perfil de tu usuario. </h1>
           )}
-          <ButtonBack />
+          <div className="page-buttons width-80">
+            <ButtonBack />
+          </div>
         </div>
       </div>
     </div>
