@@ -15,6 +15,7 @@ code {
 .grid-container {
   display: grid;
   grid-template-columns: min-content auto;
+  background-color: #2196F3;
 }
 
 .navbar-wrapper {
@@ -31,6 +32,12 @@ code {
   flex-direction: column;
   gap: 3vw;
   align-items: center;
+}
+
+.page-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
 }
 
 .img-user-profile {

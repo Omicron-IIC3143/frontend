@@ -2,7 +2,8 @@
 
 .flex { display: flex; }
 
-.bg-app-color { background-color: #2196F3; }
+.bg-app-color  { background-color: #2196F3; }
+.bg-dark-color { background-color: darkblue; }
 .title-color { color: darkblue; }
 
 .center-content-x{
