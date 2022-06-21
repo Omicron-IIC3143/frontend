@@ -10,13 +10,12 @@ import extractFundedProjects from '../../../hooks/finances';
 
 function MyProjects() {
   const { currentUser } = useAuth();
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
   const [finances, setFinances] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
+  const getData = async () => {
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -24,33 +23,84 @@ function MyProjects() {
         Authorization: `Bearer ${currentUser?.token}`,
       },
     };
-    fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser.id}/projects`, requestOptions)
-      .then(async (response) => {
-        if (!response.ok) {
-          setError(true);
-          return [];
-        }
-        const respuesta = await response.json();
-        setProjects(respuesta);
-        return respuesta;
-      })
-      .catch(() => { setError(true); })
-      .finally(() => setLoading(false));
 
-    fetch(`${process.env.REACT_APP_API_URL}/finance/transactions/${currentUser.id}`, requestOptions)
-      .then(async (response) => {
-        if (!response.ok) {
-          setError(true);
-          return [];
-        }
-        const respuesta = await response.json();
-        setFinances(extractFundedProjects(projects, respuesta));
-        return respuesta;
-      })
-      .catch(() => { setError(true); })
-      .finally(() => setLoading(false));
+    const fetchData = (url) => {
+      setLoading(true);
+      fetch(url, requestOptions)
+        .then((r) => {
+          if (!r.ok) {
+            setError(true);
+            return [];
+          }
+          setLoading(false);
+          return r.json();
+        });
+    };
+
+    const [projectsData, financesData] = await Promise.all([
+      fetchData(`${process.env.REACT_APP_API_URL}/projects`),
+      fetchData(`${process.env.REACT_APP_API_URL}/finance/transactions/${currentUser.id}`),
+    ]);
+    console.log(projectsData);
+    console.log(financesData);
+    const filter = extractFundedProjects(projectsData, financesData);
+    setFinances(filter);
+  };
+
+  useEffect(() => {
+    getData();
   }, []);
 
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${currentUser?.token}`,
+  //     },
+  //   };
+  //   fetch(`${process.env.REACT_APP_API_URL}/projects`, requestOptions)
+  //     .then((response) => {
+  //       if (!response.ok) {
+  //         setError(true);
+  //         return [];
+  //       }
+  //       return response.json();
+  //     })
+  //     .then((data) => {
+  //       setProjects(data);
+  //     })
+  //     .catch(() => { setError(true); })
+  //     .finally(() => setLoading(false));
+  // }, []);
+
+  // useEffect(() => {
+  //   setLoading(true);
+  //   const requestOptions = {
+  //     method: 'GET',
+  //     headers: {
+  //       'Content-Type': 'application/json',
+  //       Authorization: `Bearer ${currentUser?.token}`,
+  //     },
+  //   };
+  //   fetch(`${process.env.REACT_APP_API_URL}/
+  // finance/transactions/${currentUser.id}`, requestOptions)
+  //     .then(async (response) => {
+  //       if (!response.ok) {
+  //         setError(true);
+  //         return [];
+  //       }
+  //       const respuesta = await response.json();
+  //       setFinances(respuesta);
+  //       console.log(finances);
+  //       console.log(projects);
+  //       return respuesta;
+  //     })
+  //     .catch(() => { setError(true); })
+  //     .finally(() => setLoading(false));
+  //   //  const filter = extractFundedProjects(projects, finances);
+  // }, []);
   if (loading) {
     return (
       <section className="container">
@@ -84,7 +134,7 @@ function MyProjects() {
         ) : (
           finances.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
-            (project?.currentState == 'pending') ? (
+            (project?.currentState == 'accepted') ? (
               <div className="flex-inside">
                 <ProjectList
                   id={project?.id}

@@ -1,8 +1,8 @@
 function extractFundedProjects(projects, finances) {
   const projectsId = finances.map((finance) => finance.projectId);
-  projects.filter(({ id }) => projectsId.includes(id));
+  const projectsFilter = projects.filter(({ id }) => projectsId.includes(id));
 
-  return projects;
+  return projectsFilter;
 }
 
 export default extractFundedProjects;
