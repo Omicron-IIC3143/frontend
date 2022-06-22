@@ -1,0 +1,30 @@
+.label-ingrese-monto {
+    margin-right: 1vw;
+    margin-left: 1vw;
+}
+
+.caja-para-ingesar-monto {
+    border-style: solid;
+    border-color: darkblue;
+    border-width: 1px;
+    color: darkblue;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.message {
+    color: black;
+    margin-top: 2vh;
+    margin-left: 1vw;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: gray;
+    opacity: 1; /* Firefox */
+  }
+
+.validation-error {
+    color: red;
+    margin-top: 0.5vh;
+    margin-left: 1vw;
+}

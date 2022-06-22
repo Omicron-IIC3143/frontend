@@ -3,5 +3,15 @@
     margin-bottom: 0.5vh;
 }
 
+.title-finance-project {
+    margin-top: 15vh;
+}
 
+.title-show-project {
+    margin-bottom: 5vh;
+}
+
+.line {
+    background-color: black;
+}
 

@@ -43,7 +43,7 @@ function DepositForm({ money, setMoney }) {
               const errorRequest = await response.text();
               throw new Error(errorRequest);
             }
-            setMessage('Depósito hecho exitosamente!');
+            setMessage('¡Depósito hecho exitosamente!');
             setMoney(values.money);
           } catch (err) {
             setMessage(err.message);

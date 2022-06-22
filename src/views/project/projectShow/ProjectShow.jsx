@@ -15,12 +15,14 @@ import ProjectImage from '../../../components/project/projectShow/projectImage/P
 import Deadline from '../../../components/project/projectShow/deadline/Deadline';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
+import FinanceForm from '../../../components/project/projectShow/financeForm/FinanceForm';
 
 function ShowProject() {
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [project, setProject] = useState([]);
   const [projectUser, setProjectUser] = useState([]);
+  const [currentAmount, setCurrentAmount] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -41,6 +43,7 @@ function ShowProject() {
         }
         const respuesta = await response.json();
         setProject(respuesta);
+        setCurrentAmount(respuesta.currentAmount);
         return respuesta;
       })
       .then(async (projectResponse) => {
@@ -113,6 +116,12 @@ function ShowProject() {
                   ) : (<> </>)}
                   <ButtonSharing />
                 </div>
+              </div>
+              <div className="title-finance-project">
+                <h1>Acá puedes aportar al financiamiento del proyecto</h1>
+              </div>
+              <div>
+                <FinanceForm currentAmount={currentAmount} setCurrentAmount={setCurrentAmount} />
               </div>
             </>
           )}
