@@ -13,6 +13,11 @@ import { ButtonAccepted } from './ButtonAccepted';
 import { ButtonRejected } from './ButtonRejected';
 
 function PendingProjectList({ projects, className }) {
+  if (projects.length == 0) {
+    return (
+      <h4>No hay proyectos pendientes.</h4>
+    );
+  }
   return (
     <Accordion alwaysOpen className={className}>
       { projects.map((project, index) => (

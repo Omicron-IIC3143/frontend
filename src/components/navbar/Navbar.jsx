@@ -29,7 +29,7 @@ function Navbar() {
             { currentUser?.isAdmin ? (
               <>
                 <NavLink exact to="/projects/pendings" activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="users">Proyectos pendientes</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="clock">Proyectos pendientes</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to="/users" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="users">Lista de Usuarios</CDBSidebarMenuItem>
