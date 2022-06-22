@@ -1,9 +1,10 @@
+/* eslint-disable no-alert */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-param-reassign */
 /* eslint-disable eqeqeq */
 import Button from 'react-bootstrap/Button';
-import React, { useState } from 'react';
-// import { Navigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../hooks/useAuth';
@@ -14,15 +15,49 @@ import DeleteUser from '../deleteUser/DeleteUser';
 function UserForm() {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
+  const [error, setError] = useState(false);
+  const [user, setUser] = useState({});
   const { currentUser, handleUserLogin } = useAuth();
-  let user = currentUser;
+  const navigate = useNavigate();
+
+  const location = useLocation();
+  let id = location?.state?.id;
+  if (!id && currentUser) { id = currentUser?.id; }
+  if (id) {
+    useEffect(() => {
+      setLoading(true);
+      const requestOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${currentUser?.token}`,
+        },
+      };
+      fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
+        .then(async (response) => {
+          if (!response.ok) {
+            setError(true);
+            return null;
+          }
+          const respuesta = await response.json();
+          setUser(respuesta);
+          return respuesta;
+        })
+        .catch(() => { setError(true); })
+        .finally(() => {
+          setLoading(false);
+        });
+    }, []);
+  }
+
+  const isUpdating = Boolean(Object.keys(user).length);
 
   // Source https://cesarg.cl/validador-de-rut-chileno-con-javascript/
   const rutValidator = {
     // Valida el rut con su cadena completa "XXXXXXXX-X"
     validaRut: (rutCompleto) => {
-      if (!rutCompleto && !user) { return false; }
-      if ((rutCompleto == '' || !rutCompleto) && user) { return true; }
+      if (!rutCompleto && !isUpdating) { return false; }
+      if ((rutCompleto == '' || !rutCompleto) && isUpdating) { return true; }
 
       rutCompleto = rutCompleto.replace(/\./g, '');
       if (!/^[0-9]+[-|‐]{1}[0-9kK]{1}$/.test(rutCompleto)) {
@@ -74,6 +109,8 @@ function UserForm() {
     rut: Yup.string()
       .required('Tu RUT es requerido')
       .validateRUT('Debes colocar tu RUT correctamente'),
+    pictureUrl: Yup.string()
+      .url('Coloca un URL válido, con el https incluido'),
     description: Yup.string()
       .max(300, 'Tu descripción no debe superar los 300 carácteres'),
     password: Yup.string()
@@ -95,6 +132,8 @@ function UserForm() {
       .email('Correo electrónico inválido'),
     rut: Yup.string()
       .validateRUT('Debes colocar tu RUT correctamente'),
+    pictureUrl: Yup.string()
+      .url('Coloca un URL válido, con el "https://" inicial incluido'),
     description: Yup.string()
       .max(300, 'Tu descripción no debe superar los 300 carácteres'),
     password: Yup.string()
@@ -112,6 +151,7 @@ function UserForm() {
     name: '',
     email: '',
     rut: '',
+    pictureUrl: '',
     description: '',
     password: '',
     passwordConfirm: '',
@@ -119,16 +159,17 @@ function UserForm() {
   };
 
   const placeholders = {
-    name: user ? user.name : 'Nombre completo',
-    email: user ? user.email : 'email.de.ejemplo@mailer.cl',
-    rut: user ? user.rut : '30686957-4',
-    description: user ? user.description : 'Descripción de ti (max. 300 caracteres)',
+    name: isUpdating ? user.name : 'Nombre completo',
+    email: isUpdating ? user.email : 'email.de.ejemplo@mailer.cl',
+    rut: isUpdating ? user.rut : '30686957-4',
+    pictureUrl: isUpdating ? user.pictureUrl : 'https://www.link-a-tu-imagen.com',
+    description: isUpdating ? user.description : 'Descripción de ti (max. 300 caracteres)',
     password: 'Contraseña',
     passwordConfirm: 'Contraseña reingresada',
   };
 
-  const validationSchema = user ? validationSchemaUpdater : validationSchemaRegister;
-  const textActionButton = user ? 'Actualizar usuario' : 'Registrarse';
+  const validationSchema = isUpdating ? validationSchemaUpdater : validationSchemaRegister;
+  const textActionButton = isUpdating ? 'Actualizar usuario' : 'Registrarse';
 
   const valueStriper = (values) => {
     const finalValues = {};
@@ -137,9 +178,6 @@ function UserForm() {
     });
     return finalValues;
   };
-
-  let isUpdating = Boolean(user);
-
   return (
     <div className="card-profile-register-form">
       <Formik
@@ -154,7 +192,7 @@ function UserForm() {
             method: isUpdating ? 'PUT' : 'POST',
             headers: {
               'Content-Type': 'application/json',
-              Authorization: isUpdating ? `Bearer ${user.token}` : null,
+              Authorization: isUpdating ? `Bearer ${currentUser.token}` : null,
             },
             body: JSON.stringify(values),
           };
@@ -164,19 +202,27 @@ function UserForm() {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/users/${path}`, requestOptions);
 
             if (!response.ok) {
-              const error = await response.text();
-              throw new Error(error);
+              const responseError = await response.text();
+              throw new Error(responseError);
             }
 
             const respuesta = await response.json();
-            user = respuesta.user;
-            user.token = respuesta.token ? respuesta.token : currentUser.token;
-            handleUserLogin(user);
+            const newUser = respuesta.user;
             const successMessage = isUpdating ? 'Usuario modificado satisfactoriamente' : 'Usuario creado satisfactoriamente';
+
+            // TMBN FALTA ESO DE QUE EL EDITAR UN NO ADMIN SE MUERE
+            if ((id == currentUser?.id) || !id) {
+              newUser.token = respuesta.token ? respuesta.token : currentUser.token;
+              handleUserLogin(newUser);
+            }
+            setUser(newUser);
             setMessage(successMessage);
-            isUpdating = !isUpdating;
-          } catch (error) {
-            setMessage(error.message);
+            if (!id) {
+              alert(successMessage);
+              navigate('/');
+            }
+          } catch (responseError) {
+            setMessage(responseError.message);
           } finally {
             setLoading(false);
           }
@@ -205,6 +251,14 @@ function UserForm() {
               <Field className="center-info-register-user" name="rut" type="text" placeholder={placeholders.rut} />
               {errors.rut && touched.rut && (
                 <div className="error-form-user">{errors.rut}</div>
+              )}
+            </div>
+
+            <div className="label-form-user">
+              <label className="label-content-form-user" htmlFor="pictureUrl">URL imagen de perfil: </label>
+              <Field className="center-info-register-user" name="pictureUrl" type="text" placeholder={placeholders.pictureUrl} />
+              {errors.pictureUrl && touched.pictureUrl && (
+                <div className="error-form-user">{errors.pictureUrl}</div>
               )}
             </div>
 
@@ -258,9 +312,9 @@ function UserForm() {
           </Form>
         )}
       </Formik>
+      <p className="final-message-form-user">{error}</p>
       <p className="final-message-form-user">{message}</p>
-      { user ? (<DeleteUser />) : null }
-      <p className="final-message-form-user">Para seguir en Social Starter, puedes cerrar esta pestaña o seguir modificando</p>
+      { isUpdating ? (<DeleteUser userId={id} />) : null }
     </div>
   );
 }

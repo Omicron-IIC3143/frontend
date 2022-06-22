@@ -1,0 +1,23 @@
+.header-accordion-user {
+  font-weight: bold;
+}
+.body-accordion-user {
+  background-color: gainsboro;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-users-list-page {
+  display: flex;
+  width: 100%;
+}
+
+.accordion-body-list-rows::before {
+  content: '→ ';
+}
+
+.accordion-body-list {
+  list-style: none;
+}

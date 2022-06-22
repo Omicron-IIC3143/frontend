@@ -1,0 +1,19 @@
+/* Sets of unitary class rules */
+
+.flex { display: flex; }
+
+.bg-app-color  { background-color: #2196F3; }
+.bg-dark-color { background-color: darkblue; }
+.title-color { color: darkblue; }
+
+.center-content-x{
+  display: flex;
+  justify-content: center;
+}
+
+.width-100 { width: 100%; }
+.width-80 { width: 80%; }
+.width-70 { width: 70%; }
+.width-50 { width: 50%; }
+
+.margin-bottom-s { margin-bottom: 5vh; }

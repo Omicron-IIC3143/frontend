@@ -1,3 +1,5 @@
+@import './global.css';
+
 body {
   margin: 0;
   font-family: 'Trebuchet MS', sans-serif;
@@ -8,4 +10,47 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: min-content auto;
+  background-color: #2196F3;
+}
+
+.navbar-wrapper {
+  display: flex;
+  height: 100vh;
+  overflow: scroll initial;
+}
+
+.page-wrapper {
+  height: 100vh;
+  padding: 10vh 0 0;
+  display: flex;
+  overflow-y: scroll;
+  flex-direction: column;
+  gap: 3vw;
+  align-items: center;
+}
+
+.page-buttons {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.page-interaction-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1vh 1vw;
+}
+
+.display-flex-row {
+  display: flex;
+  flex-direction: row;
+  gap: 1vw;
+}
+
+.img-user-profile {
+  border-radius: 50%;
 }

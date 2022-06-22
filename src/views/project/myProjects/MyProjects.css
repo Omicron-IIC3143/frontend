@@ -1,7 +1,5 @@
 .titleMyProjects {
-    margin-bottom: 4vh;
     text-align: center;
-    color: darkblue;
 }
 
 .unauthorizedMessageMyProjects {
@@ -11,9 +9,10 @@
     text-align:center;
 }
 
-.flex-my-projects {
-    flex-direction: column;
-    margin-top: 5vh;
-    margin-left: 0vw;
-    margin-right: 10vw;
+.flex-inside-searcher-my-proj {
+    margin-bottom: 2vh;
+    margin-left: 10vw;
+    margin-top: 2vh;
 }
+
+

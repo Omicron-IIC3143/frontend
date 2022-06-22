@@ -6,11 +6,11 @@ import './RegisterProject.css';
 function RegisterProject() {
   return (
     <div>
-      <div className="grid-container">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
-        <div className="flex-register-project">
+        <div className="page-wrapper">
           <h2 className="title-register-new-project">Postulación de nuevo proyecto</h2>
           <RegisterProjectForm />
         </div>

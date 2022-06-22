@@ -4,7 +4,7 @@ import './ButtonFinancing.css';
 
 function ButtonFinancing() {
   return (
-    <Button variant="primary" type="submit" className="financingButton">
+    <Button variant="danger" type="submit" className="financingButton">
       {/* startIcon={<DeleteIcon />} */}
       Financiar Proyecto
     </Button>

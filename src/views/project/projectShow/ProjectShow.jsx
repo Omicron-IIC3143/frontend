@@ -7,11 +7,12 @@ import Loading from '../../../components/loading/Loading';
 // import imageRecInc from './reciclajeInclusivo.jpeg';
 import useAuth from '../../../hooks/useAuth';
 
+import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
+import ButtonFinancing from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
 import ButtonSharing from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
-import ButtonBackShowProject from '../../../components/project/projectShow/buttons/buttonBack/ButtonBackShowProject';
 import ProjectImage from '../../../components/project/projectShow/projectImage/ProjectImage';
-import PostulantDescription from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
+import Deadline from '../../../components/project/projectShow/deadline/Deadline';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
 import FinanceForm from '../../../components/project/projectShow/financeForm/FinanceForm';
@@ -20,6 +21,7 @@ function ShowProject() {
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [project, setProject] = useState([]);
+  const [projectUser, setProjectUser] = useState([]);
   const [currentAmount, setCurrentAmount] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -44,6 +46,21 @@ function ShowProject() {
         setCurrentAmount(respuesta.currentAmount);
         return respuesta;
       })
+      .then(async (projectResponse) => {
+        if (currentUser) {
+          fetch(`${process.env.REACT_APP_API_URL}/users/${projectResponse?.userId}`, requestOptions)
+            .then(async (response) => {
+              if (!response.ok) {
+                setError(true);
+                return null;
+              }
+              const respuesta = await response.json();
+              setProjectUser(respuesta);
+              return project;
+            })
+            .catch(() => setError(true));
+        }
+      })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
   }, []);
@@ -56,13 +73,17 @@ function ShowProject() {
 
   return (
     <div>
-      <div className="grid-container">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
-        <div className="flex-project-show">
+
+        <div className="page-wrapper">
+          <h1 className="titleProjectShow title-color">
+            {`${project.name}`}
+          </h1>
           {error ? (
-            <div className="flex-inside">
+            <div className="width-50">
               <h2>
                 Error
                 {error}
@@ -70,23 +91,31 @@ function ShowProject() {
             </div>
           ) : (
             <>
-              <div className="line" />
-              <div className="title-show-project">
-                <h1>Información del proyecto</h1>
+              <div className="display-flex-row width-50">
+                <ProjectImage company={project?.company} image={project?.pictureUrl} />
+                <Deadline date={project?.date} className="bg-dark-color" />
               </div>
-              <div className="rowImageAndDescription">
-                <ProjectImage title={project.name} image={project.pictureUrl} />
-                <PostulantDescription description="debería ir la descripción del postulante" />
-              </div>
-              <ProjectDescription description={project.description} />
+              <ProjectDescription className="width-50" description={project?.description} />
               <FinancingInformation
-                currentFinancing={project.currentAmount}
-                goalFinancing={project.goalAmount}
+                className="width-50 bg-dark-color"
+                currentFinancing={project?.currentAmount}
+                goalFinancing={project?.goalAmount}
               />
-              <div>
-                <ButtonSharing />
-                <ButtonContacting />
-                <ButtonBackShowProject />
+              <div className="page-buttons width-50 margin-bottom-s">
+                <ButtonBack />
+                <div className="page-interaction-buttons">
+                  {currentUser && currentUser.id != project.userId ? (
+                    <>
+                      <ButtonFinancing />
+                      <ButtonContacting
+                        visitUser={currentUser}
+                        project={project}
+                        projectUser={projectUser}
+                      />
+                    </>
+                  ) : (<> </>)}
+                  <ButtonSharing />
+                </div>
               </div>
               <div className="title-finance-project">
                 <h1>Acá puedes aportar al financiamiento del proyecto</h1>
