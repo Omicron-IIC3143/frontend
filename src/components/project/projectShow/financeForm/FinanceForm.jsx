@@ -1,5 +1,5 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -8,41 +8,18 @@ import useAuth from '../../../../hooks/useAuth';
 import ButtonFinancing from '../buttons/buttonFinancing/ButtonFinancing';
 import './FinanceForm.css';
 
-function FinanceForm({ currentAmount, setCurrentAmount }) {
+function FinanceForm({ currentAmount, setCurrentAmount, userAmount }) {
   const { id } = useParams();
   const [message, setMessage] = useState('');
-  const [user, setUser] = useState([]);
+  // const [user, setUser] = useState([]);
   const [error, setError] = useState(false);
   //   const [loading, setLoading] = useState(false);
   const { currentUser } = useAuth();
 
-  useEffect(() => {
-    // setLoading(true);
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${currentUser?.token}`,
-      },
-    };
-    fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser?.id}`, requestOptions)
-      .then(async (response) => {
-        if (!response.ok) {
-          setError(true);
-          return null;
-        }
-        const respuesta = await response.json();
-        setUser(respuesta);
-        return respuesta;
-      })
-      .catch(() => { setError(true); });
-    //   .finally(() => setLoading(false));
-  }, []);
-
   const validationSchema = Yup.object({
     money: Yup.number()
-      .min(0, `Elige un monto entre 0 y tu saldo actual (${user?.money})`)
-      .max(user?.money, `Elige un monto entre 0 y tu saldo actual (${user?.money})`),
+      .min(0, `Elige un monto entre 0 y tu saldo actual (${userAmount})`)
+      .max(userAmount, `Elige un monto entre 0 y tu saldo actual (${userAmount})`),
   });
 
   return (
@@ -53,26 +30,27 @@ function FinanceForm({ currentAmount, setCurrentAmount }) {
         }}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
-          // eslint-disable-next-line no-param-reassign
-          values.financeAmount += currentAmount;
-          console.log(values.financeAmount);
-          console.log(currentAmount);
+          const finalValues = {
+            amount: values.financeAmount,
+            userId: currentUser.id,
+            projectId: id,
+          };
           const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               Authorization: `Bearer ${currentUser?.token}`,
             },
-            body: JSON.stringify(values),
+            body: JSON.stringify(finalValues),
           };
           try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/finance/new`, requestOptions);
             if (!response.ok) {
               const errorRequest = await response.text();
               throw new Error(errorRequest);
             }
             setMessage('Aporte hecho exitosamente. ¡Felicitaciones por ayudar con la causa del proyecto!');
-            setCurrentAmount(values.financeAmount);
+            setCurrentAmount(currentAmount + finalValues.amount);
           } catch (err) {
             setMessage(err.message);
             setError(false);

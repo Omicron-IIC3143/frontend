@@ -8,7 +8,6 @@ import Loading from '../../../components/loading/Loading';
 import useAuth from '../../../hooks/useAuth';
 
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
-import ButtonFinancing from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
 import ButtonSharing from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
 import ProjectImage from '../../../components/project/projectShow/projectImage/ProjectImage';
@@ -105,14 +104,11 @@ function ShowProject() {
                 <ButtonBack />
                 <div className="page-interaction-buttons">
                   {currentUser && currentUser.id != project.userId ? (
-                    <>
-                      <ButtonFinancing />
-                      <ButtonContacting
-                        visitUser={currentUser}
-                        project={project}
-                        projectUser={projectUser}
-                      />
-                    </>
+                    <ButtonContacting
+                      visitUser={currentUser}
+                      project={project}
+                      projectUser={projectUser}
+                    />
                   ) : (<> </>)}
                   <ButtonSharing />
                 </div>
@@ -121,7 +117,11 @@ function ShowProject() {
                 <h1>Acá puedes aportar al financiamiento del proyecto</h1>
               </div>
               <div>
-                <FinanceForm currentAmount={currentAmount} setCurrentAmount={setCurrentAmount} />
+                <FinanceForm
+                  currentAmount={currentAmount}
+                  setCurrentAmount={setCurrentAmount}
+                  userAmount={currentUser?.money}
+                />
               </div>
             </>
           )}
