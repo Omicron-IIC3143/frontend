@@ -43,61 +43,52 @@ function FinancialInformation() {
     return (
       (loading == true) ? (
         <Loading />) : (
-          <>
-          </>
-      ),
-      (error) ? (
-        <div className="flex-inside">
-          <h2>
-            Error
-            {error}
-          </h2>
-        </div>
-      ) : (
-        <div>
-          <div className="grid-container  ">
-            <div>
-              <Navbar />
-            </div>
-            <div className="flex-financial-info">
-              <div className="card-financial-info">
+          <div>
+            <div className="grid-container  ">
+              <div>
+                <Navbar />
+              </div>
+              <div className="flex-financial-info">
+
+                <div className="card-financial-info">
+                  {currentUser?.id == id ? (
+                    <h3 className="title-financial-info">
+                      Tu saldo actual
+                    </h3>
+                  ) : (
+                    <h3 className="title-financial-info">
+                      Saldo actual del usuario con id
+                      {' '}
+                      {` ${id}`}
+                    </h3>
+                  )}
+                  {currentUser?.id == id ? (
+                    <h3 className="sub-title-financial-info">
+                      [Mi información financiera]
+                    </h3>
+                  ) : (
+                    <h3 className="sub-title-financial-info">
+                      [Información financiera del usuario]
+                    </h3>
+                  )}
+                  <h3 className="center-financial-info">
+                    <b>
+                      {'$ '}
+                      {money}
+                      {' '}
+                    </b>
+                  </h3>
+                </div>
                 {currentUser?.id == id ? (
-                  <h3 className="title-financial-info">
-                    Tu saldo actual
-                  </h3>
+                  <div className="card-deposit">
+                    <DepositForm money={money} setMoney={setMoney} />
+                  </div>
                 ) : (
-                  <h3 className="title-financial-info">
-                    Saldo actual del usuario con id
-                    {' '}
-                    {` ${id}`}
-                  </h3>
+                  <> </>
                 )}
-                ;
-
-                {currentUser?.id == id ? (
-                  <h3 className="sub-title-financial-info">
-                    [Mi información financiera]
-                  </h3>
-                ) : (
-                  <h3 className="sub-title-financial-info">
-                    [Información financiera del usuario]
-                  </h3>
-                )}
-                ;
-
-                <h3 className="center-financial-info">
-                  <b>
-                    {'$ '}
-                    {money}
-                    {' '}
-
-                  </b>
-                </h3>
-                <DepositForm money={money} setMoney={setMoney} />
               </div>
             </div>
           </div>
-        </div>
       ));
   }
   if (currentUser?.id == id) {

@@ -18,7 +18,7 @@ export function UserShow({
         )}
       </h3>
 
-      <img className="center-info" src={pictureURL || (image)} alt="user profile" width="150" />
+      <img className="center-info-picture" src={pictureURL || (image)} alt="user profile" width="150" />
 
       <h3 className="center-info">
         <b>Rut: </b>

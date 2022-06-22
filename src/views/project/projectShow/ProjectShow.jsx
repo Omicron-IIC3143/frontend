@@ -61,7 +61,7 @@ function ShowProject() {
 
         <div className="page-wrapper">
           <h1 className="titleProjectShow title-color">
-            Proyecto en particular
+            {`${project.name}`}
           </h1>
           {error ? (
             <div className="width-50">
@@ -73,7 +73,7 @@ function ShowProject() {
           ) : (
             <>
               <div className="display-flex-row width-50">
-                <ProjectImage title={project.name} image={project.pictureUrl} />
+                <ProjectImage company={project.company} image={project.pictureUrl} />
                 <Deadline date={project.date} className="bg-dark-color" />
               </div>
               <ProjectDescription className="width-50" description={project.description} />
