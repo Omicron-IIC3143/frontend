@@ -17,11 +17,11 @@ function RegisterProjectForm() {
 
   const validationSchema = Yup.object({
     name: Yup.string()
-      .min(2, 'El nombre debe tener mas de 2 caracteres.')
+      .min(2, 'El nombre debe tener 2 o más caracteres.')
       .max(100, 'El nombre debe tener 100 caracteres o menos.')
       .required('El nombre del proyecto es obligatorio.'),
     description: Yup.string()
-      .min(40, 'Tu descripción debe tener mínimo 40 caracteres.')
+      .min(60, 'Tu descripción debe tener mínimo 60 caracteres.')
       .max(430, 'Tu descripción debe tener máximo 430 caracteres.')
       .required('La descripción es obligatoria.'),
     pictureUrl: Yup.string()
@@ -37,7 +37,7 @@ function RegisterProjectForm() {
       .required('La meta monetaria es obligatoria.'),
     date: Yup.date()
       .required('Este campo es obligatorio.')
-      .min(stringDateOfTomorrow(), 'Debes ingresar una fecha igual o siguiente al día de mañana.'),
+      .min(stringDateOfTomorrow(), 'Debes ingresar una fecha igual o siguiente a la que corresponde el día de mañana.'),
   });
 
   return (

@@ -1,18 +1,18 @@
 import React from 'react';
 import './Deadline.css';
 import stringOfDate from '../../../../hooks/stringOfDate';
+import numberOfDays from '../../../../hooks/numberOfDays';
 
 function Deadline({ date, className }) {
-  const today = new Date();
   const deadlineDate = new Date(date);
-  const numberOfDays = Math.floor(((deadlineDate.getTime() - today.getTime()) / 1000) / 86400) + 1;
-  if (numberOfDays > 1) {
+  const numberOfDaysDeadlineDate = numberOfDays(date);
+  if (numberOfDaysDeadlineDate > 1) {
     return (
       <div className={`descriptionCard ${className}`}>
         {/* style="width:100%" */}
         <h5>
           Al proyecto le quedan alrededor de
-          {` ${numberOfDays} días de financiamiento.`}
+          {` ${numberOfDaysDeadlineDate} días de financiamiento.`}
         </h5>
         <h5>
           [Fecha de término de financiamiento:
@@ -20,13 +20,13 @@ function Deadline({ date, className }) {
         </h5>
       </div>
     );
-  } if (numberOfDays > 0) {
+  } if (numberOfDaysDeadlineDate > 0) {
     return (
       <div className={`descriptionCard ${className}`}>
         {/* style="width:100%" */}
         <h5>
           Al proyecto le queda menos de
-          {` ${numberOfDays} día de financiamiento.`}
+          {` ${numberOfDaysDeadlineDate} día de financiamiento.`}
         </h5>
         <h5>
           [Fecha de término de financiamiento:
