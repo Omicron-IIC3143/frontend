@@ -15,8 +15,8 @@ function DepositForm({ money, setMoney }) {
 
   const validationSchema = Yup.object({
     money: Yup.number()
-      .min(0, 'Elige un monto entre 0 y 1.000.000')
-      .max(10000000, 'Elige un monto entre 0 y 1.000.000'),
+      .min(1, 'Elige un monto entre $1 y $1.000.000')
+      .max(10000000, 'Elige un monto entre $1 y $1.000.000'),
   });
 
   return (
@@ -43,8 +43,9 @@ function DepositForm({ money, setMoney }) {
               const errorRequest = await response.text();
               throw new Error(errorRequest);
             }
-            setMessage('Depósito hecho exitosamente!');
+            setMessage('¡Depósito hecho exitosamente!');
             setMoney(values.money);
+            window.location.reload();
           } catch (err) {
             setMessage(err.message);
             setError(false);

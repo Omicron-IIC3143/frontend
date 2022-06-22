@@ -6,9 +6,8 @@ import Loading from '../../../components/loading/Loading';
 // import imageIngSinFront from './ingSinFronteras.jpeg';
 // import imageRecInc from './reciclajeInclusivo.jpeg';
 import useAuth from '../../../hooks/useAuth';
-
+import numberOfDays from '../../../hooks/numberOfDays';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
-import ButtonFinancing from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
 import ButtonSharing from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
 import ProjectImage from '../../../components/project/projectShow/projectImage/ProjectImage';
@@ -16,11 +15,15 @@ import Deadline from '../../../components/project/projectShow/deadline/Deadline'
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
 import DeleteProject from '../../../components/project/projectShow/deleteProject/DeleteProject';
+import FinanceForm from '../../../components/project/projectShow/financeForm/FinanceForm';
 
 function ShowProject() {
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [project, setProject] = useState([]);
+  const [projectUser, setProjectUser] = useState([]);
+  // const [user, setUser] = useState([]);
+  const [currentAmount, setCurrentAmount] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -41,7 +44,23 @@ function ShowProject() {
         }
         const respuesta = await response.json();
         setProject(respuesta);
+        setCurrentAmount(respuesta.currentAmount);
         return respuesta;
+      })
+      .then(async (projectResponse) => {
+        if (currentUser) {
+          fetch(`${process.env.REACT_APP_API_URL}/users/${projectResponse?.userId}`, requestOptions)
+            .then(async (response) => {
+              if (!response.ok) {
+                setError(true);
+                return null;
+              }
+              const respuesta = await response.json();
+              setProjectUser(respuesta);
+              return project;
+            })
+            .catch(() => setError(true));
+        }
       })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
@@ -61,7 +80,7 @@ function ShowProject() {
         </div>
 
         <div className="page-wrapper">
-          <h1 className="titleProjectShow title-color">
+          <h1 className="titleProjectShow title-color width-50">
             {`${project.name}`}
           </h1>
           {error ? (
@@ -88,12 +107,31 @@ function ShowProject() {
                 <ButtonBack />
                 <div className="page-interaction-buttons">
                   {currentUser && currentUser.id != project.userId ? (
-                    <ButtonFinancing />
+                    <ButtonContacting
+                      visitUser={currentUser}
+                      project={project}
+                      projectUser={projectUser}
+                    />
                   ) : (<> </>)}
                   <ButtonSharing />
-                  <ButtonContacting />
                 </div>
               </div>
+
+              {currentUser && currentUser.id != project?.userId
+              && numberOfDays(project?.date) > 0 ? (
+                <div className="width-50">
+                  <div className="title-finance-project title-color">
+                    <h1>Acá puedes aportar al financiamiento del proyecto</h1>
+                  </div>
+                  <div>
+                    <FinanceForm
+                      currentAmount={currentAmount}
+                      setCurrentAmount={setCurrentAmount}
+                    />
+                  </div>
+                </div>
+                ) : (<> </>)}
+
             </>
           )}
         </div>

@@ -23,7 +23,7 @@ function UsersList({ users, className }) {
                 Ver perfil del usuario
               </NavLink>
               <li className="accordion-body-list-rows">
-                User ID:
+                ID usuario:
                 {' '}
                 {user.id}
               </li>
