@@ -70,8 +70,8 @@ function ShowUser() {
             )}
             <div className="page-buttons width-80 margin-bottom-s">
               <ButtonBack />
-              <ButtonUpdatingUser id={id} />
               <ButtonLookFinancesUser id={id} />
+              <ButtonUpdatingUser id={id} />
             </div>
           </div>
         </div>
