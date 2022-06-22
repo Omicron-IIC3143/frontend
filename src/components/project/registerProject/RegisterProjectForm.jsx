@@ -3,19 +3,11 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
+import useAuth from '../../../hooks/useAuth';
+import stringDateOfTomorrow from '../../../hooks/stringDateOfTomorrow';
 import './RegisterProjectForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
-import useAuth from '../../../hooks/useAuth';
 import SelectComponent from './SelectComponent';
-
-function stringDateOfToday() {
-  const today = new Date();
-  const dd = String(today.getDate()).padStart(2, '0');
-  const mm = String(today.getMonth() + 1).padStart(2, '0');
-  const yyyy = today.getFullYear();
-  const stringToday = `${yyyy}-${mm}-${dd}`;
-  return stringToday;
-}
 
 function RegisterProjectForm() {
   const navigate = useNavigate();
@@ -45,7 +37,7 @@ function RegisterProjectForm() {
       .required('La meta monetaria es obligatoria.'),
     date: Yup.date()
       .required('Este campo es obligatorio.')
-      .min(stringDateOfToday(), 'Estás ingresando una fecha ya pasada.'),
+      .min(stringDateOfTomorrow(), 'Debes ingresar una fecha igual o siguiente al día de mañana.'),
   });
 
   return (

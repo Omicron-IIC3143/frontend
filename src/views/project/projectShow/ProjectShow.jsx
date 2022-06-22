@@ -73,14 +73,14 @@ function ShowProject() {
           ) : (
             <>
               <div className="display-flex-row width-50">
-                <ProjectImage company={project.company} image={project.pictureUrl} />
-                <Deadline date={project.date} className="bg-dark-color" />
+                <ProjectImage company={project?.company} image={project?.pictureUrl} />
+                <Deadline date={project?.date} className="bg-dark-color" />
               </div>
-              <ProjectDescription className="width-50" description={project.description} />
+              <ProjectDescription className="width-50" description={project?.description} />
               <FinancingInformation
                 className="width-50 bg-dark-color"
-                currentFinancing={project.currentAmount}
-                goalFinancing={project.goalAmount}
+                currentFinancing={project?.currentAmount}
+                goalFinancing={project?.goalAmount}
               />
               <div className="page-buttons width-50">
                 <ButtonBack />
