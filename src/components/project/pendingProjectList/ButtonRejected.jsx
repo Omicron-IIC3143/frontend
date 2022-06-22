@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
-import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 
 export function ButtonRejected({ id }) {
   const { currentUser } = useAuth();
-  const navigate = useNavigate();
   // eslint-disable-next-line no-unused-vars
   const [message, setMessage] = useState('');
 
@@ -28,7 +26,7 @@ export function ButtonRejected({ id }) {
         const error = await response.text();
         throw new Error(error);
       }
-      navigate('/projects/pendings');
+      window.location.reload();
     } catch (error) {
       setMessage(error.message);
     }
