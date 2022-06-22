@@ -5,10 +5,10 @@
 import React, { useState, useEffect } from 'react';
 // import { useNavigate } from 'react-router-dom';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
-import UsersList from '../../../components/usersList/UsersList';
 import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 import useAuth from '../../../hooks/useAuth';
+import UsersList from '../../../components/user/usersList/UsersList';
 
 function ShowUsersPage() {
   // const navigate = useNavigate();

@@ -14,6 +14,7 @@ import ProjectImage from '../../../components/project/projectShow/projectImage/P
 import Deadline from '../../../components/project/projectShow/deadline/Deadline';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
+import DeleteProject from '../../../components/project/projectShow/deleteProject/DeleteProject';
 import FinanceForm from '../../../components/project/projectShow/financeForm/FinanceForm';
 
 function ShowProject() {
@@ -101,6 +102,7 @@ function ShowProject() {
                 currentFinancing={project?.currentAmount}
                 goalFinancing={project?.goalAmount}
               />
+              <DeleteProject project={project} />
               <div className="page-buttons width-50 margin-bottom-s">
                 <ButtonBack />
                 <div className="page-interaction-buttons">

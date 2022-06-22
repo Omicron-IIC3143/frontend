@@ -8,8 +8,8 @@ import AccordionItem from 'react-bootstrap/esm/AccordionItem';
 import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 import './UsersList.css';
 import { NavLink } from 'react-router-dom';
-import { ButtonUpdatingUser } from '../user/buttons/updateButton/UpdateButton';
-import { ButtonLookFinancesUser } from '../user/buttons/financeButton/financeButton';
+import { ButtonUpdatingUser } from '../buttons/updateButton/UpdateButton';
+import { ButtonLookFinancesUser } from '../buttons/financeButton/financeButton';
 
 function UsersList({ users, className }) {
   return (
