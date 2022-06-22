@@ -65,7 +65,7 @@ function LandingPage() {
         ) : (
           filterData.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
-            (project?.currentState == 'pending') ? (
+            (project?.currentState == 'accepted') ? (
               <div className="width-80">
                 <ProjectList
                   id={project?.id}

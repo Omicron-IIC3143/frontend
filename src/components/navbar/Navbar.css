@@ -20,3 +20,7 @@ html, body, #app {
 .icon-suffix {
   align-self: center;
 }
+
+#postular {
+  color: rgb(233, 233, 152);
+}

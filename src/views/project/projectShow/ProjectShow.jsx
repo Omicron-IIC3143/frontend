@@ -85,7 +85,9 @@ function ShowProject() {
               <div className="page-buttons width-50 margin-bottom-s">
                 <ButtonBack />
                 <div className="page-interaction-buttons">
-                  <ButtonFinancing />
+                  {currentUser && currentUser.id != project.userId ? (
+                    <ButtonFinancing />
+                  ) : (<> </>)}
                   <ButtonSharing />
                   <ButtonContacting />
                 </div>
