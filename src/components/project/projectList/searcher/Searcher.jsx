@@ -7,8 +7,6 @@ const { Search } = Input;
 
 function Searcher(data) {
   const { projects, filterData, setFilterData } = data;
-  console.log(filterData);
-  console.log(projects);
   const onSearch = (value) => {
     // console.log('hola');
     // console.log(value);
@@ -28,7 +26,8 @@ function Searcher(data) {
     <Search
       className="col-stock-sale"
       placeholder="Buscar Proyecto"
-      onSearch={onSearch}
+      onChange={onSearch}
+      // esto hay q revisar que funcione.
     />
   );
 }
