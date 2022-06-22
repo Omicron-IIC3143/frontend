@@ -94,7 +94,9 @@ const Login = function Login() {
               </div>
             </form>
           </div>
-          <p>{errorMessage}</p>
+          {errorMessage ? (
+            <p>Email o contraseña incorrecta</p>
+          ) : (<> </>)}
         </div>
       </div>
     </div>
