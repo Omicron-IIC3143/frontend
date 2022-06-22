@@ -161,7 +161,7 @@ function RegisterProjectForm() {
                 )}
               </div>
               {!loading ? (
-                <div className="label-form-register-project button-submit-register-project page-buttons">
+                <div className="label-form-register-project button-submit-register-project page-buttons margin-bottom-s">
                   <ButtonBack />
                   <Button variant="primary" type="submit">Enviar postulación</Button>
                 </div>

@@ -82,7 +82,7 @@ function ShowProject() {
                 currentFinancing={project.currentAmount}
                 goalFinancing={project.goalAmount}
               />
-              <div className="page-buttons width-50">
+              <div className="page-buttons width-50 margin-bottom-s">
                 <ButtonBack />
                 <div className="page-interaction-buttons">
                   <ButtonFinancing />
