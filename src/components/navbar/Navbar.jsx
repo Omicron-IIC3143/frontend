@@ -27,9 +27,14 @@ function Navbar() {
               <CDBSidebarMenuItem icon="home">Página principal</CDBSidebarMenuItem>
             </NavLink>
             { currentUser?.isAdmin ? (
-              <NavLink exact to="/users" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="users">Lista de Usuarios</CDBSidebarMenuItem>
-              </NavLink>
+              <>
+                <NavLink exact to="/projects/pendings" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="users">Proyectos pendientes</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/users" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="users">Lista de Usuarios</CDBSidebarMenuItem>
+                </NavLink>
+              </>
             ) : (<div> </div>)}
 
             {currentUser ? (
