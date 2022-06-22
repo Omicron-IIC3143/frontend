@@ -7,15 +7,18 @@ import Searcher from '../../../components/project/projectList/searcher/Searcher'
 import '../../landingPage/LandingPage.css';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import extractFundedProjects from '../../../hooks/finances';
+import Loading from '../../../components/loading/Loading';
 
 function MyProjects() {
   const { currentUser } = useAuth();
   // const [projects, setProjects] = useState([]);
   const [finances, setFinances] = useState([]);
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
 
   const getData = async () => {
+    setLoading(true);
     const requestOptions = {
       method: 'GET',
       headers: {
@@ -24,26 +27,14 @@ function MyProjects() {
       },
     };
 
-    const fetchData = (url) => {
-      setLoading(true);
-      fetch(url, requestOptions)
-        .then((r) => {
-          if (!r.ok) {
-            setError(true);
-            return [];
-          }
-          setLoading(false);
-          return r.json();
-        });
-    };
+    const fetchData = (url) => fetch(url, requestOptions).then((r) => r.json());
 
     const [projectsData, financesData] = await Promise.all([
       fetchData(`${process.env.REACT_APP_API_URL}/projects`),
       fetchData(`${process.env.REACT_APP_API_URL}/finance/transactions/${currentUser.id}`),
     ]);
-    console.log(projectsData);
-    console.log(financesData);
     const filter = extractFundedProjects(projectsData, financesData);
+    setLoading(false);
     setFinances(filter);
   };
 
@@ -103,9 +94,7 @@ function MyProjects() {
   // }, []);
   if (loading) {
     return (
-      <section className="container">
-        <h2>Loading...</h2>
-      </section>
+      <Loading />
     );
   } return (
     <div className="grid-container">

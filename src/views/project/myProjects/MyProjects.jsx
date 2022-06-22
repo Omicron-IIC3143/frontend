@@ -6,6 +6,7 @@ import ProjectList from '../../../components/project/projectList/ProjectList';
 import Searcher from '../../../components/project/projectList/searcher/Searcher';
 import '../../landingPage/LandingPage.css';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
+import Loading from '../../../components/loading/Loading';
 
 function MyProjects() {
   const { currentUser } = useAuth();
@@ -38,9 +39,7 @@ function MyProjects() {
 
   if (loading) {
     return (
-      <section className="container">
-        <h2>Loading...</h2>
-      </section>
+      <Loading />
     );
   } return (
     <div className="grid-container">
