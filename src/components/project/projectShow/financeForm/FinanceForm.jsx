@@ -94,7 +94,7 @@ function FinanceForm({ currentAmount, setCurrentAmount }) {
                 <Field name="financeAmount" type="number" className="caja-para-ingesar-monto-finance" placeholder="CLP" />
               </div>
               {errors.financeAmount && touched.financeAmount && (
-              <div className="validation-error">{errors.financeAmount}</div>
+              <div className="validation-error-finance">{errors.financeAmount}</div>
               )}
               <div className="center-div">
                 <ButtonFinancing />

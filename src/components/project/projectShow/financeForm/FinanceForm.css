@@ -24,7 +24,7 @@
     opacity: 1; /* Firefox */
   }
 
-.validation-error {
+.validation-error-finance {
     color: red;
     margin-top: 1vh;
     text-align: center;
