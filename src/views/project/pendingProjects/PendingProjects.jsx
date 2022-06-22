@@ -9,15 +9,40 @@ import PendingProjectList from '../../../components/project/pendingProjectList/P
 import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 import useAuth from '../../../hooks/useAuth';
+// import { set } from 'date-fns';
 
 function PendingProjects() {
+  const { currentUser } = useAuth();
   // const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [error, setError] = useState(false);
   const [projects, setProjects] = useState([]);
   // const [pendingProjects, setPendingProjects] = useState([]);
-  const { currentUser } = useAuth();
 
+  //   const getData = async () => {
+  //     setLoading(true);
+  //     const requestOptions = {
+  //       method: 'GET',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         Authorization: `Bearer ${currentUser?.token}`,
+  //       },
+  //     };
+
+  //     const fetchData = (url) => fetch(url, requestOptions).then((r) => r.json());
+  //     const [projectsData] = await Promise.all([
+  //       fetchData(`${process.env.REACT_APP_API_URL}/projects`),
+  //     ]);
+  //     const filter = projectsData.filter(({ currentState }) => currentState == 'pending');
+  //     console.log(filter);
+  //     setLoading(false);
+  //     setProjects(filter);
+  //   };
+
+  //   useEffect(() => {
+  //     getData();
+  //   }, []);
   useEffect(() => {
     setLoading(true);
     const requestOptions = {
@@ -37,7 +62,7 @@ function PendingProjects() {
         return response.json();
       })
       .then((data) => {
-        setProjects(data);
+        setProjects(data.filter(({ currentState }) => currentState == 'pending'));
       })
     //   .then((data) => {
     //     const filter = data.filter(({ currentState }) => currentState == 'pending');

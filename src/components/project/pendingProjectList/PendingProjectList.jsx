@@ -8,13 +8,11 @@ import AccordionItem from 'react-bootstrap/esm/AccordionItem';
 import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 import '../../usersList/UsersList.css';
 import { NavLink } from 'react-router-dom';
-import stringOfDate from '../../../hooks/stringOfDate';
 import convertMoneyToString from '../../../hooks/convertNumber';
 import { ButtonAccepted } from './ButtonAccepted';
 import { ButtonRejected } from './ButtonRejected';
 
 function PendingProjectList({ projects, className }) {
-  console.log(projects);
   return (
     <Accordion alwaysOpen className={className}>
       { projects.map((project, index) => (
@@ -34,11 +32,6 @@ function PendingProjectList({ projects, className }) {
                 Rubro:
                 {' '}
                 {project?.topic}
-              </li>
-              <li className="accordion-body-list-rows">
-                Fecha de plazo:
-                {' '}
-                {stringOfDate(project?.date)}
               </li>
               <li className="accordion-body-list-rows">
                 Monto meta (CLP):
