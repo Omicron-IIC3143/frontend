@@ -7,10 +7,10 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 import './UserForm.css';
-import ButtonBack from '../buttons/buttonBack/ButtonBack';
-import DeleteUser from '../user/deleteUser/DeleteUser';
+import ButtonBack from '../../buttons/buttonBack/ButtonBack';
+import DeleteUser from '../deleteUser/DeleteUser';
 
 function UserForm() {
   const [loading, setLoading] = useState(false);

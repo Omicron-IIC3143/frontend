@@ -1,11 +1,11 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import UserForm from '../../components/userForm/UserForm';
 import './RegisterUserPage.css';
 import Navbar from '../../components/navbar/Navbar';
 import useAuth from '../../hooks/useAuth';
 import ButtonBack from '../../components/buttons/buttonBack/ButtonBack';
+import UserForm from '../../components/user/userForm/UserForm';
 
 function UpdaterUserPage() {
   const { currentUser } = useAuth();
