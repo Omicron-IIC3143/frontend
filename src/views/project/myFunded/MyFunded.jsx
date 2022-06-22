@@ -3,7 +3,6 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
 import ProjectList from '../../../components/project/projectList/ProjectList';
-import Searcher from '../../../components/project/projectList/searcher/Searcher';
 import '../../landingPage/LandingPage.css';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import extractFundedProjects from '../../../hooks/finances';
@@ -42,56 +41,6 @@ function MyProjects() {
     getData();
   }, []);
 
-  // useEffect(() => {
-  //   setLoading(true);
-  //   const requestOptions = {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${currentUser?.token}`,
-  //     },
-  //   };
-  //   fetch(`${process.env.REACT_APP_API_URL}/projects`, requestOptions)
-  //     .then((response) => {
-  //       if (!response.ok) {
-  //         setError(true);
-  //         return [];
-  //       }
-  //       return response.json();
-  //     })
-  //     .then((data) => {
-  //       setProjects(data);
-  //     })
-  //     .catch(() => { setError(true); })
-  //     .finally(() => setLoading(false));
-  // }, []);
-
-  // useEffect(() => {
-  //   setLoading(true);
-  //   const requestOptions = {
-  //     method: 'GET',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //       Authorization: `Bearer ${currentUser?.token}`,
-  //     },
-  //   };
-  //   fetch(`${process.env.REACT_APP_API_URL}/
-  // finance/transactions/${currentUser.id}`, requestOptions)
-  //     .then(async (response) => {
-  //       if (!response.ok) {
-  //         setError(true);
-  //         return [];
-  //       }
-  //       const respuesta = await response.json();
-  //       setFinances(respuesta);
-  //       console.log(finances);
-  //       console.log(projects);
-  //       return respuesta;
-  //     })
-  //     .catch(() => { setError(true); })
-  //     .finally(() => setLoading(false));
-  //   //  const filter = extractFundedProjects(projects, finances);
-  // }, []);
   if (loading) {
     return (
       <Loading />
@@ -102,9 +51,7 @@ function MyProjects() {
         <Navbar />
       </div>
       <div className="flex-landing-page">
-        <div className="flex-inside-searcher">
-          <Searcher />
-        </div>
+        <h1>Mis proyectos financiados</h1>
         {currentUser ? (
           <div className="flex-inside-button-postulate">
             <ButtonPostulate />

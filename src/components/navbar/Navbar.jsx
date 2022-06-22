@@ -43,6 +43,9 @@ function Navbar() {
                 <NavLink exact to={`/users/${currentUser.id}/financialinfo`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="chart-line">Información financiera</CDBSidebarMenuItem>
                 </NavLink>
+                <NavLink exact to="/projectregister" activeClassName="activeClicked" id="postular">
+                  <CDBSidebarMenuItem icon="plus">Postular Proyecto</CDBSidebarMenuItem>
+                </NavLink>
               </>
             // eslint-disable-next-line react/jsx-no-useless-fragment
             ) : (<></>)}
@@ -56,7 +59,7 @@ function Navbar() {
                 <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="user-circle">Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
+                <NavLink exact to="/login" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
                   <CDBSidebarMenuItem icon="sign-out-alt">Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
               </>

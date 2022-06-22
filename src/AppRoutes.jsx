@@ -18,7 +18,7 @@ const AppRouter = function AppRouter() {
   return (
     <AuthContextProvider>
       <Routes>
-        <Route path="login" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<LandingPage />} />
         <Route path="/projects/:id" element={<ShowProject />} />
         <Route path="projectregister" element={<RegisterProject />} />
