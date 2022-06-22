@@ -19,7 +19,7 @@ jobs:
       #- name: npm Install
       #  run: npm install
       - name: npm install eslint and prettier
-        run: npm install --save-dev eslint prettier
+        run: npm install --save-dev eslint prettier --no-package-lock
         
       #- name: Create env file
       #  run: |
