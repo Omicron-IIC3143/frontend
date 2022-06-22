@@ -67,7 +67,7 @@ function ShowUser() {
                 editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
             )}
-            <div className="page-buttons width-80">
+            <div className="page-buttons width-80 margin-bottom-s">
               <ButtonBack />
               <ButtonUpdatingUser id={id} />
             </div>
@@ -88,7 +88,7 @@ function ShowUser() {
           ) : (
             <h1 className="unauthorizedMessageFinancialInfo">Inicia sesión para ver el perfil de tu usuario. </h1>
           )}
-          <div className="page-buttons width-80">
+          <div className="page-buttons width-80 margin-bottom-s">
             <ButtonBack />
           </div>
         </div>
