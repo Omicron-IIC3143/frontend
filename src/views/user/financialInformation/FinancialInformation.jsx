@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import convertMoneyToString from '../../../hooks/convertNumber';
 import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 // import DepositButton from '../../../components/user/buttons/depositButton/DepositButton';
@@ -74,7 +75,7 @@ function FinancialInformation() {
                   <h3 className="center-financial-info">
                     <b>
                       {'$ '}
-                      {money}
+                      {convertMoneyToString(money)}
                       {' '}
                     </b>
                   </h3>
@@ -119,7 +120,7 @@ function FinancialInformation() {
                     ) : (
                       <b>
                         {'$ '}
-                        {money}
+                        {convertMoneyToString(money)}
                         {' '}
 
                       </b>

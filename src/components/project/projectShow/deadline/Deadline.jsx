@@ -1,13 +1,6 @@
 import React from 'react';
 import './Deadline.css';
-
-function stringOfDate(date) {
-  const dd = String(date.getDate()).padStart(2, '0');
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const yyyy = date.getFullYear();
-  const stringToday = `${dd}-${mm}-${yyyy}`;
-  return stringToday;
-}
+import stringOfDate from '../../../../hooks/stringOfDate';
 
 function Deadline({ date, className }) {
   const today = new Date();

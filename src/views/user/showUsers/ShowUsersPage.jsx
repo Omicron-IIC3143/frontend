@@ -68,7 +68,7 @@ function ShowUsersPage() {
           <UsersList users={users} className="width-80" />
         ) : null }
 
-        <div className="page-buttons width-80">
+        <div className="page-buttons width-80 margin-bottom-s">
           <ButtonBack />
         </div>
       </div>
