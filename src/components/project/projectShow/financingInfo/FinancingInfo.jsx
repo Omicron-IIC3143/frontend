@@ -1,5 +1,6 @@
 import React from 'react';
 import './FinancingInfo.css';
+import convertMoneyToString from '../../../../hooks/convertNumber';
 
 function FinancingInformation({ currentFinancing, goalFinancing, className }) {
   return (
@@ -16,7 +17,7 @@ function FinancingInformation({ currentFinancing, goalFinancing, className }) {
           </div>
           <div>
             $
-            {currentFinancing}
+            {convertMoneyToString(currentFinancing)}
           </div>
         </div>
         <div className="columnGoal">
@@ -29,7 +30,7 @@ function FinancingInformation({ currentFinancing, goalFinancing, className }) {
           </div>
           <div>
             $
-            {goalFinancing}
+            {convertMoneyToString(goalFinancing)}
           </div>
         </div>
       </div>
