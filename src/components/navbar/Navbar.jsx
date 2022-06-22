@@ -59,7 +59,7 @@ function Navbar() {
                 <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="user-circle">Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
+                <NavLink exact to="/login" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
                   <CDBSidebarMenuItem icon="sign-out-alt">Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
               </>
