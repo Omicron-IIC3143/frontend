@@ -36,7 +36,7 @@ function DeleteProject({ project }) {
             const successMessage = 'Proyecto eliminado satisfactoriamente';
             setMessage(successMessage);
             alert(successMessage);
-            navigate('/');
+            navigate(`/users/${project.userId}/projects`);
           } catch (error) {
             setMessage(error.message);
           } finally {
