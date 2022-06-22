@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../../../hooks/useAuth';
+import convertMoneyToString from '../../../../hooks/convertNumber';
 // import Loading from '../../..//loading/Loading';
 import ButtonFinancing from '../buttons/buttonFinancing/ButtonFinancing';
 import './FinanceForm.css';
@@ -25,24 +26,26 @@ function FinanceForm({ currentAmount, setCurrentAmount }) {
         Authorization: `Bearer ${currentUser?.token}`,
       },
     };
-    fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser?.id}`, requestOptions)
-      .then(async (response) => {
-        if (!response.ok) {
-          setError(true);
-          return null;
-        }
-        const respuesta = await response.json();
-        setUser(respuesta);
-        return respuesta;
-      })
-      .catch(() => { setError(true); });
-    //   .finally(() => setLoading(false));
+    if (currentUser) {
+      fetch(`${process.env.REACT_APP_API_URL}/users/${currentUser?.id}`, requestOptions)
+        .then(async (response) => {
+          if (!response.ok) {
+            setError(true);
+            return null;
+          }
+          const respuesta = await response.json();
+          setUser(respuesta);
+          return respuesta;
+        })
+        .catch(() => { setError(true); });
+      // .finally(() => setLoading(false));
+    }
   }, []);
 
   const validationSchema = Yup.object({
-    money: Yup.number()
-      .min(0, `Elige un monto entre 0 y tu saldo actual (${user?.money})`)
-      .max(user?.money, `Elige un monto entre 0 y tu saldo actual (${user?.money})`),
+    financeAmount: Yup.number()
+      .min(1, `Elige un monto entre $1 y tu saldo actual ($${convertMoneyToString(user?.money)})`)
+      .max(user?.money, `Elige un monto entre $1 y tu saldo actual ($${convertMoneyToString(user?.money)})`),
   });
 
   return (
@@ -53,26 +56,28 @@ function FinanceForm({ currentAmount, setCurrentAmount }) {
         }}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
-          // eslint-disable-next-line no-param-reassign
-          values.financeAmount += currentAmount;
-          console.log(values.financeAmount);
-          console.log(currentAmount);
+          const finalValues = {
+            amount: values.financeAmount,
+            userId: currentUser.id,
+            projectId: id,
+          };
           const requestOptions = {
-            method: 'PUT',
+            method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               Authorization: `Bearer ${currentUser?.token}`,
             },
-            body: JSON.stringify(values),
+            body: JSON.stringify(finalValues),
           };
           try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${id}`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/finance/new`, requestOptions);
             if (!response.ok) {
               const errorRequest = await response.text();
               throw new Error(errorRequest);
             }
             setMessage('Aporte hecho exitosamente. ¡Felicitaciones por ayudar con la causa del proyecto!');
-            setCurrentAmount(values.financeAmount);
+            setCurrentAmount(currentAmount + finalValues.amount);
+            window.location.reload();
           } catch (err) {
             setMessage(err.message);
             setError(false);
@@ -83,15 +88,17 @@ function FinanceForm({ currentAmount, setCurrentAmount }) {
       >
         {({ errors, touched }) => (
           <Form>
-            <div>
-              <label htmlFor="financeAmount" className="label-ingrese-monto">Ingrese el monto: </label>
-              <Field name="financeAmount" type="number" className="caja-para-ingesar-monto" placeholder="Monto a aportar" />
+            <div className="card-finance-form">
+              <div className="center-div">
+                <label htmlFor="financeAmount" className="label-ingrese-monto-finance">Ingrese el monto a aportar: </label>
+                <Field name="financeAmount" type="number" className="caja-para-ingesar-monto-finance" placeholder="CLP" />
+              </div>
               {errors.financeAmount && touched.financeAmount && (
-              <div className="validation-error">{errors.financeAmount}</div>
+              <div className="validation-error-finance">{errors.financeAmount}</div>
               )}
-            </div>
-            <div>
-              <ButtonFinancing />
+              <div className="center-div">
+                <ButtonFinancing />
+              </div>
             </div>
 
           </Form>

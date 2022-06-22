@@ -1,17 +1,18 @@
 .titleProjectShow {
-    text-align: left;
-    margin-bottom: 0.5vh;
+    text-align: center;
 }
 
 .title-finance-project {
-    margin-top: 15vh;
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+    text-align: center;
 }
 
 .title-show-project {
     margin-bottom: 5vh;
 }
 
-.line {
-    background-color: black;
+.finance-form {
+    margin-bottom: 10vh;
 }
 
