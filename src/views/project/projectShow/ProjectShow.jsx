@@ -20,6 +20,7 @@ function ShowProject() {
   const { id } = useParams();
   const { currentUser } = useAuth();
   const [project, setProject] = useState([]);
+  const [projectUser, setProjectUser] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -41,6 +42,21 @@ function ShowProject() {
         const respuesta = await response.json();
         setProject(respuesta);
         return respuesta;
+      })
+      .then(async (projectResponse) => {
+        if (currentUser) {
+          fetch(`${process.env.REACT_APP_API_URL}/users/${projectResponse?.userId}`, requestOptions)
+            .then(async (response) => {
+              if (!response.ok) {
+                setError(true);
+                return null;
+              }
+              const respuesta = await response.json();
+              setProjectUser(respuesta);
+              return project;
+            })
+            .catch(() => setError(true));
+        }
       })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
@@ -86,10 +102,16 @@ function ShowProject() {
                 <ButtonBack />
                 <div className="page-interaction-buttons">
                   {currentUser && currentUser.id != project.userId ? (
-                    <ButtonFinancing />
+                    <>
+                      <ButtonFinancing />
+                      <ButtonContacting
+                        visitUser={currentUser}
+                        project={project}
+                        projectUser={projectUser}
+                      />
+                    </>
                   ) : (<> </>)}
                   <ButtonSharing />
-                  <ButtonContacting />
                 </div>
               </div>
             </>
