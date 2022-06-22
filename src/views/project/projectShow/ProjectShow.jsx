@@ -7,12 +7,12 @@ import Loading from '../../../components/loading/Loading';
 // import imageRecInc from './reciclajeInclusivo.jpeg';
 import useAuth from '../../../hooks/useAuth';
 
+import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import ButtonFinancing from '../../../components/project/projectShow/buttons/buttonFinancing/ButtonFinancing';
 import ButtonSharing from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
-import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import ProjectImage from '../../../components/project/projectShow/projectImage/ProjectImage';
-import PostulantDescription from '../../../components/project/projectShow/postulantDescription/PostulantDescription';
+import Deadline from '../../../components/project/projectShow/deadline/Deadline';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
 
@@ -54,13 +54,17 @@ function ShowProject() {
 
   return (
     <div>
-      <div className="grid-container">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
-        <div className="flex-project-show">
+
+        <div className="page-wrapper">
+          <h1 className="titleProjectShow title-color">
+            {`${project.name}`}
+          </h1>
           {error ? (
-            <div className="flex-inside">
+            <div className="width-50">
               <h2>
                 Error
                 {error}
@@ -68,23 +72,23 @@ function ShowProject() {
             </div>
           ) : (
             <>
-              <div className="rowImageAndDescription">
-                <ProjectImage title={project.name} image={project.pictureUrl} />
-                <PostulantDescription description="debería ir la descripción del postulante" />
+              <div className="display-flex-row width-50">
+                <ProjectImage company={project.company} image={project.pictureUrl} />
+                <Deadline date={project.date} className="bg-dark-color" />
               </div>
-              <ProjectDescription description={project.description} />
+              <ProjectDescription className="width-50" description={project.description} />
               <FinancingInformation
-                current_financing={project.currentAmount}
-                goal_financing={project.goalAmount}
+                className="width-50 bg-dark-color"
+                currentFinancing={project.currentAmount}
+                goalFinancing={project.goalAmount}
               />
-              <div>
-                <ButtonFinancing />
-                {' '}
-                <ButtonSharing />
-                {' '}
-                <ButtonContacting />
-                {' '}
+              <div className="page-buttons width-50">
                 <ButtonBack />
+                <div className="page-interaction-buttons">
+                  <ButtonFinancing />
+                  <ButtonSharing />
+                  <ButtonContacting />
+                </div>
               </div>
             </>
           )}

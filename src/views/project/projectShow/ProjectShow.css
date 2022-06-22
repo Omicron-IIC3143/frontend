@@ -1,20 +1,6 @@
-.flex-project-show {
-    flex-direction: column;
-    margin-top: 5vh;
-    margin-left: -20vw;
-    margin-right: 10vw;
-}
-
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #2196F3;
-    padding: 10px;
-    }
-
-.rowImageAndDescription {
-    display: flex;
-    flex-direction:row;
+.titleProjectShow {
+    text-align: left;
+    margin-bottom: 0.5vh;
 }
 
 

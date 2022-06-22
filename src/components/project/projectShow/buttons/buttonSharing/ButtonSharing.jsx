@@ -1,13 +1,10 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
+import './ButtonSharing.css';
 
 function ButtonSharing() {
-  const printHelloWorld = () => {
-    // setData("Data is set");
-    // console.log('HOLA MUNDO');
-  };
   return (
-    <Button variant="primary" onClick={printHelloWorld}>
+    <Button variant="primary" className="sharingButton">
       {/* startIcon={<DeleteIcon />} */}
       Compartir Proyecto
     </Button>

@@ -4,18 +4,6 @@
   margin-top: 5vw;
 }
 
-.grid-container-show-user {
-  display: grid;
-  grid-template-columns: auto auto;
-  background-color: #2196F3;
-  padding: 10px;
-  }
-
-.rowImageAndDescription {
-    display: flex;
-    flex-direction:row;
-}
-
 #picture {
     width:100%;
 }
@@ -37,6 +25,13 @@
     width: 100%;
     font-size: 18px;
   } */
+
+.unauthorizedMessageFinancialInfo {
+  margin-left: 5vw;
+  margin-right: 5vw;
+  margin-top: 10vh;
+  text-align:center;
+}
   
 
 

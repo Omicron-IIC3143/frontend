@@ -7,7 +7,6 @@ import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
 import { UserShow } from '../../../components/user/userShow/UserShow';
 import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
-import { DeleteButton } from '../../../components/user/buttons/deleteButton/DeleteButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
 
@@ -18,99 +17,84 @@ function ShowUser() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   //   const navigate = useNavigate();
-  if (currentUser?.isAdmin == true) {
-    useEffect(() => {
-      setLoading(true);
-      const requestOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${currentUser?.token}`,
-        },
-      };
-      fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
-        .then(async (response) => {
-          if (!response.ok) {
-            setError(true);
-            return null;
-          }
-          const respuesta = await response.json();
-          setUser(respuesta);
-          return respuesta;
-        })
-        .catch(() => { setError(true); })
-        .finally(() => setLoading(false));
-    }, []);
 
+  useEffect(() => {
+    setLoading(true);
+    const requestOptions = {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${currentUser?.token}`,
+      },
+    };
+    fetch(`${process.env.REACT_APP_API_URL}/users/${id}`, requestOptions)
+      .then(async (response) => {
+        if (!response.ok) {
+          setError(true);
+          return null;
+        }
+        const respuesta = await response.json();
+        setUser(respuesta);
+        return respuesta;
+      })
+      .catch(() => { setError(true); })
+      .finally(() => setLoading(false));
+  }, []);
+
+  if (currentUser?.id == id || currentUser?.isAdmin) {
+    if (loading) { return (<Loading />); }
     return (
-      (loading == true) ? (
-        <Loading />) : (
-          <>
-          </>
-      ),
-      (error) ? (
-        <div className="flex-inside">
-          <h2>
-            Error
-            {error}
-          </h2>
-        </div>
-      ) : (
-        <div>
-          <div className="grid-container-show-user">
-            <div>
-              <Navbar />
-            </div>
-            <div className="flex-show-user">
+      <div>
+        <div className="grid-container  ">
+          <div>
+            <Navbar />
+          </div>
+          <div className="page-wrapper">
+            {error ? (
+              <h3>
+                ERROR:
+                {' '}
+                {error.errors}
+              </h3>
+            ) : (
               <UserShow
                 name={user?.name}
                 description={user?.description}
                 rut={user?.rut}
                 money={user?.money}
                 email={user?.email}
+                pictureURL={user?.pictureUrl}
+                editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
-              <ButtonUpdatingUser />
-              <DeleteButton />
+            )}
+            <div className="page-buttons width-80">
               <ButtonBack />
+              <ButtonUpdatingUser id={id} />
             </div>
           </div>
         </div>
-      ));
+      </div>
+    );
   }
   return (
-    (currentUser?.id == id) ? (
-
-      <div>
-        <div className="grid-container-show-user">
-          <div>
-            <Navbar />
-          </div>
-          <div className="flex-show-user">
-            <UserShow
-              name={currentUser?.name}
-              description={currentUser?.description}
-              rut={currentUser?.rut}
-              money={currentUser?.money}
-              email={currentUser?.email}
-            />
-            <ButtonUpdatingUser />
-            {' '}
-            <DeleteButton />
-            {' '}
+    <div>
+      <div className="grid-container  ">
+        <div>
+          <Navbar />
+        </div>
+        <div>
+          { currentUser ? (
+            <h1 className="unauthorizedMessageFinancialInfo">No estás autorizado para ver el perfil de otro usuario. </h1>
+          ) : (
+            <h1 className="unauthorizedMessageFinancialInfo">Inicia sesión para ver el perfil de tu usuario. </h1>
+          )}
+          <div className="page-buttons width-80">
             <ButtonBack />
           </div>
         </div>
       </div>
-    ) : (
-      <div>
-        <div className="grid-container-show-user">
-          <div>
-            <Navbar />
-          </div>
-          <h1>No estás autorizado para ver el perfil de otra persona. </h1>
-        </div>
-      </div>
-    ));
+    </div>
+  );
 }
 
 export default ShowUser;

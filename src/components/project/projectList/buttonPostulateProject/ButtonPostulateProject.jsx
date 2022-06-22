@@ -3,12 +3,8 @@ import Button from 'react-bootstrap/Button';
 import './ButtonPostulateProject.css';
 
 function ButtonPostulate() {
-  const postulateProject = () => {
-    // setData("Data is set");
-    // console.log('HOLA MUNDO');
-  };
   return (
-    <Button className="button-postulate-project" variant="primary" onClick={postulateProject} href="/projectregister">
+    <Button className="button-postulate-project bg-dark-color" variant="primary" href="/projectregister">
       {/* startIcon={<DeleteIcon />} */}
       Postular Nuevo Proyecto
     </Button>

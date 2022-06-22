@@ -1,18 +1,36 @@
 import React from 'react';
 import './FinancingInfo.css';
 
-function FinancingInformation({ currentFinancing, goalFinancing }) {
+function FinancingInformation({ currentFinancing, goalFinancing, className }) {
   return (
-    <div className="infoOfFinancing">
+    <div className={`infoOfFinancing ${className}`}>
       <div className="row">
         {/* style="width:100%" */}
         <div className="columnCurrent">
-          Financiamiento actual: $
-          {currentFinancing}
+          <div>
+            <b>
+              <u>
+                Financiamiento actual
+              </u>
+            </b>
+          </div>
+          <div>
+            $
+            {currentFinancing}
+          </div>
         </div>
         <div className="columnGoal">
-          Financiamiento meta: $
-          {goalFinancing}
+          <div>
+            <b>
+              <u>
+                Financiamiento meta
+              </u>
+            </b>
+          </div>
+          <div>
+            $
+            {goalFinancing}
+          </div>
         </div>
       </div>
     </div>
