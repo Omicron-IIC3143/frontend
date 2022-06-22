@@ -9,6 +9,7 @@ import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 import './UsersList.css';
 import { NavLink } from 'react-router-dom';
 import { ButtonUpdatingUser } from '../user/buttons/updateButton/UpdateButton';
+import { ButtonLookFinancesUser } from '../user/buttons/financeButton/financeButton';
 
 function UsersList({ users, className }) {
   return (
@@ -42,7 +43,10 @@ function UsersList({ users, className }) {
                 {String(user.isAdmin)}
               </li>
               <br />
-              <ButtonUpdatingUser id={user.id} />
+              <div className="display-flex-row">
+                <ButtonUpdatingUser id={user.id} />
+                <ButtonLookFinancesUser id={user.id} />
+              </div>
             </ul>
           </AccordionBody>
         </AccordionItem>

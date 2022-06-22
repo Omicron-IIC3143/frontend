@@ -9,6 +9,7 @@ import { UserShow } from '../../../components/user/userShow/UserShow';
 import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
+import { ButtonLookFinancesUser } from '../../../components/user/buttons/financeButton/financeButton';
 
 function ShowUser() {
   const { currentUser } = useAuth();
@@ -70,6 +71,7 @@ function ShowUser() {
             <div className="page-buttons width-80">
               <ButtonBack />
               <ButtonUpdatingUser id={id} />
+              <ButtonLookFinancesUser id={id} />
             </div>
           </div>
         </div>
