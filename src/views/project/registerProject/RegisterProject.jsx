@@ -7,14 +7,14 @@ function RegisterProject() {
   return (
     <div>
       <div className="grid-container">
-        {/* <div>
+        <div>
           <Navbar />
-        </div> */}
+        </div>
         <div className="flex-register-project">
           <h2 className="title-register-new-project">
             Postulación de nuevo proyecto
           </h2>
-          {/* <RegisterProjectForm /> */}
+          <RegisterProjectForm />
         </div>
       </div>
     </div>
