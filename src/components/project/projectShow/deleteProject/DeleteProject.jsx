@@ -52,7 +52,7 @@ function DeleteProject({ project }) {
                 { currentUser.id != project.userId ? (
                   'Acepto eliminar este proyecto de Social Starter'
                 ) : (
-                  'Acepto eliminar mi proyecto de Social Starter'
+                  'Acepto eliminar este proyecto de Social Starter'
                 )}
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
