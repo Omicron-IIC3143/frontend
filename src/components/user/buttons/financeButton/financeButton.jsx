@@ -7,7 +7,7 @@ export function ButtonLookFinancesUser({ id }) {
 
   return (
     <Button variant="primary" onClick={() => navigate(`/users/${id}/financialinfo`, { state: { id } })} className="finance-button">
-      Ver info financiera
+      Información financiera
     </Button>
   );
 }
