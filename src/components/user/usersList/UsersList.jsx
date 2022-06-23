@@ -38,9 +38,17 @@ function UsersList({ users, className }) {
                 {user.description}
               </li>
               <li className="accordion-body-list-rows">
-                Admin:
+                Administrador(a):
                 {' '}
-                {String(user.isAdmin)}
+                {user.isAdmin == true ? (
+                  <>
+                    Sí
+                  </>
+                ) : (
+                  <>
+                    No
+                  </>
+                )}
               </li>
               <br />
               <div className="display-flex-row">
