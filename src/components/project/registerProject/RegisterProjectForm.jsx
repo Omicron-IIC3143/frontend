@@ -87,6 +87,7 @@ function RegisterProjectForm() {
               const error = await response.text();
               throw new Error(error);
             }
+            setMessage('Postulación creada correctamente.');
             alert('Postulación creada correctamente.');
             navigate(`/users/${currentUser.id}/projects`);
           } catch (error) {
