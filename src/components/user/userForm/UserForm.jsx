@@ -4,7 +4,7 @@
 /* eslint-disable eqeqeq */
 import Button from 'react-bootstrap/Button';
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import useAuth from '../../../hooks/useAuth';
@@ -288,7 +288,11 @@ function UserForm() {
             <div className="label-form-user">
               <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
-                Acepto los términos y condiciones de Social Starter.
+                Acepto los
+                {' '}
+                <Link to="/terms">términos y condiciones</Link>
+                {' '}
+                de Social Starter.
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
                 <div className="error-form-user">{errors.acceptTerms}</div>

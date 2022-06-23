@@ -51,11 +51,6 @@ function Navbar() {
                 <NavLink exact to="/projectregister" activeClassName="activeClicked" id="postular">
                   <CDBSidebarMenuItem icon="plus">Postular Proyecto</CDBSidebarMenuItem>
                 </NavLink>
-                {currentUser?.isAdmin ? (
-                  <NavLink href="mailto:vicho@uc.cl?subject=Social%20Starter%20-%20Contacto%20con%20Administrador" activeClassName="activeClicked" id="postular">
-                    <CDBSidebarMenuItem icon="plus">Contactar administrador</CDBSidebarMenuItem>
-                  </NavLink>
-                ) : (<> </>)}
               </>
             // eslint-disable-next-line react/jsx-no-useless-fragment
             ) : (<></>)}
@@ -72,6 +67,9 @@ function Navbar() {
                 <NavLink exact to="/login" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
                   <CDBSidebarMenuItem icon="sign-out-alt">Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
+                <NavLink exact to="/terms" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="book-reader">Términos y condiciones</CDBSidebarMenuItem>
+                </NavLink>
               </>
             ) : (
               <>
@@ -80,6 +78,9 @@ function Navbar() {
                 </NavLink>
                 <NavLink exact to="/register" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="file-signature">Registrarse</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/terms" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="book-reader">Términos y condiciones</CDBSidebarMenuItem>
                 </NavLink>
               </>
             )}
