@@ -37,7 +37,7 @@ function RegisterProjectForm() {
       .required('La meta monetaria es obligatoria.'),
     date: Yup.date()
       .required('Este campo es obligatorio.')
-      .min(stringDateOfTomorrow(), 'Debes ingresar una fecha igual o siguiente a la que corresponde el día de mañana.'),
+      .min(stringDateOfTomorrow(), 'Solo puedes ingresar una fecha desde mañana.'),
   });
 
   return (
