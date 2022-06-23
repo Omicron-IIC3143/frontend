@@ -27,18 +27,23 @@ function MyProjects() {
         Authorization: `Bearer ${currentUser?.token}`,
       },
     };
-
-    const fetchData = (url) => fetch(url, requestOptions).then((r) => r.json());
-    // acá se queda cuando el usuario aún no ha financiado proyectos
-    console.log("antes");
-    const [projectsData, financesData] = await Promise.all([
-      fetchData(`${process.env.REACT_APP_API_URL}/projects`),
-      fetchData(`${process.env.REACT_APP_API_URL}/finance/transactions/${id}`),
-    ]);
-    console.log("después");
-    const filter = extractFundedProjects(projectsData, financesData);
-    setLoading(false);
-    setFinances(filter);
+    let filter = [];
+    try {
+      const fetchData = (url) => fetch(url, requestOptions).then((r) => r.json());
+      // acá se queda cuando el usuario aún no ha financiado proyectos
+      console.log('antes');
+      const [projectsData, financesData] = await Promise.all([
+        fetchData(`${process.env.REACT_APP_API_URL}/projects`),
+        fetchData(`${process.env.REACT_APP_API_URL}/finance/transactions/${id}`),
+      ]);
+      console.log('después');
+      filter = extractFundedProjects(projectsData, financesData);
+    } catch (errorCatch) {
+      setError(errorCatch);
+    } finally {
+      setLoading(false);
+      setFinances(filter);
+    }
   };
 
   useEffect(() => {
@@ -70,7 +75,6 @@ function MyProjects() {
           {error ? (
             <div className="flex-inside">
               <h2>
-                No hay proyectos aún.
                 {error.errors}
               </h2>
             </div>
@@ -78,31 +82,30 @@ function MyProjects() {
             <> </>
           )}
 
-          
-          {finances.length===0 ? (
+          {finances.length === 0 ? (
             <h4>
-              Aún no has financiado proyectos.
+              No hay proyectos financiados.
             </h4>
 
           ) : (
-              finances.map((project) => (
-                // acá hay que poner (project?.currentState == 'approved') ? (
-                (project?.currentState == 'accepted') ? (
-                  <div className="flex-inside">
-                    <ProjectList
-                      id={project?.id}
-                      topic={project?.topic}
-                      title={project?.name}
-                      description={project?.description}
-                      date={project?.createdAt}
-                      company={project?.company}
-                    />
-                  </div>
-                ) : (
-                  <>
-                  </>
-                )
-              ))
+            finances.map((project) => (
+              // acá hay que poner (project?.currentState == 'approved') ? (
+              (project?.currentState == 'accepted') ? (
+                <div className="flex-inside">
+                  <ProjectList
+                    id={project?.id}
+                    topic={project?.topic}
+                    title={project?.name}
+                    description={project?.description}
+                    date={project?.createdAt}
+                    company={project?.company}
+                  />
+                </div>
+              ) : (
+                <>
+                </>
+              )
+            ))
           )}
           <div>
             <ButtonBack />
