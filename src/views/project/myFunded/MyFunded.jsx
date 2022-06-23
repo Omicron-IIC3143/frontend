@@ -30,13 +30,10 @@ function MyProjects() {
     let filter = [];
     try {
       const fetchData = (url) => fetch(url, requestOptions).then((r) => r.json());
-      // acá se queda cuando el usuario aún no ha financiado proyectos
-      console.log('antes');
       const [projectsData, financesData] = await Promise.all([
         fetchData(`${process.env.REACT_APP_API_URL}/projects`),
         fetchData(`${process.env.REACT_APP_API_URL}/finance/transactions/${id}`),
       ]);
-      console.log('después');
       filter = extractFundedProjects(projectsData, financesData);
     } catch (errorCatch) {
       setError(errorCatch);
