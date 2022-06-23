@@ -11,7 +11,6 @@ import useAuth from '../../../hooks/useAuth';
 import './UserForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import DeleteUser from '../deleteUser/DeleteUser';
-import Loading from '../../loading/Loading';
 
 function UserForm() {
   const [loading, setLoading] = useState(false);
@@ -306,7 +305,7 @@ function UserForm() {
               </div>
             ) : (
               <div>
-                <Loading />
+                <p className="final-message-form-user">Creando usuario...</p>
               </div>
             )}
           </Form>
