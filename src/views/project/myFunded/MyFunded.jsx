@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
@@ -8,6 +8,7 @@ import '../../landingPage/LandingPage.css';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import extractFundedProjects from '../../../hooks/finances';
 import Loading from '../../../components/loading/Loading';
+import './MyFunded.css';
 
 function MyProjects() {
   const { currentUser } = useAuth();
@@ -60,7 +61,14 @@ function MyProjects() {
         <div className="flex-landing-page">
 
           {currentUser?.id != id ? (
-            <h1>Proyectos financiados por otro usuario</h1>
+            <h1>
+              Proyectos financiados por el
+              {' '}
+              {' '}
+              <NavLink exact to={`/users/${id}`} activeClassName="activeClicked" className="color-link">
+                {`usuario de id ${id}`}
+              </NavLink>
+            </h1>
           ) : (
             <>
               <h1>Proyectos financiados por mí</h1>
