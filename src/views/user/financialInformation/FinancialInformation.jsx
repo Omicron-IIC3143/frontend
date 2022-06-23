@@ -6,6 +6,7 @@ import Navbar from '../../../components/navbar/Navbar';
 import Loading from '../../../components/loading/Loading';
 // import DepositButton from '../../../components/user/buttons/depositButton/DepositButton';
 import DepositForm from '../../../components/user/depositForm/DepositForm';
+import ButtonGoProfile from '../../../components/user/buttons/profileButton/ProfileButton';
 import './FinancialInformation.css';
 
 function FinancialInformation() {
@@ -80,6 +81,9 @@ function FinancialInformation() {
                     </b>
                   </h3>
                 </div>
+                <div className="profile-button">
+                  <ButtonGoProfile id={id} />
+                </div>
                 {currentUser?.id == id ? (
                   <div className="card-deposit">
                     <DepositForm money={money} setMoney={setMoney} />
@@ -126,6 +130,9 @@ function FinancialInformation() {
                       </b>
                     )}
                   </h3>
+                </div>
+                <div className="profile-button">
+                  <ButtonGoProfile id={id} />
                 </div>
                 <div className="card-deposit">
                   <DepositForm money={money} setMoney={setMoney} />

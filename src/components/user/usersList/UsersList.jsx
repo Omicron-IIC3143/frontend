@@ -10,6 +10,8 @@ import './UsersList.css';
 import { NavLink } from 'react-router-dom';
 import { ButtonUpdatingUser } from '../buttons/updateButton/UpdateButton';
 import { ButtonLookFinancesUser } from '../buttons/financeButton/financeButton';
+import { ButtonPostulatedProjectsUser } from '../buttons/postulatedProjects/PostulatedProjects';
+import { ButtonFinancedProjectsUser } from '../buttons/financedProjects/FinancedProjects';
 
 function UsersList({ users, className }) {
   return (
@@ -54,6 +56,8 @@ function UsersList({ users, className }) {
               <div className="display-flex-row">
                 <ButtonUpdatingUser id={user.id} />
                 <ButtonLookFinancesUser id={user.id} />
+                <ButtonPostulatedProjectsUser id={user.id} />
+                <ButtonFinancedProjectsUser id={user.id} />
               </div>
             </ul>
           </AccordionBody>
