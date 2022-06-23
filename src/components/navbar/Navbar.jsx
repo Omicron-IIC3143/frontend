@@ -51,6 +51,11 @@ function Navbar() {
                 <NavLink exact to="/projectregister" activeClassName="activeClicked" id="postular">
                   <CDBSidebarMenuItem icon="plus">Postular Proyecto</CDBSidebarMenuItem>
                 </NavLink>
+                {currentUser?.isAdmin ? (
+                  <NavLink href="mailto:vicho@uc.cl?subject=Social%20Starter%20-%20Contacto%20con%20Administrador" activeClassName="activeClicked" id="postular">
+                    <CDBSidebarMenuItem icon="plus">Contactar administrador</CDBSidebarMenuItem>
+                  </NavLink>
+                ) : (<> </>)}
               </>
             // eslint-disable-next-line react/jsx-no-useless-fragment
             ) : (<></>)}
