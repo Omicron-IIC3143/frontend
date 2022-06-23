@@ -11,7 +11,7 @@ function Deadline({ date, className }) {
       <div className={`descriptionCard ${className}`}>
         {/* style="width:100%" */}
         <h5>
-          Al proyecto le quedan alrededor de
+          Al proyecto le quedan
           {` ${numberOfDaysDeadlineDate} días de financiamiento.`}
         </h5>
         <h5>
