@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
@@ -72,8 +72,11 @@ function MyProjects() {
             </>
           ) : (
             <h1 className="titleMyProjects title-color">
-              Proyectos del usuario de id
-              {` ${id}`}
+              Proyectos del
+              {' '}
+              <NavLink exact to={`/users/${id}`} activeClassName="activeClicked" className="user-link-color">
+                {`usuario de id ${id}`}
+              </NavLink>
             </h1>
           )}
 

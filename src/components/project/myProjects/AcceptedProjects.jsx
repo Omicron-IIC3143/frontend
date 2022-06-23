@@ -6,9 +6,13 @@ function AcceptedList({ projects }) {
   if (projects.length == 0) {
     return (
       <>
-        <h4 className="title">Aceptados</h4>
-        <div className="width-80">
-          <p>No tienes ningún proyecto en estado aceptado.</p>
+        <u className="title-projects width-80">
+          Aceptados
+        </u>
+        <div className="message-not-projects width-80">
+          <ul>
+            <li>No hay proyectos en este estado.</li>
+          </ul>
         </div>
       </>
     );
@@ -16,7 +20,9 @@ function AcceptedList({ projects }) {
 
   return (
     <>
-      <h4 className="title">Aceptados</h4>
+      <u className="title-projects width-80">
+        Aceptados
+      </u>
       {projects.map((project) => (
         <div className="width-80">
           <ProjectList

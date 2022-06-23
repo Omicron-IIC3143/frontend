@@ -6,9 +6,13 @@ function PendingList({ projects }) {
   if (projects.length == 0) {
     return (
       <>
-        <h4 className="titleProjects">Pendientes</h4>
-        <div className="width-80">
-          <p>No tienes ningún proyecto en estado pendiente.</p>
+        <u className="title-projects width-80">
+          Pendientes
+        </u>
+        <div className="message-not-projects width-80">
+          <ul>
+            <li>No hay proyectos en este estado.</li>
+          </ul>
         </div>
       </>
     );
@@ -16,7 +20,9 @@ function PendingList({ projects }) {
 
   return (
     <>
-      <div className="titleProjects">Pendientes</div>
+      <u className="title-projects width-80">
+        Pendientes
+      </u>
       {projects.map((project) => (
         <div className="width-80">
           <ProjectList

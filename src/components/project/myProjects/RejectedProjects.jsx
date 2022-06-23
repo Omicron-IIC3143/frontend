@@ -6,9 +6,13 @@ function RejectedList({ projects }) {
   if (projects.length == 0) {
     return (
       <>
-        <h4 className="title">Rechazados</h4>
-        <div className="width-80">
-          <p>No tienes ningún proyecto en estado rechazados.</p>
+        <u className="title-projects width-80">
+          Rechazados
+        </u>
+        <div className="message-not-projects width-80">
+          <ul>
+            <li>No hay proyectos en este estado.</li>
+          </ul>
         </div>
       </>
     );
@@ -16,7 +20,9 @@ function RejectedList({ projects }) {
 
   return (
     <>
-      <h4 className="title">Rechazados</h4>
+      <u className="title-projects width-80">
+        Rechazados
+      </u>
       {projects.map((project) => (
         <div className="width-80">
           <ProjectList
