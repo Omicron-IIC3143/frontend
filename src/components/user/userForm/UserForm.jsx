@@ -7,10 +7,11 @@ import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 import './UserForm.css';
-import ButtonBack from '../buttons/buttonBack/ButtonBack';
+import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import DeleteUser from '../deleteUser/DeleteUser';
+import Loading from '../../loading/Loading';
 
 function UserForm() {
   const [loading, setLoading] = useState(false);
@@ -210,7 +211,6 @@ function UserForm() {
             const newUser = respuesta.user;
             const successMessage = isUpdating ? 'Usuario modificado satisfactoriamente' : 'Usuario creado satisfactoriamente';
 
-            // TMBN FALTA ESO DE QUE EL EDITAR UN NO ADMIN SE MUERE
             if ((id == currentUser?.id) || !id) {
               newUser.token = respuesta.token ? respuesta.token : currentUser.token;
               handleUserLogin(newUser);
@@ -306,7 +306,7 @@ function UserForm() {
               </div>
             ) : (
               <div>
-                <p className="final-message-form-user">Cargando ...</p>
+                <Loading />
               </div>
             )}
           </Form>

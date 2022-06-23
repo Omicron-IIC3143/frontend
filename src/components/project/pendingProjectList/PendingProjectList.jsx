@@ -6,7 +6,7 @@ import { Accordion } from 'react-bootstrap';
 import AccordionHeader from 'react-bootstrap/esm/AccordionHeader';
 import AccordionItem from 'react-bootstrap/esm/AccordionItem';
 import AccordionBody from 'react-bootstrap/esm/AccordionBody';
-import '../../usersList/UsersList.css';
+import '../../user/usersList/UsersList.css';
 import { NavLink } from 'react-router-dom';
 import convertMoneyToString from '../../../hooks/convertNumber';
 import { ButtonAccepted } from './ButtonAccepted';

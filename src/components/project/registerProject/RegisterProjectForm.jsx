@@ -10,6 +10,7 @@ import stringDateOfTomorrow from '../../../hooks/stringDateOfTomorrow';
 import './RegisterProjectForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import options from './SelectOptions';
+import Loading from '../../loading/Loading';
 
 /*
 Para ayudarse con alguna modificación del Select
@@ -44,7 +45,7 @@ function RegisterProjectForm() {
       .required('La meta monetaria es obligatoria.'),
     date: Yup.date()
       .required('Este campo es obligatorio.')
-      .min(stringDateOfTomorrow(), 'Debes ingresar una fecha igual o siguiente a la que corresponde el día de mañana.'),
+      .min(stringDateOfTomorrow(), 'Solo puedes ingresar una fecha desde mañana.'),
   });
 
   return (
@@ -156,7 +157,7 @@ function RegisterProjectForm() {
                     isMulti
                     id="tags"
                     name="tags"
-                    className="center-info-register-project"
+                    className="font-size-2"
                     type="text"
                     value={values.tags}
                     onBlur={handleBlur}
@@ -179,7 +180,6 @@ function RegisterProjectForm() {
                     <div className="validation-error-register-project">{errors.goalAmount}</div>
                   )}
                 </div>
-
                 <div className="label-form-register-project">
                   <label className="label-content-register-project" htmlFor="date">Tiempo límite: </label>
                   <Field className="center-info-register-project" name="date" type="date" placeholder="Cantidad de días desde hoy" />
@@ -194,7 +194,7 @@ function RegisterProjectForm() {
                   </div>
                 ) : (
                   <div>
-                    <p>Loading...</p>
+                    <Loading />
                   </div>
                 )}
               </Form>

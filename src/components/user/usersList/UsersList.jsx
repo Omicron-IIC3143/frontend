@@ -8,8 +8,10 @@ import AccordionItem from 'react-bootstrap/esm/AccordionItem';
 import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 import './UsersList.css';
 import { NavLink } from 'react-router-dom';
-import { ButtonUpdatingUser } from '../user/buttons/updateButton/UpdateButton';
-import { ButtonLookFinancesUser } from '../user/buttons/financeButton/financeButton';
+import { ButtonUpdatingUser } from '../buttons/updateButton/UpdateButton';
+import { ButtonLookFinancesUser } from '../buttons/financeButton/financeButton';
+import { ButtonPostulatedProjectsUser } from '../buttons/postulatedProjects/PostulatedProjects';
+import { ButtonFinancedProjectsUser } from '../buttons/financedProjects/FinancedProjects';
 
 function UsersList({ users, className }) {
   return (
@@ -38,14 +40,24 @@ function UsersList({ users, className }) {
                 {user.description}
               </li>
               <li className="accordion-body-list-rows">
-                Admin:
+                Administrador(a):
                 {' '}
-                {String(user.isAdmin)}
+                {user.isAdmin == true ? (
+                  <>
+                    Sí
+                  </>
+                ) : (
+                  <>
+                    No
+                  </>
+                )}
               </li>
               <br />
               <div className="display-flex-row">
                 <ButtonUpdatingUser id={user.id} />
                 <ButtonLookFinancesUser id={user.id} />
+                <ButtonPostulatedProjectsUser id={user.id} />
+                <ButtonFinancedProjectsUser id={user.id} />
               </div>
             </ul>
           </AccordionBody>

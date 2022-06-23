@@ -10,6 +10,8 @@ import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButto
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
 import { ButtonLookFinancesUser } from '../../../components/user/buttons/financeButton/financeButton';
+import { ButtonPostulatedProjectsUser } from '../../../components/user/buttons/postulatedProjects/PostulatedProjects';
+import { ButtonFinancedProjectsUser } from '../../../components/user/buttons/financedProjects/FinancedProjects';
 
 function ShowUser() {
   const { currentUser } = useAuth();
@@ -70,8 +72,10 @@ function ShowUser() {
             )}
             <div className="page-buttons width-80 margin-bottom-s">
               <ButtonBack />
-              <ButtonLookFinancesUser id={id} />
-              <ButtonUpdatingUser id={id} />
+              <ButtonFinancedProjectsUser id={user.id} />
+              <ButtonPostulatedProjectsUser id={user.id} />
+              <ButtonLookFinancesUser id={user.id} />
+              <ButtonUpdatingUser id={user.id} />
             </div>
           </div>
         </div>

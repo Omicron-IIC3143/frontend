@@ -16,7 +16,7 @@ function DepositForm({ money, setMoney }) {
   const validationSchema = Yup.object({
     money: Yup.number()
       .min(1, 'Elige un monto entre $1 y $1.000.000')
-      .max(10000000, 'Elige un monto entre $1 y $1.000.000'),
+      .max(1000000, 'Elige un monto entre $1 y $1.000.000'),
   });
 
   return (
@@ -57,8 +57,8 @@ function DepositForm({ money, setMoney }) {
         {({ errors, touched }) => (
           <Form>
             <div>
-              <label htmlFor="money" className="label-ingrese-monto">Ingrese el monto: </label>
-              <Field name="money" type="number" className="caja-para-ingesar-monto" placeholder="Monto a depositar" />
+              <label htmlFor="money" className="label-ingrese-monto">Ingrese monto a depositar: </label>
+              <Field name="money" type="number" className="caja-para-ingesar-monto" placeholder="CLP" />
               {errors.money && touched.money && (
               <div className="validation-error">{errors.money}</div>
               )}

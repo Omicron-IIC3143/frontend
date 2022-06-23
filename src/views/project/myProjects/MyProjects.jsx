@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
-import ProjectList from '../../../components/project/projectList/ProjectList';
+// import ProjectList from '../../../components/project/projectList/ProjectList';
 // import Searcher from '../../../components/project/projectList/searcher/Searcher';
 import Loading from '../../../components/loading/Loading';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import './MyProjects.css';
+import PendingList from '../../../components/project/myProjects/PendingList';
+import AcceptedList from '../../../components/project/myProjects/AcceptedProjects';
+import RejectedList from '../../../components/project/myProjects/RejectedProjects';
 
 function MyProjects() {
   const { currentUser } = useAuth();
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
+  const [pendingProjects, setPendingProjects] = useState([]);
+  const [acceptedProjects, setAcceptedProjects] = useState([]);
+  const [rejectedProjects, setRejectedProjects] = useState([]);
   // const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -33,13 +39,13 @@ function MyProjects() {
           return [];
         }
         const respuesta = await response.json();
-        setProjects(respuesta);
         return respuesta;
       })
-      // .then((data) => {
-      //   setProjects(data);
-      //   setFilterData(data);
-      // })
+      .then((data) => {
+        setPendingProjects(data.filter(({ currentState }) => currentState == 'pending'));
+        setAcceptedProjects(data.filter(({ currentState }) => currentState == 'accepted'));
+        setRejectedProjects(data.filter(({ currentState }) => currentState == 'rejected'));
+      })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
   }, []);
@@ -66,8 +72,11 @@ function MyProjects() {
             </>
           ) : (
             <h1 className="titleMyProjects title-color">
-              Proyectos del usuario de id
-              {` ${id}`}
+              Proyectos del
+              {' '}
+              <NavLink exact to={`/users/${id}`} activeClassName="activeClicked" className="user-link-color">
+                {`usuario de id ${id}`}
+              </NavLink>
             </h1>
           )}
 
@@ -86,24 +95,11 @@ function MyProjects() {
               )}
             </div>
           ) : (
-            projects.map((project) => (
-              // acá hay que poner (project?.currentState == 'approved') ? (
-              (project?.currentState == 'pending') ? (
-                <div className="width-80">
-                  <ProjectList
-                    id={project?.id}
-                    topic={project?.topic}
-                    title={project?.name}
-                    description={project?.description}
-                    date={project?.createdAt}
-                    company={project?.company}
-                  />
-                </div>
-              ) : (
-                <>
-                </>
-              )
-            ))
+            <>
+              <AcceptedList projects={acceptedProjects} />
+              <PendingList projects={pendingProjects} />
+              <RejectedList projects={rejectedProjects} />
+            </>
           )}
           <div className="page-buttons width-80 margin-bottom-s">
             <ButtonBack />
