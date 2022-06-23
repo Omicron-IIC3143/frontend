@@ -66,76 +66,82 @@ function ShowProject() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
+  if (currentUser?.isAdmin || (project.currentState != 'pending' && project.currentState != 'rejected') || currentUser?.id == project.userId) {
+    if (loading) { return (<Loading />); }
     return (
-      <Loading />
+      <div>
+        <div className="grid-container  ">
+          <div>
+            <Navbar />
+          </div>
+
+          <div className="page-wrapper">
+            <h1 className="titleProjectShow title-color width-50">
+              {`${project.name}`}
+            </h1>
+            {error ? (
+              <div className="width-50">
+                <h2>
+                  Error
+                  {error}
+                </h2>
+              </div>
+            ) : (
+              <>
+                <div className="display-flex-row width-50">
+                  <ProjectImage company={project?.company} image={project?.pictureUrl} />
+                  <Deadline date={project?.date} className="bg-dark-color" />
+                </div>
+                <ProjectDescription className="width-50" description={project?.description} />
+                <FinancingInformation
+                  className="width-50 bg-dark-color"
+                  currentFinancing={project?.currentAmount}
+                  goalFinancing={project?.goalAmount}
+                />
+                <DeleteProject project={project} />
+                <div className="page-buttons width-50 margin-bottom-s">
+                  <ButtonBack />
+                  <div className="page-interaction-buttons">
+                    {currentUser && currentUser.id != project.userId ? (
+                      <ButtonContacting
+                        visitUser={currentUser}
+                        project={project}
+                        projectUser={projectUser}
+                      />
+                    ) : (<> </>)}
+                    <ButtonSharing />
+                  </div>
+                </div>
+
+                {currentUser && currentUser.id != project?.userId
+                && numberOfDays(project?.date) > 0 ? (
+                  <div className="width-50">
+                    <div className="title-finance-project title-color">
+                      <h1>Acá puedes aportar al financiamiento del proyecto</h1>
+                    </div>
+                    <div>
+                      <FinanceForm
+                        currentAmount={currentAmount}
+                        setCurrentAmount={setCurrentAmount}
+                      />
+                    </div>
+                  </div>
+                  ) : (<> </>)}
+
+              </>
+            )}
+          </div>
+        </div>
+      </div>
     );
   }
 
   return (
-    <div>
-      <div className="grid-container  ">
-        <div>
-          <Navbar />
-        </div>
-
-        <div className="page-wrapper">
-          <h1 className="titleProjectShow title-color width-50">
-            {`${project.name}`}
-          </h1>
-          {error ? (
-            <div className="width-50">
-              <h2>
-                Error
-                {error}
-              </h2>
-            </div>
-          ) : (
-            <>
-              <div className="display-flex-row width-50">
-                <ProjectImage company={project?.company} image={project?.pictureUrl} />
-                <Deadline date={project?.date} className="bg-dark-color" />
-              </div>
-              <ProjectDescription className="width-50" description={project?.description} />
-              <FinancingInformation
-                className="width-50 bg-dark-color"
-                currentFinancing={project?.currentAmount}
-                goalFinancing={project?.goalAmount}
-              />
-              <DeleteProject project={project} />
-              <div className="page-buttons width-50 margin-bottom-s">
-                <ButtonBack />
-                <div className="page-interaction-buttons">
-                  {currentUser && currentUser.id != project.userId ? (
-                    <ButtonContacting
-                      visitUser={currentUser}
-                      project={project}
-                      projectUser={projectUser}
-                    />
-                  ) : (<> </>)}
-                  <ButtonSharing />
-                </div>
-              </div>
-
-              {currentUser && currentUser.id != project?.userId
-              && numberOfDays(project?.date) > 0 ? (
-                <div className="width-50">
-                  <div className="title-finance-project title-color">
-                    <h1>Acá puedes aportar al financiamiento del proyecto</h1>
-                  </div>
-                  <div>
-                    <FinanceForm
-                      currentAmount={currentAmount}
-                      setCurrentAmount={setCurrentAmount}
-                    />
-                  </div>
-                </div>
-                ) : (<> </>)}
-
-            </>
-          )}
-        </div>
+    <div className="grid-container">
+      <div>
+        <Navbar />
       </div>
+      <h1 className="unauthorizedMessageMyProjects">Este proyecto aún está en revisión o bien, fue rechazado. </h1>
     </div>
   );
 }
