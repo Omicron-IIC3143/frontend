@@ -16,6 +16,12 @@ import stringOfDate from '../../../hooks/stringOfDate';
 // import { ButtonFinancedProjectsUser } from '../buttons/financedProjects/FinancedProjects';
 
 function ReportsList({ reports, className, auth }) {
+  if (reports.length === 0) {
+    return (
+      <h1>Aún no hay reportes de este proyecto.</h1>
+    );
+  }
+  console.log(reports);
   return (
     <Accordion alwaysOpen className={className}>
       { reports.map((report, index) => (
@@ -38,7 +44,7 @@ function ReportsList({ reports, className, auth }) {
                 <div className="display-flex-row">
                   <DeleteReport report={report} />
                 </div>
-              ) : null}
+              ) : (<></>)}
             </ul>
           </AccordionBody>
         </AccordionItem>

@@ -260,6 +260,11 @@ function ShowProject() {
                 <div className="page-buttons width-50 margin-bottom-s">
                   <ButtonBack />
                   <div className="page-interaction-buttons">
+                    <ButtonReports
+                      id={project?.id}
+                      projectName={project?.name}
+                      userId={project?.userId}
+                    />
                     <ButtonSharing />
                   </div>
                 </div>
