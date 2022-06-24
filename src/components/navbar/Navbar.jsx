@@ -67,6 +67,9 @@ function Navbar() {
                 <NavLink exact to="/login" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
                   <CDBSidebarMenuItem icon="sign-out-alt">Cerrar sesión</CDBSidebarMenuItem>
                 </NavLink>
+                <NavLink exact to="/terms" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="book-reader">Términos y condiciones</CDBSidebarMenuItem>
+                </NavLink>
               </>
             ) : (
               <>
@@ -75,6 +78,9 @@ function Navbar() {
                 </NavLink>
                 <NavLink exact to="/register" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="file-signature">Registrarse</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/terms" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="book-reader">Términos y condiciones</CDBSidebarMenuItem>
                 </NavLink>
               </>
             )}

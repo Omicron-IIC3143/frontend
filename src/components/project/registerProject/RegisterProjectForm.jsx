@@ -10,7 +10,7 @@ import stringDateOfTomorrow from '../../../hooks/stringDateOfTomorrow';
 import './RegisterProjectForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import options from './SelectOptions';
-import Loading from '../../loading/Loading';
+
 
 /*
 Para ayudarse con alguna modificación del Select
@@ -192,9 +192,9 @@ function RegisterProjectForm() {
                     <ButtonBack />
                     <Button variant="primary" type="submit">Enviar postulación</Button>
                   </div>
-                ) : (
-                  <div>
-                    <Loading />
+              ) : (
+                <div>
+                  <p className="final-message-form-user">Postulando proyecto...</p>
                   </div>
                 )}
               </Form>

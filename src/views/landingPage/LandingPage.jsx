@@ -5,7 +5,6 @@ import Navbar from '../../components/navbar/Navbar';
 import ProjectList from '../../components/project/projectList/ProjectList';
 import Searcher from '../../components/project/projectList/searcher/Searcher';
 import Loading from '../../components/loading/Loading';
-import Footer from '../../components/footer/Footer';
 
 function LandingPage() {
   const { currentUser } = useAuth();
@@ -46,7 +45,7 @@ function LandingPage() {
       <div>
         <Navbar />
       </div>
-      <div className="page-wrapper">
+      <div className="page-wrapper ">
         <div className="width-80 center-content-x">
           <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
         </div>
@@ -79,7 +78,6 @@ function LandingPage() {
             ) : (<> </>)
           ))
         )}
-        <Footer />
       </div>
     </div>
   );
