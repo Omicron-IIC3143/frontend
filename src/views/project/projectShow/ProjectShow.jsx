@@ -115,7 +115,8 @@ function ShowProject() {
                   </div>
 
                   {currentUser.id != project?.userId
-                  && numberOfDays(project?.date) > 0 ? (
+                  && numberOfDays(project?.date) > 0
+                  && (project?.currentState == 'accepted') ? (
                     <div className="width-50">
                       <div className="title-finance-project title-color">
                         <h1>Acá puedes aportar al financiamiento del proyecto</h1>
@@ -188,18 +189,19 @@ function ShowProject() {
                 </div>
 
                 {currentUser.id != project?.userId
-                  && numberOfDays(project?.date) > 0 ? (
-                    <div className="width-50">
-                      <div className="title-finance-project title-color">
-                        <h1>Acá puedes aportar al financiamiento del proyecto</h1>
+                  && numberOfDays(project?.date) > 0
+                    && (project?.currentState == 'accepted') ? (
+                      <div className="width-50">
+                        <div className="title-finance-project title-color">
+                          <h1>Acá puedes aportar al financiamiento del proyecto</h1>
+                        </div>
+                        <div>
+                          <FinanceForm
+                            currentAmount={currentAmount}
+                            setCurrentAmount={setCurrentAmount}
+                          />
+                        </div>
                       </div>
-                      <div>
-                        <FinanceForm
-                          currentAmount={currentAmount}
-                          setCurrentAmount={setCurrentAmount}
-                        />
-                      </div>
-                    </div>
                   ) : (<> </>)}
 
               </>
