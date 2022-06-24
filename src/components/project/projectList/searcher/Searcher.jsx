@@ -11,7 +11,7 @@ import options from '../../registerProject/SelectOptions';
 // const { Search } = Input;
 
 function Searcher(data) {
-  const { projects, setFilterData } = data;
+  const { projects, setFilterData, className } = data;
 
   const validationSchema = Yup.object({
     tags: Yup.array()
@@ -61,7 +61,7 @@ function Searcher(data) {
         } = kwargs;
         return (
 
-          <Form onSubmit={handleSubmit}>
+          <Form className={className} onSubmit={handleSubmit}>
             <div className="label-form-register-project">
               <label className="label-content-searcher" htmlFor="tags">Filtra por tag: </label>
               <Select
@@ -85,7 +85,7 @@ function Searcher(data) {
               )}
             </div>
             <div className="label-form-register-project">
-              <Button variant="primary" className="button-search" type="submit">Buscar</Button>
+              <Button variant="primary" className="button-search" type="submit">Filtrar</Button>
             </div>
           </Form>
 
