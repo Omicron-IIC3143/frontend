@@ -45,6 +45,9 @@ function UpdateProject() {
 
   return (
     <div>
+      {loading ? (
+        <Loading />
+      ) : <> </>}
       <div className="grid-container  ">
         {!loading ? (
           <>
@@ -56,7 +59,7 @@ function UpdateProject() {
               <UpdateProjectForm project={project} />
             </div>
           </>
-        ) : (<Loading />)}
+        ) : <> </>}
 
         { error ? (
           <>
