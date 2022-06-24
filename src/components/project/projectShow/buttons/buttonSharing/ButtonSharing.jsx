@@ -5,7 +5,7 @@ import './ButtonSharing.css';
 
 function copyUrlToClipboard() {
   const shareMessage = `Buenas, quería que conocieras este proyecto muy interesante.\nPuedes verlo en ${window.location.href}`;
-  navigator.clipboard.writeText(shareMessage);
+  navigator.clipboard?.writeText(shareMessage);
   alert('link del proyecto copiado!');
 }
 
