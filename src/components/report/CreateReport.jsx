@@ -33,98 +33,100 @@ function CreateReport({ id }) {
   });
 
   return (
-    <div className="form center-content-x width-100">
-      <Formik
-        enableReinitialize
-        initialValues={{
-          title: '',
-          description: '',
-          pictureUrl: '',
-        }}
-        validationSchema={validationSchema}
-        onSubmit={async (values) => {
-          const newValues = {
-            ...values,
-            projectId: id,
-          };
-          setLoading(true);
-          const requestOptions = {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${currentUser?.token}`,
-              // 'Access-Control-Allow-Origin': `${window.location.hostname}`,
-              // 'Sec-Fetch-Mode': 'no-cors',
-              'Sec-Fetch-Mode': 'cors',
-            },
-            body: JSON.stringify(newValues),
-          };
-          try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/reports/new`, requestOptions); // OJO AQUI FALTA SETEAR ESTO
-            if (!response.ok) {
-              const error = await response.text();
-              throw new Error(error);
+    <>
+      <h4 className="title-creation-report">Crea un reporte</h4>
+      <div className="form center-content-x width-100">
+        <Formik
+          enableReinitialize
+          initialValues={{
+            title: '',
+            description: '',
+            pictureUrl: '',
+          }}
+          validationSchema={validationSchema}
+          onSubmit={async (values) => {
+            const newValues = {
+              ...values,
+              projectId: id,
+            };
+            setLoading(true);
+            const requestOptions = {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${currentUser?.token}`,
+                // 'Access-Control-Allow-Origin': `${window.location.hostname}`,
+                // 'Sec-Fetch-Mode': 'no-cors',
+                'Sec-Fetch-Mode': 'cors',
+              },
+              body: JSON.stringify(newValues),
+            };
+            try {
+              const response = await fetch(`${process.env.REACT_APP_API_URL}/reports/new`, requestOptions); // OJO AQUI FALTA SETEAR ESTO
+              if (!response.ok) {
+                const error = await response.text();
+                throw new Error(error);
+              }
+              setMessage('Reporte creado correctamente.');
+              alert('Reporte creado correctamente.');
+              // navigate(`/projects/${id}/reports`, { state: { projectName, userId } });
+              window.location.reload();
+            } catch (error) {
+              setMessage(error.message);
+            } finally {
+              setLoading(false);
             }
-            setMessage('Reporte creado correctamente.');
-            alert('Reporte creado correctamente.');
-            // navigate(`/projects/${id}/reports`, { state: { projectName, userId } });
-            window.location.reload();
-          } catch (error) {
-            setMessage(error.message);
-          } finally {
-            setLoading(false);
-          }
-        }}
-
-      >
-        {(kwargs) => {
-          const {
-            errors,
-            touched,
-            handleSubmit,
-          } = kwargs;
-          return (
-            <div className="card-report-form width-80 margin-bottom-m">
-              <Form onSubmit={handleSubmit}>
-                <div className="label-form-report">
-                  <label className="label-content-report" htmlFor="title">Nombre del reporte: </label>
-                  <Field className="center-info-report" name="title" type="text" placeholder="Título del reporte" />
-                  {errors.title && touched.title && (
+          }}
+        >
+          {(kwargs) => {
+            const {
+              errors,
+              touched,
+              handleSubmit,
+            } = kwargs;
+            return (
+              <div className="card-report-form width-80 margin-bottom-m">
+                <Form onSubmit={handleSubmit}>
+                  <div className="label-form-report">
+                    <label className="label-content-report" htmlFor="title">Título del reporte: </label>
+                    <Field className="center-info-report" name="title" type="text" placeholder="Título del reporte" />
+                    {errors.title && touched.title && (
                     <div className="validation-error-report">{errors.title}</div>
-                  )}
-                </div>
+                    )}
+                  </div>
 
-                <div className="label-form-report">
-                  <label className="label-content-report-description" htmlFor="description">Descripción: </label>
-                  <Field className="center-info-report-description" as="textarea" name="description" type="text" placeholder="Describe tu reporte" />
-                  {errors.description && touched.description && (
+                  <div className="label-form-report">
+                    <label className="label-content-report-description" htmlFor="description">Descripción: </label>
+                    <Field className="center-info-report-description" as="textarea" name="description" type="text" placeholder="Describe tu reporte" />
+                    {errors.description && touched.description && (
                     <div className="validation-error-report">{errors.description}</div>
-                  )}
-                </div>
+                    )}
+                  </div>
 
-                <div className="label-form-report">
-                  <label className="label-content-report" htmlFor="pictureUrl">Imagen: </label>
-                  <Field className="center-info-report" name="pictureUrl" type="url" placeholder="URL de imagen asociada al reporte" />
-                  {errors.pictureUrl && touched.pictureUrl && (
+                  <div className="label-form-report">
+                    <label className="label-content-report" htmlFor="pictureUrl">Imagen: </label>
+                    <Field className="center-info-report" name="pictureUrl" type="url" placeholder="URL de imagen asociada al reporte" />
+                    {errors.pictureUrl && touched.pictureUrl && (
                     <div className="validation-error-report">{errors.pictureUrl}</div>
-                  )}
-                </div>
+                    )}
+                  </div>
 
-                {!loading ? (
-                  <div className="label-form-report button-submit-report page-buttons margin-bottom-s">
-                    <Button variant="primary" type="submit">Publicar reporte</Button>
-                  </div>
-                ) : (
-                  <div>
-                    <p className="final-message-form-report">Publicando reporte...</p>
-                  </div>
-                )}
-              </Form>
-            </div>
-          );
-        }}
-      </Formik>
-    </div>
+                  {!loading ? (
+                    <div className="label-form-report button-submit-report page-buttons margin-bottom-s">
+                      <Button variant="primary" type="submit">Publicar reporte</Button>
+                    </div>
+                  ) : (
+                    <div>
+                      <p className="final-message-form-report">Publicando reporte...</p>
+                    </div>
+                  )}
+                </Form>
+              </div>
+            );
+          }}
+        </Formik>
+      </div>
+    </>
   );
 }
 

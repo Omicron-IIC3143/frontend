@@ -92,7 +92,7 @@ function ShowProject() {
                 <>
                   <div className="display-flex-row width-50">
                     <ProjectImage company={project?.company} image={project?.pictureUrl} />
-                    <Deadline date={project?.date} className="bg-dark-color" />
+                    <Deadline date={project?.date} state={project?.currentState} className="bg-dark-color" />
                   </div>
                   <ProjectDescription className="width-50" description={project?.description} />
                   <FinancingInformation
@@ -249,7 +249,7 @@ function ShowProject() {
               <>
                 <div className="display-flex-row width-50">
                   <ProjectImage company={project?.company} image={project?.pictureUrl} />
-                  <Deadline date={project?.date} className="bg-dark-color" />
+                  <Deadline date={project?.date} state={project?.currentState} className="bg-dark-color" />
                 </div>
                 <ProjectDescription className="width-50" description={project?.description} />
                 <FinancingInformation

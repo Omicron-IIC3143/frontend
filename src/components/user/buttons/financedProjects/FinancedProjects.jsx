@@ -7,7 +7,7 @@ function ButtonFinancedProjectsUser({ id }) {
 
   return (
     <Button variant="primary" onClick={() => navigate(`/users/${id}/funded`, { state: { id } })}>
-      Proyectos financiados
+      Financiamientos
     </Button>
   );
 }

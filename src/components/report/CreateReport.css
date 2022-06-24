@@ -16,6 +16,12 @@
     font-size: 3vh; 
 }
 
+.title-creation-report{
+    margin-top: 5vh;
+    width: 80%;
+    color: darkblue;
+}
+
 .label-content-report {
     margin-right: 4vh;
 }
@@ -26,7 +32,7 @@
 }
 
 
-.center-info-register-project {
+.center-info-report {
     font-size: 2vh;
     border-style: solid;
     padding-left: 1vh;

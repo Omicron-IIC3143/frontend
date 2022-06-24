@@ -21,7 +21,6 @@ function ReportsList({ reports, className, auth }) {
       <h1>Aún no hay reportes de este proyecto.</h1>
     );
   }
-  console.log(reports);
   return (
     <Accordion alwaysOpen className={className}>
       { reports.map((report, index) => (
