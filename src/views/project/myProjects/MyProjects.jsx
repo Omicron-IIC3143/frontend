@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
-import ProjectList from '../../../components/project/projectList/ProjectList';
+// import ProjectList from '../../../components/project/projectList/ProjectList';
 // import Searcher from '../../../components/project/projectList/searcher/Searcher';
 import Loading from '../../../components/loading/Loading';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import './MyProjects.css';
+import PendingList from '../../../components/project/myProjects/PendingList';
+import AcceptedList from '../../../components/project/myProjects/AcceptedProjects';
+import RejectedList from '../../../components/project/myProjects/RejectedProjects';
 
 function MyProjects() {
   const { currentUser } = useAuth();
-  const [projects, setProjects] = useState([]);
+  // const [projects, setProjects] = useState([]);
+  const [pendingProjects, setPendingProjects] = useState([]);
+  const [acceptedProjects, setAcceptedProjects] = useState([]);
+  const [rejectedProjects, setRejectedProjects] = useState([]);
   // const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -33,51 +39,49 @@ function MyProjects() {
           return [];
         }
         const respuesta = await response.json();
-        setProjects(respuesta);
         return respuesta;
       })
-      // .then((data) => {
-      //   setProjects(data);
-      //   setFilterData(data);
-      // })
+      .then((data) => {
+        setPendingProjects(data.filter(({ currentState }) => currentState == 'pending'));
+        setAcceptedProjects(data.filter(({ currentState }) => currentState == 'accepted'));
+        setRejectedProjects(data.filter(({ currentState }) => currentState == 'rejected'));
+      })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
   }, []);
 
-  if (currentUser?.isAdmin == true) {
-    if (loading) {
-      return (
-        <Loading />
-      );
-    } return (
-      <div className="grid-container-my-proj">
+  if (currentUser?.isAdmin || currentUser?.id == id) {
+    if (loading) { return (<Loading />); }
+    return (
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
-        <div className="flex-my-projects">
+        <div className="page-wrapper">
           {/* <div className="flex-inside-searcher-my-proj">
             <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
           </div> */}
           {currentUser?.id == id ? (
-            <div>
-              <h1 className="titleMyProjects">
+            <>
+              <h1 className="titleMyProjects title-color">
                 Mis proyectos
               </h1>
-              <div className="flex-inside-button-postulate-my-proj">
+              <div className="width-80 center-content-x">
                 <ButtonPostulate />
               </div>
-            </div>
+            </>
           ) : (
-            <div>
-              <h1 className="titleMyProjects">
-                Proyectos del usuario de id
-                {` ${id}`}
-              </h1>
-            </div>
+            <h1 className="titleMyProjects title-color">
+              Proyectos del
+              {' '}
+              <NavLink exact to={`/users/${id}`} activeClassName="activeClicked" className="user-link-color">
+                {`usuario de id ${id}`}
+              </NavLink>
+            </h1>
           )}
-          ;
+
           {error ? (
-            <div className="flex-inside-my-projects">
+            <div className="width-80">
               {currentUser?.id == id ? (
                 <h4>
                   No has postulado proyectos aún.
@@ -91,81 +95,13 @@ function MyProjects() {
               )}
             </div>
           ) : (
-            projects.map((project) => (
-              // acá hay que poner (project?.currentState == 'approved') ? (
-              (project?.currentState == 'pending') ? (
-                <div className="flex-inside-my-projects">
-                  <ProjectList
-                    id={project?.id}
-                    topic={project?.topic}
-                    title={project?.name}
-                    description={project?.description}
-                    date={project?.createdAt}
-                    company={project?.company}
-                  />
-                </div>
-              ) : (
-                <>
-                </>
-              )
-            ))
+            <>
+              <AcceptedList projects={acceptedProjects} />
+              <PendingList projects={pendingProjects} />
+              <RejectedList projects={rejectedProjects} />
+            </>
           )}
-          <div>
-            <ButtonBack />
-          </div>
-        </div>
-      </div>
-    );
-  } if (currentUser?.id == id) {
-    if (loading) {
-      return (
-        <Loading />
-      );
-    } return (
-      <div className="grid-container-my-proj">
-        <div>
-          <Navbar />
-        </div>
-        <div className="flex-my-projects">
-          {/* <div className="flex-inside-searcher-my-proj">
-            <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
-          </div> */}
-          <div>
-            <h1 className="titleMyProjects">
-              Mis proyectos
-            </h1>
-          </div>
-          <div className="flex-inside-button-postulate-my-proj">
-            <ButtonPostulate />
-          </div>
-          {error ? (
-            <div className="flex-inside-my-projects">
-              <h4>
-                No has postulado proyectos aún.
-                {error.errors}
-              </h4>
-            </div>
-          ) : (
-            projects.map((project) => (
-              // acá hay que poner (project?.currentState == 'approved') ? (
-              (project?.currentState == 'pending') ? (
-                <div className="flex-inside-my-projects">
-                  <ProjectList
-                    id={project?.id}
-                    topic={project?.topic}
-                    title={project?.name}
-                    description={project?.description}
-                    date={project?.createdAt}
-                    company={project?.company}
-                  />
-                </div>
-              ) : (
-                <>
-                </>
-              )
-            ))
-          )}
-          <div>
+          <div className="page-buttons width-80 margin-bottom-s">
             <ButtonBack />
           </div>
         </div>

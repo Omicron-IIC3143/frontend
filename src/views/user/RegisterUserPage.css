@@ -1,11 +1,3 @@
-
-.grid-container-register-user {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #2196F3;
-    overflow-y: auto;
-}
-
 .flex-register-user {
     flex-direction: column;
     padding-left: 5vw;
@@ -15,12 +7,8 @@
 }
 
 .title-register-new-user {
-    padding-bottom: 2vh;
-    padding-top: 5vh;
     text-align: left;
     color: darkblue;
-    margin-left: 5vh;
-    margin-bottom: 1vh;
     font-size: 3vw;
     width:80%;
 }
@@ -28,12 +16,10 @@
 .final-message-form-user {
     white-space: pre-line;
     font-size: 2.5vh;
-    margin-left: 4vh;
     color: darkblue;
 }
 
 .text-register-new-user {
     font-size: 2vh;
-    margin-left: 5vh;
     width: 80%;
 }

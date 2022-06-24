@@ -13,3 +13,11 @@
   display: flex;
   width: 100%;
 }
+
+.accordion-body-list-rows::before {
+  content: '→ ';
+}
+
+.accordion-body-list {
+  list-style: none;
+}

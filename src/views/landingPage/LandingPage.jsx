@@ -1,9 +1,9 @@
+import './LandingPage.css';
 import React, { useState, useEffect } from 'react';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
 import ProjectList from '../../components/project/projectList/ProjectList';
 import Searcher from '../../components/project/projectList/searcher/Searcher';
-import './LandingPage.css';
 import Loading from '../../components/loading/Loading';
 
 function LandingPage() {
@@ -38,36 +38,34 @@ function LandingPage() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return (
-      <Loading />
-    );
-  } return (
-    <div className="grid-container-landing">
+  if (loading) { return (<Loading />); }
+
+  return (
+    <div className="grid-container  ">
       <div>
         <Navbar />
       </div>
-      <div className="flex-landing-page">
-        <div className="flex-inside-searcher">
+      <div className="page-wrapper ">
+        <div className="width-80 center-content-x">
           <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
         </div>
-        <div>
-          <h1 className="titleLandingPage">
+        <div className="width-80">
+          <h1 className="title-landing-page title-color">
             Proyectos en la aplicación
           </h1>
         </div>
         {error ? (
-          <div className="flex-inside-landing">
-            <h2>
-              Error
+          <div className="width-80">
+            <h2 className="title-color">
+              Error:
               {error.errors}
             </h2>
           </div>
         ) : (
           filterData.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
-            (project?.currentState == 'pending') ? (
-              <div className="flex-inside-landing">
+            (project?.currentState == 'accepted') ? (
+              <div className="width-80">
                 <ProjectList
                   id={project?.id}
                   topic={project?.topic}
@@ -77,10 +75,7 @@ function LandingPage() {
                   company={project?.company}
                 />
               </div>
-            ) : (
-              <>
-              </>
-            )
+            ) : (<> </>)
           ))
         )}
       </div>

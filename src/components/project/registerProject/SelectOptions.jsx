@@ -1,6 +1,3 @@
-import React from 'react';
-import Select from 'react-select';
-
 const options = [
   { value: 'agricola', label: 'Agrícola' },
   { value: 'alimento', label: 'Alimento' },
@@ -53,8 +50,4 @@ const options = [
   { value: 'vivienda', label: 'Vivienda' },
 ];
 
-function SelectComponent() {
-  return <Select className="center-info-multiple-select-tags" options={options} isMulti placeholder="Seleccione tags relacionados" />;
-}
-
-export default SelectComponent;
+export default options;

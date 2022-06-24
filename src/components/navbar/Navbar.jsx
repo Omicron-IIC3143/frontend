@@ -10,15 +10,16 @@ import {
 import { NavLink } from 'react-router-dom';
 import image from './user_image.jpeg';
 import useAuth from '../../hooks/useAuth';
+import './Navbar.css';
 
 function Navbar() {
   const { currentUser, handleUserLogout } = useAuth();
 
   return (
-    <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
+    <div className="navbar-wrapper">
       <CDBSidebar textColor="#fff" backgroundColor="#333">
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large" />}>
-          <img src={currentUser?.pictureUrl ? (currentUser.pictureUrl) : (image)} alt="user profile" width="20" height="20" />
+          <img className="img-user-profile" src={currentUser?.pictureUrl ? (currentUser.pictureUrl) : (image)} alt="user profile" width="100" />
         </CDBSidebarHeader>
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
@@ -26,9 +27,14 @@ function Navbar() {
               <CDBSidebarMenuItem icon="home">Página principal</CDBSidebarMenuItem>
             </NavLink>
             { currentUser?.isAdmin ? (
-              <NavLink exact to="/users" activeClassName="activeClicked">
-                <CDBSidebarMenuItem icon="users">Lista de Usuarios</CDBSidebarMenuItem>
-              </NavLink>
+              <>
+                <NavLink exact to="/projects/pendings" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="clock">Proyectos pendientes</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/users" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="users">Lista de Usuarios</CDBSidebarMenuItem>
+                </NavLink>
+              </>
             ) : (<div> </div>)}
 
             {currentUser ? (
@@ -36,11 +42,14 @@ function Navbar() {
                 <NavLink exact to={`/users/${currentUser.id}/projects`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="list-alt">Mis proyectos</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/tables" activeClassName="activeClicked">
+                <NavLink exact to={`/users/${currentUser.id}/funded`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="hand-holding-usd">Proyectos financiados</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to={`/users/${currentUser.id}/financialinfo`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="chart-line">Información financiera</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/projectregister" activeClassName="activeClicked" id="postular">
+                  <CDBSidebarMenuItem icon="plus">Postular Proyecto</CDBSidebarMenuItem>
                 </NavLink>
               </>
             // eslint-disable-next-line react/jsx-no-useless-fragment
@@ -55,8 +64,11 @@ function Navbar() {
                 <NavLink exact to={`/users/${currentUser.id}`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="user-circle">Mi perfil</CDBSidebarMenuItem>
                 </NavLink>
-                <NavLink exact to="/" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
+                <NavLink exact to="/login" activeClassName="activeClicked" onClick={() => { handleUserLogout(); }}>
                   <CDBSidebarMenuItem icon="sign-out-alt">Cerrar sesión</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/terms" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="book-reader">Términos y condiciones</CDBSidebarMenuItem>
                 </NavLink>
               </>
             ) : (
@@ -66,6 +78,9 @@ function Navbar() {
                 </NavLink>
                 <NavLink exact to="/register" activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="file-signature">Registrarse</CDBSidebarMenuItem>
+                </NavLink>
+                <NavLink exact to="/terms" activeClassName="activeClicked">
+                  <CDBSidebarMenuItem icon="book-reader">Términos y condiciones</CDBSidebarMenuItem>
                 </NavLink>
               </>
             )}

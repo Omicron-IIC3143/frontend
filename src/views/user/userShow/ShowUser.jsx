@@ -6,9 +6,12 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
 import { UserShow } from '../../../components/user/userShow/UserShow';
-import ButtonUpdatingUser from '../../../components/user/buttons/updateButton/UpdateButton';
+import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
+import { ButtonLookFinancesUser } from '../../../components/user/buttons/financeButton/financeButton';
+import { ButtonPostulatedProjectsUser } from '../../../components/user/buttons/postulatedProjects/PostulatedProjects';
+import { ButtonFinancedProjectsUser } from '../../../components/user/buttons/financedProjects/FinancedProjects';
 
 function ShowUser() {
   const { currentUser } = useAuth();
@@ -37,26 +40,23 @@ function ShowUser() {
         setUser(respuesta);
         return respuesta;
       })
-      .catch(() => {
-        setError(true);
-      })
+      .catch(() => { setError(true); })
       .finally(() => setLoading(false));
   }, []);
 
   if (currentUser?.id == id || currentUser?.isAdmin) {
-    if (loading) {
-      return <Loading />;
-    }
+    if (loading) { return (<Loading />); }
     return (
       <div>
-        <div className="grid-container-show-user">
+        <div className="grid-container  ">
           <div>
             <Navbar />
           </div>
-          <div className="flex-show-user">
+          <div className="page-wrapper">
             {error ? (
               <h3>
                 ERROR:
+                {' '}
                 {error.errors}
               </h3>
             ) : (
@@ -67,15 +67,16 @@ function ShowUser() {
                 money={user?.money}
                 email={user?.email}
                 pictureURL={user?.pictureUrl}
-                editorIsOtherUser={
-                                    currentUser?.isAdmin
-                                    && id != currentUser?.id
-                                }
+                editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
             )}
-            <br />
-            <ButtonUpdatingUser id={id} />
-            <ButtonBack />
+            <div className="page-buttons width-80 margin-bottom-s">
+              <ButtonBack />
+              <ButtonFinancedProjectsUser id={user.id} />
+              <ButtonPostulatedProjectsUser id={user.id} />
+              <ButtonLookFinancesUser id={user.id} />
+              <ButtonUpdatingUser id={user.id} />
+            </div>
           </div>
         </div>
       </div>
@@ -83,24 +84,19 @@ function ShowUser() {
   }
   return (
     <div>
-      <div className="grid-container-show-user">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
         <div>
-          {currentUser ? (
-            <h1 className="unauthorizedMessageFinancialInfo">
-              No estás autorizado para ver el perfil de otro
-              usuario.
-              {' '}
-            </h1>
+          { currentUser ? (
+            <h1 className="unauthorizedMessageFinancialInfo">No estás autorizado para ver el perfil de otro usuario. </h1>
           ) : (
-            <h1 className="unauthorizedMessageFinancialInfo">
-              Inicia sesión para ver el perfil de tu usuario.
-              {' '}
-            </h1>
+            <h1 className="unauthorizedMessageFinancialInfo">Inicia sesión para ver el perfil de tu usuario. </h1>
           )}
-          <ButtonBack />
+          <div className="page-buttons width-80 margin-bottom-s">
+            <ButtonBack />
+          </div>
         </div>
       </div>
     </div>

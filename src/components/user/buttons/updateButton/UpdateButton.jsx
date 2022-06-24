@@ -1,17 +1,12 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
-import '../../userShow/UserShow.css';
 
-function ButtonUpdatingUser({ id }) {
+export function ButtonUpdatingUser({ id }) {
   const navigate = useNavigate();
 
   return (
-    <Button
-      variant="primary"
-      onClick={() => navigate('/user/update', { state: { id } })}
-      className="update-button"
-    >
+    <Button variant="primary" onClick={() => navigate('/user/update', { state: { id } })} className="update-button">
       Modificar/Eliminar cuenta
     </Button>
   );
