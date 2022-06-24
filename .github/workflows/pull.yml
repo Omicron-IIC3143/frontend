@@ -18,15 +18,6 @@ jobs:
       
       - name: npm Install
         run: npm install
-        
-      #- name: Create env file
-      #  run: |
-      #    touch .env
-      #    echo REACT_APP_API_URL="http://social-starter-dev.herokuapp.com" >> .env
-      #    cat .env
-          
-      #- name: npm Start
-      #  run: npm start
       
       - name: Run linters
         uses: wearerequired/lint-action@v2
@@ -34,29 +25,7 @@ jobs:
           eslint: true
           eslint_extensions: js,jsx
           continue_on_error: false
-      #    prettier: true
-          
-      # Source: https://dev.to/jnybgr/how-to-visualize-eslint-errors-on-github-3f8p
-      #- name: Exec Linter Eslint
-      #  run: npm run lint --output-file eslint_report.json --format json src
-        
-      #- name: Annotate Code Linting Results
-      #  uses: ataylorme/eslint-annotate-action@1.0.4
-      #  if: always()
-      #  with:
-      #    repo-token: '${{ secrets.GITHUB_TOKEN }}'
-      #    report-json: 'eslint_report.json'
 
+      - name: Test
+        run: npm test
 
-        
-      
-        
-
-      #- name: Build instance
-      #  run:  docker-compose -f docker-compose.yml build
-        
-      #- name: Run Linter
-      #  run: docker-compose -f docker-compose.yml run --rm web npx eslint ./
-        
-      #- name: Tear down the Stack
-      #  run:  docker-compose -f docker-compose.yml down
