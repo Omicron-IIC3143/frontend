@@ -12,7 +12,7 @@ import './FinancialInformation.css';
 function FinancialInformation() {
   const { currentUser } = useAuth();
   const { id } = useParams();
-  // const [user, setUser] = useState([]);
+  const [user, setUser] = useState([]);
   const [money, setMoney] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -35,6 +35,7 @@ function FinancialInformation() {
         const respuesta = await response.json();
         // setUser(respuesta);
         setMoney(respuesta.money);
+        setUser(respuesta);
         return respuesta;
       })
       .catch(() => { setError(true); })
@@ -59,9 +60,9 @@ function FinancialInformation() {
                     </h3>
                   ) : (
                     <h3 className="title-financial-info">
-                      Saldo actual del usuario con id
+                      Saldo actual de
                       {' '}
-                      {` ${id}`}
+                      {` ${user.name}`}
                     </h3>
                   )}
                   {currentUser?.id == id ? (

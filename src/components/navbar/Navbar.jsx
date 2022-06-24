@@ -43,7 +43,7 @@ function Navbar() {
                   <CDBSidebarMenuItem icon="list-alt">Mis proyectos</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to={`/users/${currentUser.id}/funded`} activeClassName="activeClicked">
-                  <CDBSidebarMenuItem icon="hand-holding-usd">Proyectos financiados</CDBSidebarMenuItem>
+                  <CDBSidebarMenuItem icon="hand-holding-usd">Mis financiamientos</CDBSidebarMenuItem>
                 </NavLink>
                 <NavLink exact to={`/users/${currentUser.id}/financialinfo`} activeClassName="activeClicked">
                   <CDBSidebarMenuItem icon="chart-line">Información financiera</CDBSidebarMenuItem>

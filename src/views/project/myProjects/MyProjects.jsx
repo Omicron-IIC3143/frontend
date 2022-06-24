@@ -75,7 +75,7 @@ function MyProjects() {
               Proyectos del
               {' '}
               <NavLink exact to={`/users/${id}`} activeClassName="activeClicked" className="user-link-color">
-                {`usuario de id ${id}`}
+                usuario
               </NavLink>
             </h1>
           )}
