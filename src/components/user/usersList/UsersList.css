@@ -16,6 +16,7 @@
 
 .accordion-body-list-rows {
   white-space: pre-wrap;
+  overflow: scroll;
 }
 .accordion-body-list-rows::before {
   content: '→ ';
