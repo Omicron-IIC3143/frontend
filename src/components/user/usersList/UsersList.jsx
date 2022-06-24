@@ -14,9 +14,10 @@ import { ButtonPostulatedProjectsUser } from '../buttons/postulatedProjects/Post
 import { ButtonFinancedProjectsUser } from '../buttons/financedProjects/FinancedProjects';
 
 function UsersList({ users, className }) {
+  const filteredUsers = users.filter((user) => !(user.email == 'deleted@uc.cl')).sort((a, b) => a.id - b.id);
   return (
     <Accordion alwaysOpen className={className}>
-      { users.map((user, index) => (
+      { filteredUsers.map((user, index) => (
         <AccordionItem eventKey={index}>
           <AccordionHeader className="header-accordion-user">{`${user.name} (${user.email})`}</AccordionHeader>
           <AccordionBody className="accordion-body body-accordion-user">
