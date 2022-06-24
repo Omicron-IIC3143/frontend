@@ -47,4 +47,3 @@ test('Renders Deadline title - state = rejected', () => {
     'Estado del proyecto: Rechazado',
   );
 });
-
