@@ -46,13 +46,13 @@ function LandingPage() {
         <Navbar />
       </div>
       <div className="page-wrapper ">
-        <div className="width-80 center-content-x">
-          <Searcher projects={projects} filterData={filterData} setFilterData={setFilterData} />
-        </div>
         <div className="width-80">
           <h1 className="title-landing-page title-color">
             Proyectos en la aplicación
           </h1>
+        </div>
+        <div className="width-80 center-content-x">
+          <Searcher projects={projects} setFilterData={setFilterData} className="width-100" />
         </div>
         {error ? (
           <div className="width-80">
