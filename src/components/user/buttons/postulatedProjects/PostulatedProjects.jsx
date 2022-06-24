@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 
-export function ButtonPostulatedProjectsUser({ id }) {
+function ButtonPostulatedProjectsUser({ id }) {
   const navigate = useNavigate();
 
   return (

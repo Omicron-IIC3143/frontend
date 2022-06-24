@@ -5,13 +5,13 @@ import { useParams } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
-import { UserShow } from '../../../components/user/userShow/UserShow';
-import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
+import UserShow from '../../../components/user/userShow/UserShow';
+import ButtonUpdatingUser from '../../../components/user/buttons/updateButton/UpdateButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
-import { ButtonLookFinancesUser } from '../../../components/user/buttons/financeButton/financeButton';
-import { ButtonPostulatedProjectsUser } from '../../../components/user/buttons/postulatedProjects/PostulatedProjects';
-import { ButtonFinancedProjectsUser } from '../../../components/user/buttons/financedProjects/FinancedProjects';
+import ButtonLookFinancesUser from '../../../components/user/buttons/financeButton/FinanceButton';
+import ButtonPostulatedProjectsUser from '../../../components/user/buttons/postulatedProjects/PostulatedProjects';
+import ButtonFinancedProjectsUser from '../../../components/user/buttons/financedProjects/FinancedProjects';
 
 function ShowUser() {
   const { currentUser } = useAuth();

@@ -2,7 +2,7 @@ import React from 'react';
 import './UserShow.css';
 import image from '../../navbar/user_image.jpeg';
 
-export function UserShow({
+function UserShow({
   name, rut, description, email, editorIsOtherUser, pictureURL,
 }) {
   return (

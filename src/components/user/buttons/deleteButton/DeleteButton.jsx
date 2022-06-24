@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import '../../userShow/UserShow.css';
 
-export function DeleteButton() {
+function DeleteButton() {
   const printHelloWorld = () => {
     // setData("Data is set");
     // console.log('HOLA MUNDO');
