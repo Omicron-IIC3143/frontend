@@ -75,8 +75,8 @@ const Login = function Login() {
 
               <div className="label-form-login">
                 <p className="control has-icons-left">
-                  <span className="icon is-small is-left icon-width">
-                    <i className="fas fa-lock" />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock icon-width" />
                   </span>
                   <input className="label-content" type="password" name="password" id="password" placeholder="Contraseña" value={values.password} onChange={handleChange} />
                 </p>
