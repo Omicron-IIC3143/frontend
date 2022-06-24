@@ -23,3 +23,28 @@ test('Renders Deadline title - numberOfDaysDeadlineDate < 0', () => {
     'El proyecto ya ha llegado a su tiempo límite de financiamiento.',
   );
 });
+test('Renders Deadline title - state = pending', () => {
+  const delay = new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000);
+  const currentState = 'pending';
+  const { getByText } = render(<Deadline date={delay} state={currentState} />);
+  getByText(
+    'Estado del proyecto: Pendiente',
+  );
+});
+test('Renders Deadline title - state = accepted', () => {
+  const delay = new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000);
+  const currentState = 'accepted';
+  const { getByText } = render(<Deadline date={delay} state={currentState} />);
+  getByText(
+    'Estado del proyecto: Aprobado',
+  );
+});
+test('Renders Deadline title - state = rejected', () => {
+  const delay = new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000);
+  const currentState = 'rejected';
+  const { getByText } = render(<Deadline date={delay} state={currentState} />);
+  getByText(
+    'Estado del proyecto: Rechazado',
+  );
+});
+
