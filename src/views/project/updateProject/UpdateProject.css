@@ -1,0 +1,12 @@
+.flex-register-project {
+    flex-direction: column;
+    margin-top: 5vh;
+    margin-left: 10vw;
+    margin-right: 15vw;
+}
+
+.title-register-new-project {
+    text-align: left;
+    color: darkblue;
+    font-size: 3vw;
+}
