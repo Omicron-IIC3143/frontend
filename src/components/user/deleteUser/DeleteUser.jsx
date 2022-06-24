@@ -7,10 +7,20 @@ import useAuth from '../../../hooks/useAuth';
 
 function DeleteUser({ userId }) {
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [message, setMessage] = useState('');
+  const [eliminate, setEliminate] = useState(false);
   const { currentUser, handleUserLogout } = useAuth();
   const navigate = useNavigate();
   if (!currentUser) return <Navigate to="/" />;
+  if (eliminate) {
+    if (currentUser?.isAdmin) {
+      navigate('/users');
+    } else {
+      handleUserLogout();
+      navigate('/login');
+    }
+  }
 
   return (
     <div className="form">
@@ -36,13 +46,8 @@ function DeleteUser({ userId }) {
             }
             const successMessage = 'Usuario eliminado satisfactoriamente';
             setMessage(successMessage);
-            alert(successMessage);
-            if (userId == currentUser?.id) {
-              handleUserLogout();
-              navigate('/login');
-            } else {
-              navigate('/users');
-            }
+            setEliminate(true);
+            // alert(successMessage);
           } catch (error) {
             setMessage(error.message);
           } finally {
@@ -79,11 +84,11 @@ function DeleteUser({ userId }) {
           </Form>
         )}
       </Formik>
-      { message ? (
+      {/* { message ? (
         <p className="final-message-form-user">No se pudo eliminar al usuario</p>
       ) : (
         <> </>
-      )}
+      )} */}
     </div>
   );
 }
