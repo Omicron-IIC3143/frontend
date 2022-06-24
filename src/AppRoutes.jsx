@@ -16,6 +16,7 @@ import ShowUsersPage from './views/user/showUsers/ShowUsersPage';
 import PendingProjects from './views/project/pendingProjects/PendingProjects';
 import TermsAndConditions from './views/termsAndConditions/TermsAndConditions';
 import UpdateProject from './views/project/updateProject/UpdateProject';
+import ProjectReports from './views/reports/ProjectReports';
 
 const AppRouter = function AppRouter() {
   return (
@@ -35,6 +36,7 @@ const AppRouter = function AppRouter() {
         <Route path="/projects/:id/update" element={<UpdateProject />} />
         <Route path="/projects/pendings" element={<PendingProjects />} />
         <Route path="terms" element={<TermsAndConditions />} />
+        <Route path="/projects/:id/reports" element={<ProjectReports />} />
       </Routes>
     </AuthContextProvider>
   );

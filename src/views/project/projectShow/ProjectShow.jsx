@@ -10,6 +10,7 @@ import numberOfDays from '../../../hooks/numberOfDays';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import ButtonSharing from '../../../components/project/projectShow/buttons/buttonSharing/ButtonSharing';
 import ButtonContacting from '../../../components/project/projectShow/buttons/buttonContacting/ButtonContacting';
+import ButtonReports from '../../../components/report/buttonReports/ButtonProjectReports';
 import ProjectImage from '../../../components/project/projectShow/projectImage/ProjectImage';
 import Deadline from '../../../components/project/projectShow/deadline/Deadline';
 import ProjectDescription from '../../../components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject';
@@ -113,6 +114,13 @@ function ShowProject() {
                         />
                       ) : (<> </>)}
                       <ButtonSharing />
+                      {numberOfDays(project?.date) < 0 && (project?.currentState != 'pending' && project?.currentState != 'rejected') ? (
+                        <ButtonReports
+                          id={project?.id}
+                          projectName={project?.name}
+                          userId={project?.userId}
+                        />
+                      ) : null}
                     </div>
                   </div>
 
@@ -189,6 +197,13 @@ function ShowProject() {
                       />
                     )}
                     <ButtonSharing />
+                    {numberOfDays(project?.date) < 0 && (project?.currentState != 'pending' && project?.currentState != 'rejected') ? (
+                      <ButtonReports
+                        id={project?.id}
+                        projectName={project?.name}
+                        userId={project?.userId}
+                      />
+                    ) : null}
                     <ButtonBack />
                   </div>
                 </div>

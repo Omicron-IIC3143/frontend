@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 
-export function DeleteProjectButton() {
+function DeleteProjectButton() {
   const printHelloWorld = () => {
     // setData("Data is set");
     // console.log('HOLA MUNDO');
