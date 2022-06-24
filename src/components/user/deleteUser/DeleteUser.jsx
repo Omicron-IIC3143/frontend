@@ -18,8 +18,8 @@ function DeleteUser({ userId }) {
         initialValues={{ acceptTerms: false }}
         validationSchema={Yup.object({
           acceptTerms: Yup.boolean()
-            .oneOf([true], 'Debes aceptar los términos y condiciones')
-            .required('Debes aceptar los términos y condiciones'),
+            .oneOf([true], 'Debes aceptar en la casilla para poder eliminar')
+            .required('Debes aceptar en la casilla para poder eliminar'),
         })}
         onSubmit={async (values) => {
           setLoading(true);
@@ -78,7 +78,11 @@ function DeleteUser({ userId }) {
           </Form>
         )}
       </Formik>
-      <p className="final-message-form-user">{message}</p>
+      { message ? (
+        <p className="final-message-form-user">No se pudo eliminar al usuario</p>
+      ) : (
+        <> </>
+      )}
     </div>
   );
 }
