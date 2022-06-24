@@ -4,12 +4,12 @@
 /* eslint-disable eqeqeq */
 import Button from 'react-bootstrap/Button';
 import React, { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import useAuth from '../../hooks/useAuth';
+import useAuth from '../../../hooks/useAuth';
 import './UserForm.css';
-import ButtonBack from '../buttons/buttonBack/ButtonBack';
+import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import DeleteUser from '../deleteUser/DeleteUser';
 
 function UserForm() {
@@ -179,7 +179,7 @@ function UserForm() {
     return finalValues;
   };
   return (
-    <div className="card-profile-register-form">
+    <div className="card-profile-register-form width-80">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -210,7 +210,6 @@ function UserForm() {
             const newUser = respuesta.user;
             const successMessage = isUpdating ? 'Usuario modificado satisfactoriamente' : 'Usuario creado satisfactoriamente';
 
-            // TMBN FALTA ESO DE QUE EL EDITAR UN NO ADMIN SE MUERE
             if ((id == currentUser?.id) || !id) {
               newUser.token = respuesta.token ? respuesta.token : currentUser.token;
               handleUserLogin(newUser);
@@ -289,7 +288,11 @@ function UserForm() {
             <div className="label-form-user">
               <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
-                Acepto los términos y condiciones de Social Starter.
+                Acepto los
+                {' '}
+                <Link to="/terms">términos y condiciones</Link>
+                {' '}
+                de Social Starter.
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
                 <div className="error-form-user">{errors.acceptTerms}</div>
@@ -306,7 +309,7 @@ function UserForm() {
               </div>
             ) : (
               <div>
-                <p className="final-message-form-user">Cargando ...</p>
+                <p className="final-message-form-user">Creando usuario...</p>
               </div>
             )}
           </Form>

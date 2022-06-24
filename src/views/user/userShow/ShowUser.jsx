@@ -9,6 +9,9 @@ import { UserShow } from '../../../components/user/userShow/UserShow';
 import ButtonUpdatingUser from '../../../components/user/buttons/updateButton/UpdateButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
+import { ButtonLookFinancesUser } from '../../../components/user/buttons/financeButton/financeButton';
+import { ButtonPostulatedProjectsUser } from '../../../components/user/buttons/postulatedProjects/PostulatedProjects';
+import { ButtonFinancedProjectsUser } from '../../../components/user/buttons/financedProjects/FinancedProjects';
 
 function ShowUser() {
   const { currentUser } = useAuth();
@@ -49,11 +52,11 @@ function ShowUser() {
     }
     return (
       <div>
-        <div className="grid-container-show-user">
+        <div className="grid-container  ">
           <div>
             <Navbar />
           </div>
-          <div className="flex-show-user">
+          <div className="page-wrapper">
             {error ? (
               <h3>
                 ERROR:
@@ -73,9 +76,13 @@ function ShowUser() {
                                 }
               />
             )}
-            <br />
-            <ButtonUpdatingUser id={id} />
-            <ButtonBack />
+            <div className="page-buttons width-80 margin-bottom-s">
+              <ButtonBack />
+              <ButtonFinancedProjectsUser id={user.id} />
+              <ButtonPostulatedProjectsUser id={user.id} />
+              <ButtonLookFinancesUser id={user.id} />
+              <ButtonUpdatingUser id={user.id} />
+            </div>
           </div>
         </div>
       </div>
@@ -83,7 +90,7 @@ function ShowUser() {
   }
   return (
     <div>
-      <div className="grid-container-show-user">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
@@ -100,7 +107,9 @@ function ShowUser() {
               {' '}
             </h1>
           )}
-          <ButtonBack />
+          <div className="page-buttons width-80 margin-bottom-s">
+            <ButtonBack />
+          </div>
         </div>
       </div>
     </div>

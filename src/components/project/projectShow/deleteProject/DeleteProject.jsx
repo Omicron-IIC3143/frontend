@@ -2,15 +2,14 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { Navigate, useNavigate } from 'react-router-dom';
-import useAuth from '../../hooks/useAuth';
+import { useNavigate } from 'react-router-dom';
+import useAuth from '../../../../hooks/useAuth';
 
-function DeleteUser({ userId }) {
+function DeleteProject({ project }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const { currentUser, handleUserLogout } = useAuth();
+  const { currentUser } = useAuth();
   const navigate = useNavigate();
-  if (!currentUser) return <Navigate to="/" />;
 
   return (
     <div className="form">
@@ -18,8 +17,8 @@ function DeleteUser({ userId }) {
         initialValues={{ acceptTerms: false }}
         validationSchema={Yup.object({
           acceptTerms: Yup.boolean()
-            .oneOf([true], 'Debes aceptar los términos y condiciones')
-            .required('Debes aceptar los términos y condiciones'),
+            .oneOf([true], 'Debes aceptar la eliminación del proyecto')
+            .required('Debes aceptar la eliminación del proyecto'),
         })}
         onSubmit={async (values) => {
           setLoading(true);
@@ -29,19 +28,15 @@ function DeleteUser({ userId }) {
             body: JSON.stringify(values),
           };
           try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/users/delete/${userId}`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/delete/${project.id}`, requestOptions);
             if (!response.ok) {
               const error = await response.text();
               throw new Error(error);
             }
-            const successMessage = 'Usuario eliminado satisfactoriamente';
+            const successMessage = 'Proyecto eliminado satisfactoriamente';
             setMessage(successMessage);
             alert(successMessage);
-            if (userId == currentUser?.id) {
-              handleUserLogout();
-            } else {
-              navigate('/users');
-            }
+            navigate(`/users/${project.userId}/projects`);
           } catch (error) {
             setMessage(error.message);
           } finally {
@@ -54,10 +49,10 @@ function DeleteUser({ userId }) {
             <div className="flex-form-fields label-form-user">
               <label className="label-content-form-user terms-and-conditions-form-user" htmlFor="acceptTerms">
                 <Field className="center-info-register-user" name="acceptTerms" type="checkbox" />
-                { currentUser.id != userId ? (
-                  'Acepto eliminar este usuario de Social Starter'
+                { currentUser.id != project.userId ? (
+                  'Acepto eliminar este proyecto de Social Starter'
                 ) : (
-                  'Acepto eliminar mi usuario de Social Starter'
+                  'Acepto eliminar este proyecto de Social Starter'
                 )}
               </label>
               {errors.acceptTerms && touched.acceptTerms && (
@@ -66,7 +61,7 @@ function DeleteUser({ userId }) {
             </div>
             { currentUser && !loading ? (
               <div className="flex-form-fields label-form-user">
-                <button type="submit" className="btn btn-danger">Eliminar Usuario</button>
+                <button type="submit" className="btn btn-danger">Eliminar Proyecto</button>
               </div>
             ) : null}
 
@@ -83,4 +78,4 @@ function DeleteUser({ userId }) {
   );
 }
 
-export default DeleteUser;
+export default DeleteProject;

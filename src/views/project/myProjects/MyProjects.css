@@ -1,7 +1,5 @@
 .titleMyProjects {
-    margin-top: 4vh;
     text-align: center;
-    color: darkblue;
 }
 
 .unauthorizedMessageMyProjects {
@@ -11,35 +9,14 @@
     text-align:center;
 }
 
-.flex-my-projects {
-    flex-direction: column;
-}
-
-.flex-inside-button-postulate-my-proj {
-    margin-bottom: 2vh;
-}
-
 .flex-inside-searcher-my-proj {
     margin-bottom: 2vh;
     margin-left: 10vw;
     margin-top: 2vh;
 }
 
-.grid-container-my-proj {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #2196F3;
+.user-link-color{
+    color: darkblue;
 }
 
-.flex-inside-my-projects {
-    margin-bottom: 30px;
-    width: 70%;
-    margin-left: 10vw;
-}
-
-.flex-inside-my-projects-0-projects {
-    margin-bottom: 30px;
-    width: 70%;
-    margin-left: -10vw;
-}
 

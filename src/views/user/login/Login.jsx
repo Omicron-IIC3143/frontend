@@ -59,10 +59,11 @@ const Login = function Login() {
 
   return (
     <div>
-      <div className="grid-container-login-user">
+      <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
+<<<<<<< HEAD
         <div className="card-profile-login-form">
           <h2 className="title-login-user">Ingresa a tu cuenta</h2>
           <form onSubmit={handleSubmit}>
@@ -102,9 +103,33 @@ const Login = function Login() {
                 </span>
               </p>
             </div>
+=======
+        <div className="page-wrapper">
+          <div className="card-profile-login-form">
+            <h2 className="title-login-user">Ingresa a tu cuenta</h2>
+            <form onSubmit={handleSubmit}>
+              <div className="label-form-login">
+                <p className="control has-icons-left has-icons-right">
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope icon-width" />
+                  </span>
+                  <input className="label-content" type="email" id="email" name="email" placeholder="Email" value={values.email} onChange={handleChange} />
+                </p>
+              </div>
 
-            <br />
+              <div className="label-form-login">
+                <p className="control has-icons-left">
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock icon-width" />
+                  </span>
+                  <input className="label-content" type="password" name="password" id="password" placeholder="Contraseña" value={values.password} onChange={handleChange} />
+                </p>
+              </div>
+>>>>>>> dev
 
+              <br />
+
+<<<<<<< HEAD
             <div className="label-form-login">
               <Button
                 className="button-submit-login-user"
@@ -116,9 +141,20 @@ const Login = function Login() {
               </Button>
             </div>
           </form>
+=======
+              <div className="label-form-login">
+                <Button className="button-submit-login-user" id="loginButton" type="submit" disabled={!(values.email && values.password)}>
+                  Login
+                </Button>
+              </div>
+            </form>
+          </div>
+          {errorMessage ? (
+            <p>Email o contraseña incorrecta</p>
+          ) : (<> </>)}
+>>>>>>> dev
         </div>
       </div>
-      <p>{errorMessage}</p>
     </div>
   );
 };

@@ -1,36 +1,48 @@
 import React from 'react';
 import './Deadline.css';
+import stringOfDate from '../../../../hooks/stringOfDate';
+import numberOfDays from '../../../../hooks/numberOfDays';
 
-function stringOfDate(date) {
-  const dd = String(date.getDate()).padStart(2, '0');
-  const mm = String(date.getMonth() + 1).padStart(2, '0');
-  const yyyy = date.getFullYear();
-  const stringToday = `${dd}-${mm}-${yyyy}`;
-  return stringToday;
-}
-
-function Deadline({ date }) {
-  const today = new Date();
+function Deadline({ date, className }) {
   const deadlineDate = new Date(date);
-  const numberOfDays = Math.floor(((deadlineDate.getTime() - today.getTime()) / 1000) / 86400);
-  if (numberOfDays > 0) {
+  const numberOfDaysDeadlineDate = numberOfDays(date);
+  if (numberOfDaysDeadlineDate > 1) {
     return (
-      <div className="descriptionCard">
+      <div className={`descriptionCard ${className}`}>
         {/* style="width:100%" */}
         <h5>
           Al proyecto le quedan
-          {` ${numberOfDays} días de financiamiento.`}
+          {` ${numberOfDaysDeadlineDate} días de financiamiento.`}
         </h5>
         <h5>
           [Fecha de término de financiamiento:
-          {` ${stringOfDate(deadlineDate)} a las 23:59]`}
+          {` ${stringOfDate(deadlineDate)} a las 20:00]`}
         </h5>
       </div>
     );
-  } return (
-    <div className="descriptionCard">
+  } if (numberOfDaysDeadlineDate > 0) {
+    return (
+      <div className={`descriptionCard ${className}`}>
+        {/* style="width:100%" */}
+        <h5>
+          Al proyecto le queda menos de
+          {` ${numberOfDaysDeadlineDate} día de financiamiento.`}
+        </h5>
+        <h5>
+          [Fecha de término de financiamiento:
+          {` ${stringOfDate(deadlineDate)} a las 20:00]`}
+        </h5>
+      </div>
+    );
+  }
+  return (
+    <div className={`descriptionCard ${className}`}>
       {/* style="width:100%" */}
       <h5>El proyecto ya ha llegado a su tiempo límite de financiamiento.</h5>
+      <h5>
+        [Fecha de término de financiamiento:
+        {` ${stringOfDate(deadlineDate)} a las 20:00]`}
+      </h5>
     </div>
   );
 }
