@@ -32,6 +32,7 @@ code {
   flex-direction: column;
   gap: 3vw;
   align-items: center;
+  padding-bottom: 5vh;
 }
 
 .page-buttons {

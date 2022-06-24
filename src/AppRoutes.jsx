@@ -14,6 +14,7 @@ import MyProjects from './views/project/myProjects/MyProjects';
 import MyFunded from './views/project/myFunded/MyFunded';
 import ShowUsersPage from './views/user/showUsers/ShowUsersPage';
 import PendingProjects from './views/project/pendingProjects/PendingProjects';
+import TermsAndConditions from './views/termsAndConditions/TermsAndConditions';
 
 const AppRouter = function AppRouter() {
   return (
@@ -31,6 +32,7 @@ const AppRouter = function AppRouter() {
         <Route path="/users/:id/funded" element={<MyFunded />} />
         <Route path="/users/:id/financialinfo" element={<FinancialInformation />} />
         <Route path="/projects/pendings" element={<PendingProjects />} />
+        <Route path="terms" element={<TermsAndConditions />} />
       </Routes>
     </AuthContextProvider>
   );

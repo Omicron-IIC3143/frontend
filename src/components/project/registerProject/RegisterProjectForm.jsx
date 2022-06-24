@@ -8,7 +8,6 @@ import stringDateOfTomorrow from '../../../hooks/stringDateOfTomorrow';
 import './RegisterProjectForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import SelectComponent from './SelectComponent';
-import Loading from '../../loading/Loading';
 
 function RegisterProjectForm() {
   const navigate = useNavigate();
@@ -160,7 +159,7 @@ function RegisterProjectForm() {
                 </div>
               ) : (
                 <div>
-                  <Loading />
+                  <p className="final-message-form-user">Postulando proyecto...</p>
                 </div>
               )}
             </Form>
