@@ -24,7 +24,7 @@ test('Renders Deadline title - numberOfDaysDeadlineDate < 0', () => {
   );
 });
 test('Renders Deadline title - state = pending', () => {
-  const delay = new Date(new Date().getTime() + 1 * 24 * 60 * 60 * 1000);
+  const delay = new Date(new Date().getTime() + 0.5 * 24 * 60 * 60 * 1000);
   const currentState = 'pending';
   const { getByText } = render(<Deadline date={delay} state={currentState} />);
   getByText(
