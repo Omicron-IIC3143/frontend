@@ -30,8 +30,9 @@ function UpdateProject() {
           return null;
         }
         const respuesta = await response.json();
-        if (currentUser?.id != respuesta.userId || !currentUser.isAdmin) { navigate(-1); }
+        if (currentUser?.id != respuesta?.userId && !currentUser?.isAdmin) { navigate(-1); }
         setProject(respuesta);
+        setLoading(false);
         return respuesta;
       })
       .catch(() => { setError(true); })
@@ -45,7 +46,7 @@ function UpdateProject() {
   return (
     <div>
       <div className="grid-container  ">
-        {loading ? (
+        {!loading ? (
           <>
             <div>
               <Navbar />
