@@ -43,12 +43,10 @@ function CreateReport({ id }) {
         }}
         validationSchema={validationSchema}
         onSubmit={async (values) => {
-          console.log(values);
           const newValues = {
             ...values,
             projectId: id,
           };
-          console.log(newValues);
           setLoading(true);
           const requestOptions = {
             method: 'POST',

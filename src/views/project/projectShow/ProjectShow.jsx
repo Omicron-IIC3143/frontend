@@ -112,7 +112,7 @@ function ShowProject() {
                         />
                       ) : (<> </>)}
                       <ButtonSharing />
-                      {numberOfDays(project?.date) > 0 && (project?.currentState != 'pending' && project?.currentState != 'rejected') ? (
+                      {numberOfDays(project?.date) < 0 && (project?.currentState != 'pending' && project?.currentState != 'rejected') ? (
                         <ButtonReports
                           id={project?.id}
                           projectName={project?.name}
