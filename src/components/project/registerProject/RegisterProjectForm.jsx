@@ -11,7 +11,6 @@ import './RegisterProjectForm.css';
 import ButtonBack from '../../buttons/buttonBack/ButtonBack';
 import options from './SelectOptions';
 
-
 /*
 Para ayudarse con alguna modificación del Select
 Source: https://gist.github.com/hubgit/e394e9be07d95cd5e774989178139ae8?permalink_comment_id=3487405#gistcomment-3487405
@@ -192,9 +191,9 @@ function RegisterProjectForm() {
                     <ButtonBack />
                     <Button variant="primary" type="submit">Enviar postulación</Button>
                   </div>
-              ) : (
-                <div>
-                  <p className="final-message-form-user">Postulando proyecto...</p>
+                ) : (
+                  <div>
+                    <p className="final-message-form-user">Postulando proyecto...</p>
                   </div>
                 )}
               </Form>
