@@ -1,0 +1,45 @@
+.label-ingrese-monto-finance {
+    margin-right: 1vw;
+    margin-left: 1vw;
+    color: white;
+}
+
+.caja-para-ingesar-monto-finance {
+    border-style: solid;
+    border-color: white;
+    border-width: 1px;
+    color: darkblue;
+    background-color: white;
+    border-radius: 4px;
+}
+
+.message {
+    color: black;
+    margin-top: 2vh;
+    margin-left: 1vw;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: gray;
+    opacity: 1; /* Firefox */
+  }
+
+.validation-error-finance {
+    color: red;
+    margin-top: 1vh;
+    text-align: center;
+}
+
+.center-div{
+    display: flex;
+    justify-content: center;
+}
+
+.card-finance-form{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    background-color: darkblue;
+    border-radius: 2vh;
+    margin-bottom: 5vh;
+}

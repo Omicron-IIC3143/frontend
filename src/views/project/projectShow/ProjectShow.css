@@ -1,21 +1,18 @@
-.flex-project-show {
-    flex-direction: column;
-    margin-top: 5vh;
-    margin-left: -20vw;
-    margin-right: 10vw;
+.titleProjectShow {
+    text-align: center;
 }
 
-.grid-container {
-    display: grid;
-    grid-template-columns: auto auto;
-    background-color: #2196F3;
-    padding: 10px;
-    }
-
-.rowImageAndDescription {
-    display: flex;
-    flex-direction:row;
+.title-finance-project {
+    margin-top: 2vh;
+    margin-bottom: 4vh;
+    text-align: center;
 }
 
+.title-show-project {
+    margin-bottom: 5vh;
+}
 
+.finance-form {
+    margin-bottom: 10vh;
+}
 

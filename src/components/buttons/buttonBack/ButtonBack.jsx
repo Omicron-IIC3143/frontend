@@ -1,14 +1,17 @@
-import React from "react";
+import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
+import './ButtonBack.css';
 
-export function ButtonBack() {
-    const navigate = useNavigate();
+function ButtonBack() {
+  const navigate = useNavigate();
 
-    return (
-        <Button variant="primary" onClick={() => navigate(-1)}>
-            {/* startIcon={<DeleteIcon />} */}
-        Volver atrás
-        </Button>
-    )
+  return (
+    <Button variant="secondary" className="back-button" onClick={() => navigate(-1)}>
+      {/* startIcon={<DeleteIcon />} */}
+      Volver atrás
+    </Button>
+  );
 }
+
+export default ButtonBack;

@@ -1,11 +1,19 @@
 {
+    "root": true,
     "env": {
         "browser": true,
-        "es2021": true
+        "es2021": true,
+        "jest": true
     },
     "extends": [
         "plugin:react/recommended",
         "airbnb"
+    ],
+    // Maybe useless
+    "overrides": [
+        {
+            "files": ["*.jsx", "*.js"]
+        }
     ],
     "parserOptions": {
         "ecmaFeatures": {
@@ -18,6 +26,8 @@
         "react"
     ],
     "rules": {
+        "eqeqeq": "off",
+        //"quotes": ["error", "double"],
         "react/prop-types": "off",
         "jsx-a11y/label-has-associated-control": ["error", {
           "required": {
@@ -29,5 +39,12 @@
              "some": ["nesting", "id"]
           }
        }]
+      },
+      "settings": {
+        "import/resolver": {
+          "node": {
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
+          }
+        }
       }
 }

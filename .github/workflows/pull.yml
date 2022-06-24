@@ -1,0 +1,31 @@
+name: Linter Testing
+
+# Enable Buildkit and let compose use it to speed up image building
+env:
+  DOCKER_BUILDKIT: 1
+  COMPOSE_DOCKER_CLI_BUILD: 1
+
+on:
+  pull_request:
+    branches: [ dev, adding-ci-file ]
+
+jobs:
+  lint-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code Repository
+        uses: actions/checkout@v3
+      
+      - name: npm Install
+        run: npm install
+      
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
+        with:
+          eslint: true
+          eslint_extensions: js,jsx
+          continue_on_error: false
+
+      - name: Test
+        run: npm test
+

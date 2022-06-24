@@ -4,20 +4,20 @@ import Button from 'react-bootstrap/Button';
 import './ProjectList.css';
 // import { Link } from 'react-router-dom';
 
-const ProjectList = function ({
+function ProjectList({
   id, topic, title, description, company,
 }) {
   return (
     <Card className="text-center">
       <Card.Header>
         Proyecto de
-        {topic}
+        {` ${topic}`}
       </Card.Header>
       <Card.Body>
         <Card.Title>
           {title}
         </Card.Title>
-        <Card.Text>
+        <Card.Text className="jump-breaks">
           {description}
         </Card.Text>
         <Button className="more-details" variant="primary" href={`/projects/${id}`}>Ver en más detalle</Button>
@@ -28,6 +28,6 @@ const ProjectList = function ({
       </Card.Footer>
     </Card>
   );
-};
+}
 
 export default ProjectList;

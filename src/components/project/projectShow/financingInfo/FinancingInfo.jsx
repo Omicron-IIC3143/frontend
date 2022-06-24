@@ -1,14 +1,41 @@
-import React from "react";
-import './FinancingInfo.css'
+import React from 'react';
+import './FinancingInfo.css';
+import convertMoneyToString from '../../../../hooks/convertNumber';
 
-export function FinancingInformation({current_financing, goal_financing}) {
-    return (
-        <div className="infoOfFinancing">
-            <div className="row">
-                {/* style="width:100%" */}
-                <div className="columnCurrent">Financiamiento actual: ${current_financing}</div>
-                <div className="columnGoal">Financiamiento meta: ${goal_financing}</div>
-            </div>
+function FinancingInformation({ currentFinancing, goalFinancing, className }) {
+  return (
+    <div className={`infoOfFinancing ${className}`}>
+      <div className="row">
+        {/* style="width:100%" */}
+        <div className="columnCurrent">
+          <div>
+            <b>
+              <u>
+                Financiamiento actual
+              </u>
+            </b>
+          </div>
+          <div>
+            $
+            {convertMoneyToString(currentFinancing)}
+          </div>
         </div>
-    )
+        <div className="columnGoal">
+          <div>
+            <b>
+              <u>
+                Financiamiento meta
+              </u>
+            </b>
+          </div>
+          <div>
+            $
+            {convertMoneyToString(goalFinancing)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
+
+export default FinancingInformation;

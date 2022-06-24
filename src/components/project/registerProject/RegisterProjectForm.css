@@ -1,16 +1,10 @@
 .card-profile-register-project-form {
-    width: 80%;
-    height: 70%;
+    height: auto;
     background-color: rgba(131, 191, 226, 0.87);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    margin-bottom: 0.5vh;
     border-radius: 8px;
-    padding-left: 0px;
-    padding-top: 2vh;
     text-align: left;
     color: darkblue;
-    margin-left: 5vh;
-    margin-right: 15vh;
     font-size: 5vw;
     border-style: solid;
     border-color: darkblue;
@@ -18,9 +12,7 @@
 }
 
 .label-form-register-project {
-    margin-left: 4vh;
-    margin-right: 2vh;
-    margin-top: 2vh;
+    margin: 1vh 4vh;
     font-size: 3vh; 
 }
 
@@ -28,20 +20,56 @@
     margin-right: 4vh;
 }
 
+.label-content-register-project-description {
+    margin-right: 4vh;
+    vertical-align: middle;
+}
 
 .center-info-register-project {
-    font-size: 3vh;
+    font-size: 2vh;
     border-style: solid;
     padding-left: 1vh;
-    width: 50%;
+    width: 100%;
+    height: 5vh;
+    border-width: 0.3vh;
+    border-color: darkblue;
+    border-radius: 0.5vh;
+    white-space: pre-wrap;
+}
+
+.button-submit-register-project {
+    margin-bottom: 3vh;
+}
+
+.validation-error-register-project {
+    color: red;
+    margin-top: 0.5vh;
+    font-size: 2vh;
+}
+
+.center-info-register-project-description {
+    font-size: 2vh;
+    height: 20vh;
+    border-style: solid;
+    padding-left: 1vh;
+    width: 100%;
+    resize: both;
     border-width: 0.3vh;
     border-color: darkblue;
     border-radius: 0.5vh;
 }
 
-.button-submit-register-project {
-    margin-top: 4vh;
-    margin-left: 6vh;
-    margin-bottom: 3vh;
+
+.center-info-multiple-select-tags {
+    font-size: 2vh;
+    border-style: solid;
+    width: 100%;
+    border-width: 0.3vh;
+    border-color: darkblue;
+    border-radius: 0.5vh;
+    padding: 0px 0px 0px 0px
 }
+
+
+
 

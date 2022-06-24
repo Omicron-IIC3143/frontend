@@ -1,0 +1,19 @@
+.color-link{
+    color: darkblue;
+}
+
+.title-center-financings {
+    text-align: center;
+    margin-top: 5vh;
+    color: darkblue;
+}
+
+.not-finanings-message {
+    margin-left: 5vw;
+    margin-top: 2vw;
+}
+
+.button-back-financings {
+    margin-left: 5vw;
+    margin-top: 6vw;
+}

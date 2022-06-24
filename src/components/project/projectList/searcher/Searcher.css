@@ -1,5 +1,15 @@
 .input-group.md-form.form-sm.form-1 input {
-    border: 0.5px solid #bdbdbd;
-    border-top-right-radius: 0.25rem;
-    border-bottom-right-radius: 0.25rem;
-  }
+  border: 0.5px solid #bdbdbd;
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+.label-content-searcher {
+  text-align: center;
+  color:darkblue;
+  margin-bottom: 1vh;
+}
+
+.button-search {
+  float: right;
+}

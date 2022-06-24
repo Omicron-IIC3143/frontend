@@ -1,17 +1,15 @@
+import './LandingPage.css';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import useAuth from '../../hooks/useAuth';
 import Navbar from '../../components/navbar/Navbar';
-import ButtonPostulate from '../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
 import ProjectList from '../../components/project/projectList/ProjectList';
-import { Searcher } from '../../components/project/projectList/searcher/Searcher';
-import './LandingPage.css';
+import Searcher from '../../components/project/projectList/searcher/Searcher';
+import Loading from '../../components/loading/Loading';
 
 function LandingPage() {
-  const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [projects, setProjects] = useState([]);
+  const [filterData, setFilterData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
@@ -25,54 +23,49 @@ function LandingPage() {
       },
     };
     fetch(`${process.env.REACT_APP_API_URL}/projects/`, requestOptions)
-      .then(async (response) => {
+      .then((response) => {
         if (!response.ok) {
           setError(true);
           return [];
         }
-        const respuesta = await response.json();
-        setProjects(respuesta);
-        return respuesta;
+        return response.json();
+      })
+      .then((data) => {
+        setProjects(data);
+        setFilterData(data);
       })
       .catch(() => { setError(true); })
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) {
-    return (
-      <section className="container">
-        <h2>Loading...</h2>
-      </section>
-    );
-  } return (
-    <div className="grid-container">
+  if (loading) { return (<Loading />); }
+
+  return (
+    <div className="grid-container  ">
       <div>
         <Navbar />
       </div>
-      <div className="flex-landing-page">
-        <div className="flex-inside-searcher">
-          <Searcher />
+      <div className="page-wrapper ">
+        <div className="width-80">
+          <h1 className="title-landing-page title-color">
+            Proyectos en la aplicación
+          </h1>
         </div>
-        {currentUser ? (
-          <div className="flex-inside-button-postulate">
-            <ButtonPostulate />
-          </div>
-        ) : (
-          <>
-          </>
-        ) }
+        <div className="width-80 center-content-x">
+          <Searcher projects={projects} setFilterData={setFilterData} className="width-100" />
+        </div>
         {error ? (
-          <div className="flex-inside">
-            <h2>
-              Error
+          <div className="width-80">
+            <h2 className="title-color">
+              Error:
               {error.errors}
             </h2>
           </div>
         ) : (
-          projects.map((project) => (
+          filterData.map((project) => (
             // acá hay que poner (project?.currentState == 'approved') ? (
-            (project?.currentState == 0) ? (
-              <div className="flex-inside">
+            (project?.currentState == 'accepted') ? (
+              <div className="width-80">
                 <ProjectList
                   id={project?.id}
                   topic={project?.topic}
@@ -82,15 +75,9 @@ function LandingPage() {
                   company={project?.company}
                 />
               </div>
-            ) : (
-              <>
-              </>
-            )
+            ) : (<> </>)
           ))
         )}
-        <div>
-          <Button className="button-back-landing" variant="primary" onClick={() => navigate(-1)} type="button" id="backButton">Atrás</Button>
-        </div>
       </div>
     </div>
   );
