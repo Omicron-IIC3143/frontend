@@ -14,11 +14,11 @@ function RegisterUserPage() {
         <div>
           <Navbar />
         </div>
-        <div className="flex-register-user">
-          <h2 className="title-register-new-user">Formulario de registro de nuevo usuario</h2>
+        <div className="page-wrapper">
+          <h2 className="title-register-new-user width-80">Formulario de registro de nuevo usuario</h2>
           { currentUser ? (
             <>
-              <p className="final-message-form-user text-register-new-user">Debes cerrar sesión para poder crear una cuenta.</p>
+              <p className="final-message-form-user text-register-new-user width-80">Debes cerrar sesión para poder crear una cuenta.</p>
               <ButtonBack />
             </>
           ) : (
