@@ -78,7 +78,11 @@ function DeleteUser({ userId }) {
           </Form>
         )}
       </Formik>
-      <p className="final-message-form-user">{message}</p>
+      { message ? (
+        <p className="final-message-form-user">No se pudo eliminar al usuario</p>
+      ) : (
+        <> </>
+      )}
     </div>
   );
 }

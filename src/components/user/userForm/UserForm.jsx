@@ -215,7 +215,7 @@ function UserForm() {
               handleUserLogin(newUser);
             }
             setUser(newUser);
-            setMessage(successMessage);
+            // setMessage(successMessage);
             if (!id) {
               alert(successMessage);
               navigate('/');
@@ -315,8 +315,11 @@ function UserForm() {
           </Form>
         )}
       </Formik>
-      <p className="final-message-form-user">{error}</p>
-      <p className="final-message-form-user">{message}</p>
+      { error || message ? (
+        <p className="final-message-form-user">No se pudo efectuar la operación</p>
+      ) : (
+        <> </>
+      )}
       { isUpdating ? (<DeleteUser userId={id} />) : null }
     </div>
   );
