@@ -23,6 +23,7 @@
     border-color: darkblue;
     border-radius: 0.5vh;
     flex-grow: 3;
+    white-space: pre-wrap;
 }
 
 
@@ -55,4 +56,13 @@
     display: flex;
     align-self: center;
     text-align: right;
+}
+
+.description-with-copy {
+    display: inline-grid;
+    padding-right: 1vw;
+}
+
+.copy-description {
+    font-size: 0.75vw;
 }

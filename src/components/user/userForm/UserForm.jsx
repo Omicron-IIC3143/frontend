@@ -1,3 +1,6 @@
+// Para silenciar al hacer copy to clipboard con un p
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
 /* eslint-disable no-alert */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-param-reassign */
@@ -262,7 +265,10 @@ function UserForm() {
             </div>
 
             <div className="label-form-user">
-              <label className="label-content-form-user" htmlFor="description">Descripción: </label>
+              <div className="description-with-copy">
+                <label className="label-content-form-user" htmlFor="description">Descripción: </label>
+                <p className="copy-description" type="button" onClick={navigator.clipboard.writeText(placeholders.description)}>Click para Copiar descripción previa</p>
+              </div>
               <Field className="center-info-register-user" name="description" type="text" as="textarea" placeholder={placeholders.description} />
               {errors.description && touched.description && (
                 <div className="error-form-user">{errors.description}</div>

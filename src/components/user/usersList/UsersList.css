@@ -14,6 +14,9 @@
   width: 100%;
 }
 
+.accordion-body-list-rows {
+  white-space: pre-wrap;
+}
 .accordion-body-list-rows::before {
   content: '→ ';
 }
