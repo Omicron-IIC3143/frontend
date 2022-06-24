@@ -5,8 +5,9 @@
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-param-reassign */
 /* eslint-disable eqeqeq */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { useNavigate } from 'react-router-dom';
 import Select from 'react-select';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
@@ -17,38 +18,11 @@ import options from '../registerProject/SelectOptions';
 
 function UpdateProjectForm(projectParam) {
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
-  const [project, setProject] = useState({});
   const { currentUser } = useAuth();
+  const navigate = useNavigate();
 
-  const { projectId } = projectParam;
-  console.log('prprpr', projectId);
-  useEffect(() => {
-    setLoading(true);
-    const requestOptions = {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${currentUser?.token}`,
-      },
-    };
-    fetch(`${process.env.REACT_APP_API_URL}/projects/${projectId}`, requestOptions)
-      .then(async (response) => {
-        if (!response.ok) {
-          setError(true);
-          return null;
-        }
-        const respuesta = await response.json();
-        setProject(respuesta);
-        console.log('Esto era respuesta', respuesta);
-        return respuesta;
-      })
-      .catch(() => { setError(true); })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, []);
+  const { project } = projectParam;
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -66,7 +40,6 @@ function UpdateProjectForm(projectParam) {
     topic: Yup.string(),
     goalAmount: Yup.number(),
     date: Yup.date()
-      .required('Este campo es obligatorio.')
       .min(stringDateOfTomorrow(), 'Solo puedes ingresar una fecha desde mañana.'),
   });
 
@@ -91,16 +64,15 @@ function UpdateProjectForm(projectParam) {
     goalAmount: project.goalAmount,
     date: project.date,
   };
-  console.log('linea 91 - viendo placeholders', placeholders);
   const valueStriper = (values) => {
     const finalValues = {};
     Object.keys(values).forEach((key) => {
-      if (values[key] != '') { finalValues[key] = values[key]; }
+      if (values[key] != '' && values[key] != []) { finalValues[key] = values[key]; }
     });
     return finalValues;
   };
   return (
-    <div className="card-profile-register-form width-80">
+    <div className="form center-content-x width-100">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
@@ -119,8 +91,6 @@ function UpdateProjectForm(projectParam) {
             },
             body: JSON.stringify(values),
           };
-
-          console.log(values);
           try {
             const path = project.id;
             const response = await fetch(`${process.env.REACT_APP_API_URL}/projects/${path}`, requestOptions);
@@ -129,16 +99,11 @@ function UpdateProjectForm(projectParam) {
               const responseError = await response.text();
               throw new Error(responseError);
             }
-
-            const respuesta = await response.json();
-            console.log('REVISAR 134', respuesta);
-            const newProject = respuesta;
             const successMessage = 'Proyecto modificado satisfactoriamente';
-
-            setProject(newProject);
-            setMessage(successMessage);
+            alert(successMessage);
+            navigate(-1);
           } catch (responseError) {
-            setMessage(responseError.message);
+            setError(responseError.message);
           } finally {
             setLoading(false);
           }
@@ -166,6 +131,7 @@ function UpdateProjectForm(projectParam) {
 
                 <div className="label-form-register-project">
                   <label className="label-content-register-project-description" htmlFor="description">Descripción: </label>
+                  <p className="copy-description" type="button" onClick={navigator.clipboard.writeText(placeholders.description)}>Click para Copiar descripción previa</p>
                   <Field className="center-info-register-project-description" as="textarea" name="description" type="text" placeholder={placeholders.description} />
                   {errors.description && touched.description && (
                     <div className="validation-error-register-project">{errors.description}</div>
@@ -207,7 +173,7 @@ function UpdateProjectForm(projectParam) {
                     value={values.tags}
                     onBlur={handleBlur}
                     options={options}
-                    placeholder="Presiona para agregar tags y en la 'x' para deseleccionar"
+                    placeholder="Vuelve a colocarlos. Presiona para agregar tags y en la 'x' para deseleccionar"
                     onChange={(option) => {
                       const optionsTags = [...values.tags];
                       if (!(option in optionsTags)) { optionsTags.push(option); }
@@ -247,7 +213,7 @@ function UpdateProjectForm(projectParam) {
           );
         }}
       </Formik>
-      { error || message ? (
+      { error ? (
         <p className="final-message-form-user">No se pudo efectuar la operación</p>
       ) : (
         <> </>

@@ -16,6 +16,7 @@ import ProjectDescription from '../../../components/project/projectShow/fullDesc
 import FinancingInformation from '../../../components/project/projectShow/financingInfo/FinancingInfo';
 import DeleteProject from '../../../components/project/projectShow/deleteProject/DeleteProject';
 import FinanceForm from '../../../components/project/projectShow/financeForm/FinanceForm';
+import UpdateButton from '../../../components/project/projectShow/buttons/updateButton/UpdateButton';
 
 function ShowProject() {
   const { id } = useParams();
@@ -100,6 +101,7 @@ function ShowProject() {
                     goalFinancing={project?.goalAmount}
                   />
                   <DeleteProject project={project} />
+                  <UpdateButton id={project.id} />
                   <div className="page-buttons width-50 margin-bottom-s">
                     <ButtonBack />
                     <div className="page-interaction-buttons">
@@ -175,7 +177,10 @@ function ShowProject() {
                   <div className="page-interaction-buttons">
 
                     {currentUser.id == project.userId ? (
-                      <DeleteProject project={project} />
+                      <>
+                        <DeleteProject project={project} />
+                        <UpdateButton id={project.id} />
+                      </>
                     ) : (
                       <ButtonContacting
                         visitUser={currentUser}

@@ -32,6 +32,7 @@ function RegisterProjectForm() {
       .max(430, 'Tu descripción debe tener máximo 430 caracteres.')
       .required('La descripción es obligatoria.'),
     pictureUrl: Yup.string()
+      .url('Coloca un URL válido, con el "https://" inicial incluido')
       .required('El campo de imagen asociada al proyecto es obligatorio.'),
     company: Yup.string()
       .max(50, 'Nombre de empresa es muy largo. Máximo 50 caracteres.')
