@@ -320,7 +320,12 @@ function UserForm() {
       ) : (
         <> </>
       )}
-      { isUpdating ? (<DeleteUser userId={id} />) : null }
+      { isUpdating ? (
+        <>
+          <DeleteUser userId={id} />
+          <p />
+        </>
+      ) : null }
     </div>
   );
 }
