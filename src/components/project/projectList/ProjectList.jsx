@@ -17,7 +17,7 @@ function ProjectList({
         <Card.Title>
           {title}
         </Card.Title>
-        <Card.Text>
+        <Card.Text className="jump-breaks">
           {description}
         </Card.Text>
         <Button className="more-details" variant="primary" href={`/projects/${id}`}>Ver en más detalle</Button>

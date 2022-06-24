@@ -26,6 +26,7 @@
     border-color: darkblue;
     border-radius: 0.5vh;
     flex-grow: 3;
+    white-space: pre-wrap;
 }
 
 
