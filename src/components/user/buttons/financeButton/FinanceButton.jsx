@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import { useNavigate } from 'react-router-dom';
 
-export function ButtonLookFinancesUser({ id }) {
+function ButtonLookFinancesUser({ id }) {
   const navigate = useNavigate();
 
   return (

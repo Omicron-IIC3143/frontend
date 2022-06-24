@@ -8,10 +8,10 @@ import AccordionItem from 'react-bootstrap/esm/AccordionItem';
 import AccordionBody from 'react-bootstrap/esm/AccordionBody';
 import './UsersList.css';
 import { NavLink } from 'react-router-dom';
-import { ButtonUpdatingUser } from '../buttons/updateButton/UpdateButton';
-import { ButtonLookFinancesUser } from '../buttons/financeButton/financeButton';
-import { ButtonPostulatedProjectsUser } from '../buttons/postulatedProjects/PostulatedProjects';
-import { ButtonFinancedProjectsUser } from '../buttons/financedProjects/FinancedProjects';
+import ButtonUpdatingUser from '../buttons/updateButton/UpdateButton';
+import ButtonLookFinancesUser from '../buttons/financeButton/FinanceButton';
+import ButtonPostulatedProjectsUser from '../buttons/postulatedProjects/PostulatedProjects';
+import ButtonFinancedProjectsUser from '../buttons/financedProjects/FinancedProjects';
 
 function UsersList({ users, className }) {
   const filteredUsers = users.filter((user) => !(user.email == 'deleted@uc.cl')).sort((a, b) => a.id - b.id);
