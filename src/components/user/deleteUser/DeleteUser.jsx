@@ -39,6 +39,7 @@ function DeleteUser({ userId }) {
             alert(successMessage);
             if (userId == currentUser?.id) {
               handleUserLogout();
+              navigate('/login');
             } else {
               navigate('/users');
             }
