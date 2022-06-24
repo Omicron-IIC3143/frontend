@@ -3,21 +3,26 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable eqeqeq */
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 // import { useNavigate } from 'react-router-dom';
 import ButtonBack from '../../components/buttons/buttonBack/ButtonBack';
 import Navbar from '../../components/navbar/Navbar';
 import Loading from '../../components/loading/Loading';
 import useAuth from '../../hooks/useAuth';
 import ReportsList from '../../components/report/reportList/ReportList';
+import CreateReport from '../../components/report/CreateReport';
 
 function ProjectReports() {
   // const navigate = useNavigate();
-  const { id, projectName } = useParams();
+  const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [reports, setReports] = useState([]);
   const { currentUser } = useAuth();
+
+  const location = useLocation();
+  const projectName = location?.state?.projectName;
+  const userId = location?.state?.userId;
 
   useEffect(() => {
     setLoading(true);
@@ -67,8 +72,12 @@ function ProjectReports() {
         ) : null } */}
 
         { !error ? (
-          <ReportsList reports={reports} className="width-80" />
+          <ReportsList reports={reports} className="width-80" auth={(currentUser?.isAdmin)} /> // AQUI DECIDIMOS QUIEN PUEDE ELIMINAR
         ) : null }
+
+        {(currentUser?.id == userId) || (currentUser?.isAdmin) ? (
+          <CreateReport id={id} userId={userId} projectName={projectName} className="width-80" />
+        ) : null}
 
         <div className="page-buttons width-80 margin-bottom-s">
           <ButtonBack />
