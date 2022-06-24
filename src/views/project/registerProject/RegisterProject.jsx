@@ -5,24 +5,24 @@ import './RegisterProject.css';
 
 function RegisterProject() {
   return (
-    <div>
       <div className="grid-container  ">
         <div>
           <Navbar />
         </div>
-<<<<<<< HEAD
+
+      <div className="grid-container">
+
         <div className="flex-register-project">
           <h2 className="title-register-new-project">
             Postulación de nuevo proyecto
           </h2>
-=======
         <div className="page-wrapper">
           <h2 className="title-register-new-project">Postulación de nuevo proyecto</h2>
->>>>>>> dev
           <RegisterProjectForm />
         </div>
       </div>
     </div>
+	</div>
   );
 }
 

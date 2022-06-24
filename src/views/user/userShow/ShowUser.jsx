@@ -6,7 +6,7 @@ import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
 import './ShowUser.css';
 import { UserShow } from '../../../components/user/userShow/UserShow';
-import ButtonUpdatingUser from '../../../components/user/buttons/updateButton/UpdateButton';
+import { ButtonUpdatingUser } from '../../../components/user/buttons/updateButton/UpdateButton';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
 import Loading from '../../../components/loading/Loading';
 import { ButtonLookFinancesUser } from '../../../components/user/buttons/financeButton/financeButton';
@@ -40,16 +40,12 @@ function ShowUser() {
         setUser(respuesta);
         return respuesta;
       })
-      .catch(() => {
-        setError(true);
-      })
+      .catch(() => { setError(true); })
       .finally(() => setLoading(false));
   }, []);
 
   if (currentUser?.id == id || currentUser?.isAdmin) {
-    if (loading) {
-      return <Loading />;
-    }
+    if (loading) { return (<Loading />); }
     return (
       <div>
         <div className="grid-container  ">
@@ -60,6 +56,7 @@ function ShowUser() {
             {error ? (
               <h3>
                 ERROR:
+                {' '}
                 {error.errors}
               </h3>
             ) : (
@@ -70,10 +67,7 @@ function ShowUser() {
                 money={user?.money}
                 email={user?.email}
                 pictureURL={user?.pictureUrl}
-                editorIsOtherUser={
-                                    currentUser?.isAdmin
-                                    && id != currentUser?.id
-                                }
+                editorIsOtherUser={currentUser?.isAdmin && id != currentUser?.id}
               />
             )}
             <div className="page-buttons width-80 margin-bottom-s">
@@ -95,17 +89,10 @@ function ShowUser() {
           <Navbar />
         </div>
         <div>
-          {currentUser ? (
-            <h1 className="unauthorizedMessageFinancialInfo">
-              No estás autorizado para ver el perfil de otro
-              usuario.
-              {' '}
-            </h1>
+          { currentUser ? (
+            <h1 className="unauthorizedMessageFinancialInfo">No estás autorizado para ver el perfil de otro usuario. </h1>
           ) : (
-            <h1 className="unauthorizedMessageFinancialInfo">
-              Inicia sesión para ver el perfil de tu usuario.
-              {' '}
-            </h1>
+            <h1 className="unauthorizedMessageFinancialInfo">Inicia sesión para ver el perfil de tu usuario. </h1>
           )}
           <div className="page-buttons width-80 margin-bottom-s">
             <ButtonBack />
