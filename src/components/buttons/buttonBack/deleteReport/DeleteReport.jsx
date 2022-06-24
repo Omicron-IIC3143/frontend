@@ -2,14 +2,14 @@
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import useAuth from '../../../../hooks/useAuth';
 
 function DeleteReport({ report }) {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const { currentUser } = useAuth();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <div className="form">
@@ -28,7 +28,7 @@ function DeleteReport({ report }) {
             body: JSON.stringify(values),
           };
           try {
-            const response = await fetch(`${process.env.REACT_APP_API_URL}/report/delete/${report.id}`, requestOptions);
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/reports/delete/${report.id}`, requestOptions);
             if (!response.ok) {
               const error = await response.text();
               throw new Error(error);
@@ -36,7 +36,8 @@ function DeleteReport({ report }) {
             const successMessage = 'Reporte eliminado satisfactoriamente';
             setMessage(successMessage);
             alert(successMessage);
-            navigate(`/projects/${report.projectId}`);
+            // navigate(`/projects/${report.projectId}`);
+            window.location.reload();
           } catch (error) {
             setMessage(error.message);
           } finally {

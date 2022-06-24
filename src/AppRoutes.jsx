@@ -34,7 +34,7 @@ const AppRouter = function AppRouter() {
         <Route path="/users/:id/financialinfo" element={<FinancialInformation />} />
         <Route path="/projects/pendings" element={<PendingProjects />} />
         <Route path="terms" element={<TermsAndConditions />} />
-        <Route path="/projects/:id/:projectName/reports" element={<ProjectReports />} />
+        <Route path="/projects/:id/reports" element={<ProjectReports />} />
       </Routes>
     </AuthContextProvider>
   );

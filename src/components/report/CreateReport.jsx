@@ -1,22 +1,22 @@
 /* eslint-disable no-alert */
 import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
 import useAuth from '../../hooks/useAuth';
 import './CreateReport.css';
-import ButtonBack from '../buttons/buttonBack/ButtonBack';
 
 /*
 Para ayudarse con alguna modificación del Select
 Source: https://gist.github.com/hubgit/e394e9be07d95cd5e774989178139ae8?permalink_comment_id=3487405#gistcomment-3487405
 */
-
-function CreateReport({ projectId }) {
-  const navigate = useNavigate();
+// , userId, projectName
+function CreateReport({ id }) {
+  // const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
+  // eslint-disable-next-line no-unused-vars
   const [message, setMessage] = useState('');
 
   const validationSchema = Yup.object({
@@ -45,9 +45,8 @@ function CreateReport({ projectId }) {
         onSubmit={async (values) => {
           const newValues = {
             ...values,
-            projectId: currentUser.id,
+            projectId: id,
           };
-          newValues.tags = values.tags.map((item) => item.value);
           setLoading(true);
           const requestOptions = {
             method: 'POST',
@@ -68,7 +67,8 @@ function CreateReport({ projectId }) {
             }
             setMessage('Reporte creado correctamente.');
             alert('Reporte creado correctamente.');
-            navigate(`/projects/${projectId}/reports`);
+            // navigate(`/projects/${id}/reports`, { state: { projectName, userId } });
+            window.location.reload();
           } catch (error) {
             setMessage(error.message);
           } finally {
@@ -87,7 +87,7 @@ function CreateReport({ projectId }) {
             <div className="card-report-form width-80 margin-bottom-m">
               <Form onSubmit={handleSubmit}>
                 <div className="label-form-report">
-                  <label className="label-content-report" htmlFor="title">Nombre del proyecto: </label>
+                  <label className="label-content-report" htmlFor="title">Nombre del reporte: </label>
                   <Field className="center-info-report" name="title" type="text" placeholder="Título del reporte" />
                   {errors.title && touched.title && (
                     <div className="validation-error-report">{errors.title}</div>
@@ -112,7 +112,6 @@ function CreateReport({ projectId }) {
 
                 {!loading ? (
                   <div className="label-form-report button-submit-report page-buttons margin-bottom-s">
-                    <ButtonBack />
                     <Button variant="primary" type="submit">Publicar reporte</Button>
                   </div>
                 ) : (
@@ -125,7 +124,6 @@ function CreateReport({ projectId }) {
           );
         }}
       </Formik>
-      <p>{message}</p>
     </div>
   );
 }
