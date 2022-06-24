@@ -60,3 +60,12 @@
     align-self: center;
     text-align: right;
 }
+
+.description-with-copy {
+    display: inline-grid;
+    padding-right: 1vw;
+}
+
+.copy-description {
+    font-size: 0.75vw;
+}
