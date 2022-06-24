@@ -18,8 +18,8 @@ function DeleteUser({ userId }) {
         initialValues={{ acceptTerms: false }}
         validationSchema={Yup.object({
           acceptTerms: Yup.boolean()
-            .oneOf([true], 'Debes aceptar los términos y condiciones')
-            .required('Debes aceptar los términos y condiciones'),
+            .oneOf([true], 'Debes aceptar en la casilla para eliminar tu usuario')
+            .required('Debes aceptar en la casilla para eliminar tu usuario'),
         })}
         onSubmit={async (values) => {
           setLoading(true);
