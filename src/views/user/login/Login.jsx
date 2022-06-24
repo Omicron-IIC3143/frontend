@@ -66,22 +66,19 @@ const Login = function Login() {
             <form onSubmit={handleSubmit}>
               <div className="label-form-login">
                 <p className="control has-icons-left has-icons-right">
-                  <input className="label-content" type="email" id="email" name="email" placeholder="Email" value={values.email} onChange={handleChange} />
                   <span className="icon is-small is-left">
-                    <i className="fas fa-envelope" />
+                    <i className="fas fa-envelope icon-width" />
                   </span>
-                  <span className="icon is-small is-right">
-                    <i className="fas fa-check" />
-                  </span>
+                  <input className="label-content" type="email" id="email" name="email" placeholder="Email" value={values.email} onChange={handleChange} />
                 </p>
               </div>
 
               <div className="label-form-login">
                 <p className="control has-icons-left">
-                  <input className="label-content" type="password" name="password" id="password" placeholder="Contraseña" value={values.password} onChange={handleChange} />
                   <span className="icon is-small is-left">
-                    <i className="fas fa-lock" />
+                    <i className="fas fa-lock icon-width" />
                   </span>
+                  <input className="label-content" type="password" name="password" id="password" placeholder="Contraseña" value={values.password} onChange={handleChange} />
                 </p>
               </div>
 

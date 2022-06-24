@@ -179,7 +179,7 @@ function UserForm() {
     return finalValues;
   };
   return (
-    <div className="card-profile-register-form">
+    <div className="card-profile-register-form width-80">
       <Formik
         initialValues={initialValues}
         validationSchema={validationSchema}
