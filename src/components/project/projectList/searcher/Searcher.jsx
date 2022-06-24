@@ -1,49 +1,98 @@
 /* eslint-disable no-console */
 import React from 'react';
-import { Input } from 'antd';
+import Select from 'react-select';
+import { Formik, Form } from 'formik';
+import Button from 'react-bootstrap/Button';
+import * as Yup from 'yup';
+// import { Input } from 'antd';
 import './Searcher.css';
+import options from '../../registerProject/SelectOptions';
 
-const { Search } = Input;
+// const { Search } = Input;
 
 function Searcher(data) {
-  const { projects, filterData, setFilterData } = data;
+  const { projects, setFilterData } = data;
 
-  // const filtro = (dataProject, valor) => {
-  //   console.log(dataProject);
-  //   const lower = dataProject.map(({ tags }) => tags.map((tag) => tag.toLowerCase));
-  //   console.log(lower);
-  //   const filtrado = lower.filter(({ tags }) => tags.includes(valor.toLowerCase()));
-  //   console.log(filtrado);
-  //   return filtrado;
-  // };
+  const validationSchema = Yup.object({
+    tags: Yup.array()
+      .min(0, 'Debes seleccionar al menos un tag'),
+  });
 
-  // projects.filter(({ tags }) => tags.toLowerCase().includes(value.toLowerCase())
-
-  const onSearch = (value) => {
-    // console.log('hola');
-    // console.log(value);
-    // console.log(filterData);
-    if (
-      filterData
-      // eslint-disable-next-line react/destructuring-assignment
-      !== projects.filter(({ tags }) => tags.includes(value.toLowerCase()))
-    ) {
-      // eslint-disable-next-line react/destructuring-assignment
-      // eslint-disable-next-line max-len
-      const filter = projects.filter(({ tags }) => tags.includes(value.toLowerCase()));
+  const onSearch = (queryTags) => {
+    console.log(queryTags);
+    const allTags = queryTags.tags.map((tag) => tag.value);
+    console.log(allTags);
+    if (allTags.length == 0) {
+      setFilterData(projects);
+    } else {
+      const filter = projects.filter((project) => {
+        const boolean = allTags.map((tag) => {
+          if (project.tags.includes(tag.toLowerCase())) {
+            return true;
+          }
+          return false;
+        });
+        if (boolean.includes(true)) {
+          return true;
+        }
+        return false;
+      });
       setFilterData(filter);
     }
-    if (value == '') {
-      setFilterData(projects);
-    }
   };
+
   return (
-    <Search
-      className="col-stock-sale"
-      placeholder="Buscar Proyecto"
-      onSearch={onSearch}
-      // esto hay q revisar que funcione.
-    />
+
+    <Formik
+      initialValues={{
+        tags: [],
+      }}
+      validationSchema={validationSchema}
+      onSubmit={onSearch}
+    >
+      {(kwargs) => {
+        const {
+          errors,
+          touched,
+          values,
+          handleSubmit,
+          handleBlur,
+          setFieldValue,
+        } = kwargs;
+        return (
+
+          <Form onSubmit={handleSubmit}>
+            <div className="label-form-register-project">
+              <label className="label-content-searcher" htmlFor="tags">Filtra por tag: </label>
+              <Select
+                isMulti
+                id="tags"
+                name="tags"
+                className="font-size-2 blue-boarders"
+                type="text"
+                value={values.tags}
+                onBlur={handleBlur}
+                options={options}
+                placeholder="Presiona para agregar tags y en la 'x' para deseleccionar"
+                onChange={(option) => {
+                  const optionsTags = [...values.tags];
+                  if (!(option in optionsTags)) { optionsTags.push(option); }
+                  setFieldValue('tags', option);
+                }}
+              />
+              {errors.tags && touched.tags && (
+              <div className="validation-error-register-project">{errors.tags}</div>
+              )}
+            </div>
+            <div className="label-form-register-project">
+              <Button variant="primary" className="button-search" type="submit">Buscar</Button>
+            </div>
+          </Form>
+
+        );
+      }}
+    </Formik>
+
   );
 }
 
