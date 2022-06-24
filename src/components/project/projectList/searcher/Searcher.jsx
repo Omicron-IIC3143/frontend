@@ -5,6 +5,8 @@ import './Searcher.css';
 
 const { Search } = Input;
 
+
+
 function Searcher(data) {
   const { projects, filterData, setFilterData } = data;
   const onSearch = (value) => {
@@ -21,12 +23,13 @@ function Searcher(data) {
       const filter = projects.filter(({ tags }) => tags.toLowerCase().includes(value.toLowerCase()));
       setFilterData(filter);
     }
+    console.log(filterData);
   };
   return (
     <Search
       className="col-stock-sale"
       placeholder="Buscar Proyecto"
-      onChange={onSearch}
+      onSearch={onSearch}
       // esto hay q revisar que funcione.
     />
   );

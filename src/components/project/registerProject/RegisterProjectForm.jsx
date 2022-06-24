@@ -156,7 +156,7 @@ function RegisterProjectForm() {
                     isMulti
                     id="tags"
                     name="tags"
-                    className="font-size-2"
+                    className="font-size-2 blue-boarders"
                     type="text"
                     value={values.tags}
                     onBlur={handleBlur}
