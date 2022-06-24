@@ -20,7 +20,7 @@ function RejectedList({ projects }) {
 
   return (
     <>
-      <u className="title-projects width-80">
+      <u className="title-projects width-80 title-color">
         Rechazados
       </u>
       {projects.map((project) => (

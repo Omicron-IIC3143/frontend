@@ -20,7 +20,7 @@ function AcceptedList({ projects }) {
 
   return (
     <>
-      <u className="title-projects width-80">
+      <u className="title-projects width-80 title-color">
         Aceptados
       </u>
       {projects.map((project) => (

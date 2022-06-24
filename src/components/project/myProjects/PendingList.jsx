@@ -20,7 +20,7 @@ function PendingList({ projects }) {
 
   return (
     <>
-      <u className="title-projects width-80">
+      <u className="title-projects width-80 title-color">
         Pendientes
       </u>
       {projects.map((project) => (

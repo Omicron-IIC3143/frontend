@@ -51,14 +51,14 @@ function ShowUsersPage() {
         <h2 className="title-color">Lista de Usuarios</h2>
 
         { error && currentUser?.isAdmin ? (
-          <div className="width-80">
+          <div className="width-80 title-color">
             <h3>Error</h3>
             <p>{error.errors}</p>
           </div>
         ) : null }
 
         { !(currentUser?.isAdmin) ? (
-          <div className="width-80">
+          <div className="width-80 title-color">
             <h3>Acceso denegado</h3>
             <p>No tiene las credenciales necesarias para poder acceder a esta página.</p>
           </div>

@@ -54,7 +54,7 @@ function ShowUser() {
           </div>
           <div className="page-wrapper">
             {error ? (
-              <h3>
+              <h3 className="title-color">
                 ERROR:
                 {' '}
                 {error.errors}
@@ -90,9 +90,9 @@ function ShowUser() {
         </div>
         <div>
           { currentUser ? (
-            <h1 className="unauthorizedMessageFinancialInfo">No estás autorizado para ver el perfil de otro usuario. </h1>
+            <h1 className="unauthorizedMessageFinancialInfo title-color">No estás autorizado para ver el perfil de otro usuario. </h1>
           ) : (
-            <h1 className="unauthorizedMessageFinancialInfo">Inicia sesión para ver el perfil de tu usuario. </h1>
+            <h1 className="unauthorizedMessageFinancialInfo title-color">Inicia sesión para ver el perfil de tu usuario. </h1>
           )}
           <div className="page-buttons width-80 margin-bottom-s">
             <ButtonBack />
