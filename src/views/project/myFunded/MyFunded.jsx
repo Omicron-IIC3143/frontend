@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { useParams, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Navbar from '../../../components/navbar/Navbar';
-import ButtonPostulate from '../../../components/project/projectList/buttonPostulateProject/ButtonPostulateProject';
-import ProjectList from '../../../components/project/projectList/ProjectList';
+import TableFinancings from '../../../components/financings/TableFinancings';
 import '../../landingPage/LandingPage.css';
 import ButtonBack from '../../../components/buttons/buttonBack/ButtonBack';
-import extractFundedProjects from '../../../hooks/finances';
+import extractInfoFinancing from '../../../hooks/finances';
 import Loading from '../../../components/loading/Loading';
 import './MyFunded.css';
 
@@ -29,13 +28,19 @@ function MyProjects() {
       },
     };
     let filter = [];
+
     try {
       const fetchData = (url) => fetch(url, requestOptions).then((r) => r.json());
       const [projectsData, financesData] = await Promise.all([
         fetchData(`${process.env.REACT_APP_API_URL}/projects`),
         fetchData(`${process.env.REACT_APP_API_URL}/finance/transactions/${id}`),
       ]);
-      filter = extractFundedProjects(projectsData, financesData);
+
+      filter = extractInfoFinancing(projectsData, financesData);
+
+      // necesito nombre del proyecto (link al show)
+      // monto de la transacción
+      // necesito fecha de la transacción
     } catch (errorCatch) {
       setError(errorCatch);
     } finally {
@@ -61,21 +66,16 @@ function MyProjects() {
         <div className="flex-landing-page">
 
           {currentUser?.id != id ? (
-            <h1>
-              Proyectos financiados por el
+            <h1 className="title-center-financings">
+              Financiamientos del
               {' '}
               {' '}
               <NavLink exact to={`/users/${id}`} activeClassName="activeClicked" className="color-link">
-                {`usuario de id ${id}`}
+                usuario
               </NavLink>
             </h1>
           ) : (
-            <>
-              <h1>Proyectos financiados por mí</h1>
-              <div className="flex-inside-button-postulate">
-                <ButtonPostulate />
-              </div>
-            </>
+            <h1 className="title-center-financings">Mis financiamientos</h1>
           )}
           {error ? (
             <div className="flex-inside">
@@ -88,31 +88,16 @@ function MyProjects() {
           )}
 
           {finances.length === 0 ? (
-            <h4>
-              No hay proyectos financiados.
+            <h4 className="not-finanings-message">
+              No hay financiamientos de proyectos aún.
             </h4>
 
           ) : (
-            finances.map((project) => (
-              // acá hay que poner (project?.currentState == 'approved') ? (
-              (project?.currentState == 'accepted') ? (
-                <div className="flex-inside">
-                  <ProjectList
-                    id={project?.id}
-                    topic={project?.topic}
-                    title={project?.name}
-                    description={project?.description}
-                    date={project?.createdAt}
-                    company={project?.company}
-                  />
-                </div>
-              ) : (
-                <>
-                </>
-              )
-            ))
+            <div className="flex-inside">
+              <TableFinancings financings={finances} />
+            </div>
           )}
-          <div>
+          <div className="button-back-financings">
             <ButtonBack />
           </div>
         </div>

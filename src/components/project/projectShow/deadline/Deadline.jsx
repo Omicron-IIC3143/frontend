@@ -4,7 +4,6 @@ import stringOfDate from '../../../../hooks/stringOfDate';
 import numberOfDays from '../../../../hooks/numberOfDays';
 
 function Deadline({ date, className }) {
-  const deadlineDate = new Date(date);
   const numberOfDaysDeadlineDate = numberOfDays(date);
   if (numberOfDaysDeadlineDate > 1) {
     return (
@@ -16,7 +15,7 @@ function Deadline({ date, className }) {
         </h5>
         <h5>
           [Fecha de término de financiamiento:
-          {` ${stringOfDate(deadlineDate)} a las 20:00]`}
+          {` ${stringOfDate(date)} a las 20:00]`}
         </h5>
       </div>
     );
@@ -30,7 +29,7 @@ function Deadline({ date, className }) {
         </h5>
         <h5>
           [Fecha de término de financiamiento:
-          {` ${stringOfDate(deadlineDate)} a las 20:00]`}
+          {` ${stringOfDate(date)} a las 20:00]`}
         </h5>
       </div>
     );
@@ -41,7 +40,7 @@ function Deadline({ date, className }) {
       <h5>El proyecto ya ha llegado a su tiempo límite de financiamiento.</h5>
       <h5>
         [Fecha de término de financiamiento:
-        {` ${stringOfDate(deadlineDate)} a las 20:00]`}
+        {` ${stringOfDate(date)} a las 20:00]`}
       </h5>
     </div>
   );
