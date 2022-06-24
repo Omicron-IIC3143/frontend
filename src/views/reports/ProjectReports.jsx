@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-param-reassign */
@@ -81,7 +82,6 @@ function ProjectReports() {
   //     .catch(() => { setError(true); })
   //     .finally(() => setLoading(false));
   // }, []);
-
   if (loading) { return <Loading />; }
 
   return (
@@ -103,15 +103,22 @@ function ProjectReports() {
             <p>No tiene las credenciales necesarias para poder acceder a esta página.</p>
           </div>
         ) : null } */}
+        { currentUser ? (
+          <>
+            { !error ? (
+              <ReportsList reports={reports} className="width-80" auth={currentUser?.isAdmin || currentUser?.id == project.userId} /> // AQUI DECIDIMOS QUIEN PUEDE ELIMINAR
+            ) : (<> </>) }
+            {(currentUser?.id == userId) || (currentUser?.isAdmin) ? (
+              <CreateReport id={id} userId={userId} projectName={projectName} className="width-80" />
+            ) : (<> </>)}
+          </>
+        ) : (
 
-        { !error ? (
-          <ReportsList reports={reports} className="width-80" auth={(currentUser?.isAdmin || currentUser?.id == project.userId)} /> // AQUI DECIDIMOS QUIEN PUEDE ELIMINAR
-        ) : null }
+          !error ? (
+            <ReportsList reports={reports} className="width-80" auth={false} /> // AQUI DECIDIMOS QUIEN PUEDE ELIMINAR
+          ) : (<> </>)
 
-        {(currentUser?.id == userId) || (currentUser?.isAdmin) ? (
-          <CreateReport id={id} userId={userId} projectName={projectName} className="width-80" />
-        ) : null}
-
+        )}
         <div className="page-buttons width-80 margin-bottom-s">
           <ButtonBack />
         </div>

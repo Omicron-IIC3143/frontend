@@ -9,7 +9,7 @@ test('Renders Financed Projects title', () => {
       <ButtonFinancedProjectsUser />
     </Router>,
   );
-  getByText('Proyectos financiados');
+  getByText('Financiamientos');
 });
 test('OnClick Correct', () => {
   render(
@@ -17,5 +17,5 @@ test('OnClick Correct', () => {
       <ButtonFinancedProjectsUser />
     </Router>,
   );
-  fireEvent.click(screen.getByText(/Proyectos financiados/i));
+  fireEvent.click(screen.getByText(/Financiamientos/i));
 });
