@@ -4,9 +4,13 @@ import Button from 'react-bootstrap/Button';
 import './ButtonSharing.css';
 
 function copyUrlToClipboard() {
-  const shareMessage = `Buenas, quería que conocieras este proyecto muy interesante.\nPuedes verlo en ${window.location.href}`;
-  navigator.clipboard?.writeText(shareMessage);
-  alert('link del proyecto copiado!');
+  try {
+    const shareMessage = `Buenas, quería que conocieras este proyecto muy interesante.\nPuedes verlo en ${window.location.href}`;
+    navigator.clipboard?.writeText(shareMessage);
+    alert('link del proyecto copiado!');
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 function ButtonSharing() {
