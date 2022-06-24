@@ -4,16 +4,16 @@ import { Formik, Form, Field } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import Button from 'react-bootstrap/Button';
-import useAuth from '../../../hooks/useAuth';
-import './RegisterProjectForm.css';
-import ButtonBack from '../../buttons/buttonBack/ButtonBack';
+import useAuth from '../../hooks/useAuth';
+import './CreateReport.css';
+import ButtonBack from '../buttons/buttonBack/ButtonBack';
 
 /*
 Para ayudarse con alguna modificación del Select
 Source: https://gist.github.com/hubgit/e394e9be07d95cd5e774989178139ae8?permalink_comment_id=3487405#gistcomment-3487405
 */
 
-function ReportForm( { projectId }) {
+function CreateReport({ projectId }) {
   const navigate = useNavigate();
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ function ReportForm( { projectId }) {
       .max(900, 'Tu descripción debe tener máximo 900 caracteres.')
       .required('La descripción es obligatoria.'),
     pictureUrl: Yup.string()
-      .required('EL campo de imagen del reporte es obligatorio.'),,
+      .required('EL campo de imagen del reporte es obligatorio.'),
   });
 
   return (
@@ -130,4 +130,4 @@ function ReportForm( { projectId }) {
   );
 }
 
-export default RegisterProjectForm;
+export default CreateReport;
