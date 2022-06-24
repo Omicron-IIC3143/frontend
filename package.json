@@ -29,7 +29,7 @@
     "scripts": {
         "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test --coverage",
+        "test": "react-scripts test --coverage .",
         "eject": "react-scripts eject",
         "lint": "eslint --ext .js,.jsx src",
         "lint-fix": "eslint --ext .js,.jsx src --fix"
@@ -37,6 +37,30 @@
     "jest": {
         "transformIgnorePatterns": [
             "<rootDir>/node_modules/(?!bootstrap|@fortawesome|@babel|cdbreact|react-bootstrap)"
+        ],
+        "collectCoverageFrom": [
+            "./src/components/buttons/buttonBack/ButtonBack.jsx",
+            "./src/components/footer/Footer.jsx",
+            "./src/components/loading/Loading.jsx",
+            "./src/components/project/projectList/buttonPostulateProject/ButtonPostulateProject.jsx",
+            "./src/components/project/projectList/ProjectList.jsx",
+            "./src/components/project/projectList/ProjectListItem.jsx",
+            "./src/components/project/projectShow/buttons/buttonDelete/ButtonDelete.jsx",
+            "src/components/project/projectShow/buttons/buttonFinancing/ButtonFinancing.jsx",
+            "src/components/project/projectShow/buttons/buttonSharing/ButtonSharing.jsx",
+            "src/components/project/projectShow/deadline/Deadline.jsx",
+            "src/components/project/projectShow/financingInfo/FinancingInfo.jsx",
+            "src/components/project/projectShow/fullDescriptionOfProject/FullDescriptionOfProject.jsx",
+            "src/components/project/projectShow/projectImage/ProjectImage.jsx",
+            "src/components/termsConditions/TermsConditions.jsx",
+            "src/components/user/buttons/deleteButton/DeleteButton.jsx",
+            "src/components/user/buttons/depositButton/DepositButton.jsx",
+            "src/components/user/buttons/financeButton/FinanceButton.jsx",
+            "src/components/user/buttons/financedProjects/FinancedProjects.jsx",
+            "src/components/user/buttons/postulatedProjects/PostulatedProjects.jsx",
+            "src/components/user/buttons/profileButton/ProfileButton.jsx",
+            "src/components/user/buttons/updateButton/UpdateButton.jsx",
+            "src/components/user/userShow/UserShow.jsx"
         ]
     },
     "browserslist": {
