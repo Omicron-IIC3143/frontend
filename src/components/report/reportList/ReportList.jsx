@@ -43,7 +43,7 @@ function ReportsList({ reports, className, auth }) {
                 <div className="display-flex-row">
                   <DeleteReport report={report} />
                 </div>
-              ) : (<></>)}
+              ) : (<> </>)}
             </ul>
           </AccordionBody>
         </AccordionItem>

@@ -3,7 +3,7 @@ import './Deadline.css';
 import stringOfDate from '../../../../hooks/stringOfDate';
 import numberOfDays from '../../../../hooks/numberOfDays';
 
-function StringStateProject(englishState) {
+const StringStateProject = (englishState) => {
   if (englishState == 'pending') {
     return ' Pendiente';
   } if (englishState == 'accepted') {
@@ -12,7 +12,7 @@ function StringStateProject(englishState) {
     return ' Rechazado';
   }
   return '';
-}
+};
 
 function Deadline({ date, className, state }) {
   const numberOfDaysDeadlineDate = numberOfDays(date);

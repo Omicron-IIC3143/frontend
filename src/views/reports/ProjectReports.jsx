@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable max-len */
 /* eslint-disable no-mixed-operators */
 /* eslint-disable no-param-reassign */
